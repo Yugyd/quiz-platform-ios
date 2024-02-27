@@ -1,0 +1,60 @@
+
+/* Class = "UIButton"; normalTitle = "ПРОПУСТИТЬ"; ObjectID = "0Gq-E9-jvD"; */
+"0Gq-E9-jvD.normalTitle" = "ПРОПУСТИТЬ";
+
+/* Class = "UINavigationItem"; title = "Список ошибок"; ObjectID = "0Rf-hz-kpV"; */
+"0Rf-hz-kpV.title" = "Список ошибок";
+
+/* Class = "UILabel"; text = "44 / 124"; ObjectID = "14d-OX-Ivs"; */
+"14d-OX-Ivs.text" = "44 / 124";
+
+/* Class = "UIButton"; normalTitle = "Three"; ObjectID = "2Rv-sQ-zfc"; */
+"2Rv-sQ-zfc.normalTitle" = "Three";
+
+/* Class = "UINavigationItem"; title = "0"; ObjectID = "AVJ-Fl-uVV"; */
+"AVJ-Fl-uVV.title" = "0";
+
+/* Class = "UILabel"; text = "Вопрос"; ObjectID = "GqD-E5-ggj"; */
+"GqD-E5-ggj.text" = "Вопрос";
+
+/* Class = "UILabel"; text = "Только что поставили новый рекорд! Вам понравилось?"; ObjectID = "LZD-EM-hUb"; */
+"LZD-EM-hUb.text" = "Только что поставили новый рекорд! Вам понравилось?";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Lg0-98-FDE"; */
+"Lg0-98-FDE.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "СМОТРЕТЬ ОШИБКИ"; ObjectID = "RIF-EL-UFA"; */
+"RIF-EL-UFA.normalTitle" = "СМОТРЕТЬ ОШИБКИ";
+
+/* Class = "UIButton"; normalTitle = "Two"; ObjectID = "ReD-Wl-0E4"; */
+"ReD-Wl-0E4.normalTitle" = "Two";
+
+/* Class = "UIButton"; normalTitle = "НОВАЯ ИГРА"; ObjectID = "VuT-wV-hLa"; */
+"VuT-wV-hLa.normalTitle" = "НОВАЯ ИГРА";
+
+/* Class = "UIButton"; normalTitle = "БОЛЕЕ 3 000 ВОПРОСОВ И БЕЗ РЕКЛАМЫ."; ObjectID = "XnY-wF-Uix"; */
+"XnY-wF-Uix.normalTitle" = "БОЛЕЕ 3 000 ВОПРОСОВ И БЕЗ РЕКЛАМЫ.";
+
+/* Class = "UIButton"; normalTitle = "Four"; ObjectID = "YwQ-oz-p3D"; */
+"YwQ-oz-p3D.normalTitle" = "Four";
+
+/* Class = "UIButton"; normalTitle = "ОСТАВЬТЕ ОТЗЫВ"; ObjectID = "bFB-sO-F42"; */
+"bFB-sO-F42.normalTitle" = "ОСТАВЬТЕ ОТЗЫВ";
+
+/* Class = "UIButton"; normalTitle = "One"; ObjectID = "bui-Ih-dyM"; */
+"bui-Ih-dyM.normalTitle" = "One";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cN4-rO-thL"; */
+"cN4-rO-thL.text" = "Label";
+
+/* Class = "UILabel"; text = "Отлично!"; ObjectID = "djC-hu-LxN"; */
+"djC-hu-LxN.text" = "Отлично!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "n74-9y-cce"; */
+"n74-9y-cce.text" = "Label";
+
+/* Class = "UILabel"; text = "Правильный ответ"; ObjectID = "u6e-ay-3iQ"; */
+"u6e-ay-3iQ.text" = "Правильный ответ";
+
+/* Class = "UILabel"; text = "Категория"; ObjectID = "w3t-xY-H1F"; */
+"w3t-xY-H1F.text" = "Категория";

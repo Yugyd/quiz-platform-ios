@@ -1,0 +1,114 @@
+/*
+  Copyright 2024 Roman Likhachev
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+PROFILE_SECTION_SOCIAL="Социальные сети";
+PROFILE_SECTION_PURCHASE="Покупки";
+PROFILE_SECTION_LINK="Порадовать нас";
+PROFILE_SECTION_SETTINGS="Настройки";
+PROFILE_SECTION_FEEDBACK="Обратная связь";
+
+PROFILE_TITLE_TELEGRAM="Telegram-канал";
+PROFILE_TITLE_TELEGRAM_PROMO="Ежедневные вопросы и обратная связь";
+
+TITLE_PRO_VERSION="Про-версия";
+TITLE_RESTORE_PURCHASE="Восстановить покупки";
+
+TITLE_RATE_APP="Оцените приложение";
+TITLE_SHARE_FRIEND="Расскажите другу";
+TITLE_OTHER_APPS="Наши приложения";
+
+TITLE_SHOW_ANSWER="Просмотр ответа";
+TITLE_SORTING_QUEST="Сортировка вопросов";
+TITLE_VIBRATION="Вибрация";
+
+TITLE_REPORT_ERROR="Сообщите об ошибке";
+TITLE_PRIVACY_POLIICY="Политика конфиденциальности";
+
+SUBSCRIPTION_PER_MONTH="в месяц";
+SUBSCRIPTION_PER_QUARTER="в квартал";
+SUBSCRIPTION_PER_YEAR="в год";
+
+TITLE_NOT_SELECTED="Not selected";
+
+// Pro screen
+TITLE_WORK_ERROR_INFO="Прорабатывайте ошибки";
+TITLE_AD_OFF="Без рекламы";
+TITLE_AD_OFF_INFO="Не отвлекайтесь на рекламу";
+
+// Ui Kit
+TITLE_WORK_ERROR="Работа над ошибками";
+TITLE_LITE="Лайт";
+TITLE_PRO="Про";
+ACTION_OK="ОК";
+TITLE_ERROR="Ошибка";
+TITLE_TRY_AGAIN="Повторите попытку.";
+TITLE_ARCADE="Аркада";
+TITLE_MARATHON="Марафон";
+TITLE_SPRINT="Спринт";
+TITLE_SEC="сек.";
+
+// Game
+TITLE_ADD_LIFE="Дополнительная жизнь";
+MSG_ADD_LIFE="Получить дополнительную жизнь, посмотрев рекламный ролик.";
+ACTION_NEXT="Далее";
+ACTION_WATCH="Посмотреть";
+
+// Game End
+TITLE_WELL="Отлично!";
+TITLE_AMAZING="Замечательно!";
+MSG_NEW_RECORD="Установлен новый рекорд! Вам понравилось?";
+ACTION_LEAVE_RATE="Оставьте отзыв";
+TITLE_CURRENT_CATEHORY="Текущая категория";
+
+// Progress
+TITLE_SCHOOLBOY="Ученик";
+TITLE_AMATEUR="Любитель";
+TITLE_STUDENT="Студент";
+TITLE_MASTER="Магистр";
+TITLE_POSTGRADUATE="Аспирант";
+TITLE_CANDIDATE="Кандидат наук";
+TITLE_DOCTOR="Доктор наук";
+TITLE_PROFESSOR="Профессор";
+TITLE_ACADEMIC="Академик";
+
+// Domain
+CODE_ANSWER_A="верно только А";
+CODE_ANSWER_B="верно только Б";
+CODE_ANSWER_YES="верны оба суждения";
+CODE_ANSWER_YES_VARIANT="верны оба утверждения";
+CODE_ANSWER_NO="оба суждения неверны";
+CODE_ANSWER_NO_VARIANT="оба утверждения неверны";
+
+// Promo
+CONTENT_PROMO="Более трех тысяч вопросов";
+
+// PRO
+NOT_AVAILABLE="Недоступно";
+RESTORE_ALERT_TITLE="Успешно";
+RESTORE_ALERT_MSG="Покупки восстановлены.";
+RESTORE_ALERT_ACTION="ОК";
+RESTORE_ALERT_ERROR_TITLE="Ошибка";
+RESTORE_ALERT_ERROR_MSG="Покупки не восстановлены. Повторите попытку.";
+PRODUCTS_ALERT_ERROR_MSG="Не удалось загрузить продукты. Повторите попытку.";
+PRODUCT_BUY_ALERT_ERROR_MSG="Не удалось совершить покупку. Повторите попытку.";
+
+// Progress
+OUT_OF="из";
+
+// Profile
+//Notification settings
+SETTING_NOTIFICATION="Настройка уведомлений";
+//View answer
+VIEW_ANSWER="Просмотр ответа";

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f5N-cB-wtP">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Progress Page-->
+        <scene sceneID="mig-gC-5Et">
+            <objects>
+                <tableViewController id="bQm-Wg-aIL" userLabel="Progress Page" customClass="ProgressPageTableViewController" customModule="Quiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="78" estimatedRowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" id="8VK-bc-M6M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="LX9-FH-zaF" userLabel="Header" customClass="ProgressHeaderView" customModule="Quiz" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-RS-4Rm" userLabel="Level Image">
+                                    <rect key="frame" x="16" y="16.5" width="382" height="99"/>
+                                    <color key="tintColor" name="color_progress_low"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="Kpt-3U-Rqf"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ou-oQ-Lzm" userLabel="Level Label">
+                                    <rect key="frame" x="154.5" y="124" width="105" height="37"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="37" id="yii-Mk-dXx"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                    <color key="textColor" name="color_progress_low"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IVe-Om-FnY" userLabel="Total Progress">
+                                    <rect key="frame" x="157" y="177" width="100" height="9"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="3gR-zG-ygY"/>
+                                        <constraint firstAttribute="height" constant="9" id="vNm-lg-trw"/>
+                                    </constraints>
+                                </progressView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQp-ie-Uie" userLabel="Percent Label">
+                                    <rect key="frame" x="188" y="194" width="38.5" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="fXQ-nt-IQR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xnj-Tm-D2j" userLabel="Separator">
+                                    <rect key="frame" x="0.0" y="231" width="414" height="1"/>
+                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="EhO-9V-z9U"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="tvI-RS-4Rm" firstAttribute="top" secondItem="LX9-FH-zaF" secondAttribute="top" constant="16" id="3GW-wp-y92"/>
+                                <constraint firstItem="tvI-RS-4Rm" firstAttribute="leading" secondItem="LX9-FH-zaF" secondAttribute="leading" constant="16" id="669-Nq-Wzu"/>
+                                <constraint firstItem="Xnj-Tm-D2j" firstAttribute="leading" secondItem="LX9-FH-zaF" secondAttribute="leading" id="A2f-AE-Hp0"/>
+                                <constraint firstItem="IVe-Om-FnY" firstAttribute="centerX" secondItem="LX9-FH-zaF" secondAttribute="centerX" id="Ek0-Qh-EQQ"/>
+                                <constraint firstItem="Xnj-Tm-D2j" firstAttribute="bottom" secondItem="LX9-FH-zaF" secondAttribute="bottom" id="I9g-9L-ijs"/>
+                                <constraint firstItem="WQp-ie-Uie" firstAttribute="centerX" secondItem="LX9-FH-zaF" secondAttribute="centerX" id="MqO-tI-eG2"/>
+                                <constraint firstItem="IVe-Om-FnY" firstAttribute="top" secondItem="3ou-oQ-Lzm" secondAttribute="bottom" constant="16" id="Ors-Dv-wez"/>
+                                <constraint firstItem="WQp-ie-Uie" firstAttribute="top" secondItem="IVe-Om-FnY" secondAttribute="bottom" constant="8" id="S7X-WQ-3hE"/>
+                                <constraint firstItem="Xnj-Tm-D2j" firstAttribute="trailing" secondItem="LX9-FH-zaF" secondAttribute="trailing" id="YCp-Zr-Dkw"/>
+                                <constraint firstItem="tvI-RS-4Rm" firstAttribute="trailing" secondItem="LX9-FH-zaF" secondAttribute="trailing" constant="-16" id="Z9A-nQ-mT6"/>
+                                <constraint firstItem="3ou-oQ-Lzm" firstAttribute="centerX" secondItem="LX9-FH-zaF" secondAttribute="centerX" id="dlM-jI-LoH"/>
+                                <constraint firstItem="Xnj-Tm-D2j" firstAttribute="centerX" secondItem="LX9-FH-zaF" secondAttribute="centerX" id="lao-pD-CcR"/>
+                                <constraint firstItem="Xnj-Tm-D2j" firstAttribute="top" secondItem="WQp-ie-Uie" secondAttribute="bottom" constant="16" id="r01-50-NME"/>
+                                <constraint firstItem="3ou-oQ-Lzm" firstAttribute="top" secondItem="tvI-RS-4Rm" secondAttribute="bottom" constant="8" id="wIw-wi-pUf"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="levelImageView" destination="tvI-RS-4Rm" id="ONA-5G-jSt"/>
+                                <outlet property="levelTitleLabel" destination="3ou-oQ-Lzm" id="2za-Og-r7m"/>
+                                <outlet property="percentLabel" destination="WQp-ie-Uie" id="KEy-IS-TFO"/>
+                                <outlet property="totalProgressView" destination="IVe-Om-FnY" id="tSe-e6-FFQ"/>
+                            </connections>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProgressModeCell" rowHeight="78" id="VS2-SS-nvC" customClass="ModeViewCell" customModule="Quiz" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="282" width="414" height="78"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VS2-SS-nvC" id="jGH-i0-2de">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="78"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Mm-dO-j8P" userLabel="Info View">
+                                            <rect key="frame" x="16" y="12.5" width="382" height="53"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kievan Rus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHJ-GA-uK8" userLabel="Mode Label">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 из 164" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1f-dg-XM1" userLabel="Progress Label">
+                                                    <rect key="frame" x="0.0" y="25" width="382" height="15"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hmN-GL-sMb" userLabel="Progress">
+                                                    <rect key="frame" x="0.0" y="48" width="382" height="5"/>
+                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="5" id="Xhb-u7-LQP"/>
+                                                    </constraints>
+                                                </progressView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="l1f-dg-XM1" firstAttribute="trailing" secondItem="6Mm-dO-j8P" secondAttribute="trailing" id="2F2-L8-ma3"/>
+                                                <constraint firstItem="hmN-GL-sMb" firstAttribute="top" secondItem="l1f-dg-XM1" secondAttribute="bottom" constant="8" id="9IH-hF-EF8"/>
+                                                <constraint firstItem="hmN-GL-sMb" firstAttribute="trailing" secondItem="6Mm-dO-j8P" secondAttribute="trailing" id="CJI-z9-tNV"/>
+                                                <constraint firstItem="tHJ-GA-uK8" firstAttribute="leading" secondItem="6Mm-dO-j8P" secondAttribute="leading" id="Ciy-AF-A7x"/>
+                                                <constraint firstItem="tHJ-GA-uK8" firstAttribute="top" secondItem="6Mm-dO-j8P" secondAttribute="top" id="DeS-yw-Yex"/>
+                                                <constraint firstItem="l1f-dg-XM1" firstAttribute="top" secondItem="tHJ-GA-uK8" secondAttribute="bottom" constant="4" id="JqO-oj-70l"/>
+                                                <constraint firstItem="tHJ-GA-uK8" firstAttribute="trailing" secondItem="6Mm-dO-j8P" secondAttribute="trailing" id="Yjr-hO-rsA"/>
+                                                <constraint firstItem="hmN-GL-sMb" firstAttribute="bottom" secondItem="6Mm-dO-j8P" secondAttribute="bottom" id="Zva-A3-9Ly"/>
+                                                <constraint firstItem="l1f-dg-XM1" firstAttribute="leading" secondItem="6Mm-dO-j8P" secondAttribute="leading" id="h3D-Ob-AYr"/>
+                                                <constraint firstItem="hmN-GL-sMb" firstAttribute="leading" secondItem="6Mm-dO-j8P" secondAttribute="leading" id="jhi-Cg-McW"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6Mm-dO-j8P" firstAttribute="centerY" secondItem="jGH-i0-2de" secondAttribute="centerY" id="KZ5-hm-5m1"/>
+                                        <constraint firstItem="6Mm-dO-j8P" firstAttribute="leading" secondItem="jGH-i0-2de" secondAttribute="leading" constant="16" id="gHC-OP-jEE"/>
+                                        <constraint firstItem="6Mm-dO-j8P" firstAttribute="trailing" secondItem="jGH-i0-2de" secondAttribute="trailing" constant="-16" id="uvS-do-Vzh"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="modeLabel" destination="tHJ-GA-uK8" id="K97-ec-foD"/>
+                                    <outlet property="progressLabel" destination="l1f-dg-XM1" id="J4f-Ds-5sz"/>
+                                    <outlet property="progressView" destination="hmN-GL-sMb" id="yYg-mf-Vxu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="bQm-Wg-aIL" id="E0X-DN-V9m"/>
+                            <outlet property="delegate" destination="bQm-Wg-aIL" id="suu-lY-zSm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="xkk-7M-iDc">
+                        <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" id="CES-da-Yk7" userLabel="Close">
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="actionClosePage:" destination="bQm-Wg-aIL" id="06q-gS-bWp"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" id="5II-ei-GMi" userLabel="Reset">
+                            <color key="tintColor" name="color_progress_low"/>
+                            <connections>
+                                <action selector="actionResetProgress:" destination="bQm-Wg-aIL" id="4ru-Av-odW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="resetBarButtonItem" destination="5II-ei-GMi" id="mZk-0M-E5T"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xj2-qC-yXK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1484.057971014493" y="49.553571428571423"/>
+        </scene>
+        <!--Navigation Progress Page-->
+        <scene sceneID="RDV-1a-Xxi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f5N-cB-wtP" userLabel="Navigation Progress Page" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k0k-be-Z5U">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bQm-Wg-aIL" kind="relationship" relationship="rootViewController" id="rgz-Kk-EQD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qiE-FR-CGg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573.91304347826087" y="49.553571428571423"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
+        <namedColor name="color_progress_low">
+            <color red="0.82745098039215681" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
