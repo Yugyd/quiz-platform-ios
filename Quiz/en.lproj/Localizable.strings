@@ -42,6 +42,9 @@ SUBSCRIPTION_PER_YEAR="per year";
 
 TITLE_NOT_SELECTED="Not selected";
 
+TITLE_CONTENT="Content";
+TITLE_CONTENT_NOT_SELECTED="No content selected";
+
 // Pro screen
 TITLE_WORK_ERROR_INFO="Work through mistakes";
 TITLE_AD_OFF="Without advertising";

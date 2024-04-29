@@ -147,8 +147,7 @@ class ViewMock: GameViewProtocol {
             self.isUpdateQuestContent = false
         }
         self.quest = quest
-        
-        presenter.hockLoadQuestEnd()
+
     }
     
     // MARK: - AnswerControlGameView

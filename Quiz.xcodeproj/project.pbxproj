@@ -256,6 +256,9 @@
 		03F7631A24D474DD003FE75F /* ProUpdateCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7631924D474DD003FE75F /* ProUpdateCallback.swift */; };
 		03F7631C24D4753D003FE75F /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7631B24D4753D003FE75F /* ErrorType.swift */; };
 		1B0BF324CE37B1AB157A6397 /* Pods_Quiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D62E49FC6AEF47541D40DF4 /* Pods_Quiz.framework */; };
+		5B0959032BE007DC00454545 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959022BE007DC00454545 /* ContentViewController.swift */; };
+		5B0959072BE0116F00454545 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959062BE0116F00454545 /* ContentView.swift */; };
+		5B09590C2BE013B100454545 /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B09590B2BE013B100454545 /* Content.storyboard */; };
 		61122FBFED4160A7F199EC03 /* Pods_Quiz_QuizUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94398C725E7BE92DF8A7D69C /* Pods_Quiz_QuizUITests.framework */; };
 		6DFDD0B011B28C5376C2A0D2 /* GameEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDDCCCCBECFC6F584FBC5F /* GameEnd.swift */; };
 		6DFDD0F685910B2A9B9D14B3 /* FeatureManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDD7657C55EAE256D7732A /* FeatureManagerImpl.swift */; };
@@ -556,6 +559,9 @@
 		03F7631B24D4753D003FE75F /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		2D62E49FC6AEF47541D40DF4 /* Pods_Quiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D0037DE0C3BA9C7CF4816B /* Pods-Quiz-QuizUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quiz-QuizUITests.release.xcconfig"; path = "Target Support Files/Pods-Quiz-QuizUITests/Pods-Quiz-QuizUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5B0959022BE007DC00454545 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		5B0959062BE0116F00454545 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5B09590A2BE013B100454545 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Content.storyboard; sourceTree = "<group>"; };
 		6DFDD0FB73ECFEEF8E12AD3A /* TelegramConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramConfig.swift; sourceTree = "<group>"; };
 		6DFDD1342B2D69A8FE290329 /* TwoTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTextViewCell.swift; sourceTree = "<group>"; };
 		6DFDD18DB24FE44A364F78C3 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -724,6 +730,7 @@
 				BE838CFD2B4D3D4300D68618 /* Profile.storyboard */,
 				033B79A6245BE96900744891 /* LaunchScreen.storyboard */,
 				BE838D022B4D3D5000D68618 /* Additionally.storyboard */,
+				5B09590B2BE013B100454545 /* Content.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1092,6 +1099,7 @@
 		033B7AA4245BFEFB00744891 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5B0959012BE007A100454545 /* Content */,
 				033B7AA5245BFF2C00744891 /* Base */,
 				033B7AAD245BFF6A00744891 /* Correct */,
 				033B7AAC245BFF6100744891 /* End */,
@@ -1708,6 +1716,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5B0959012BE007A100454545 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				5B0959022BE007DC00454545 /* ContentViewController.swift */,
+				5B0959062BE0116F00454545 /* ContentView.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		6DFDD126F0A840DED75064AF /* FeatureToggle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1874,6 +1891,7 @@
 				BE838D002B4D3D5000D68618 /* Additionally.storyboard in Resources */,
 				BE838CF62B4D3D2700D68618 /* Progress.storyboard in Resources */,
 				6DFDD537D92C3F99A2470E58 /* IDETemplateMacros.plist in Resources */,
+				5B09590C2BE013B100454545 /* Content.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2087,6 +2105,7 @@
 				033B7B53245C0DA900744891 /* ValueItemDataDelegate.swift in Sources */,
 				033B7B8D245C10DD00744891 /* ThemeCollectionViewController.swift in Sources */,
 				033B7A6F245BFB4200744891 /* AbQuestParser.swift in Sources */,
+				5B0959032BE007DC00454545 /* ContentViewController.swift in Sources */,
 				033B7B93245C114600744891 /* ReportViewController.swift in Sources */,
 				033B7B95245C117C00744891 /* GameViewController.swift in Sources */,
 				033B7A0B245BF55700744891 /* ContentMode.swift in Sources */,
@@ -2118,6 +2137,7 @@
 				03F7631A24D474DD003FE75F /* ProUpdateCallback.swift in Sources */,
 				033B7B1D245C0B0000744891 /* GameSequeExtraArgs.swift in Sources */,
 				033B7A21245BF73C00744891 /* ProgressEnd.swift in Sources */,
+				5B0959072BE0116F00454545 /* ContentView.swift in Sources */,
 				033B7B50245C0D1900744891 /* BetaProfileDataSource.swift in Sources */,
 				03A673D224CC3B9D0055DF22 /* AlertBuilder.swift in Sources */,
 				033B7B6E245C0F3200744891 /* ProgressUpdateCallback.swift in Sources */,
@@ -2320,6 +2340,14 @@
 				037843762737D98400AF404D /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5B09590B2BE013B100454545 /* Content.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B09590A2BE013B100454545 /* Base */,
+			);
+			name = Content.storyboard;
 			sourceTree = "<group>";
 		};
 		BE838CEE2B4D3CCB00D68618 /* Main.storyboard */ = {

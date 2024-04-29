@@ -27,6 +27,7 @@ private let segueProfileToPro = "segueProfileToPro"
 //private let segueProfileToSupportProject = "segueProfileToSupportProject"
 private let segueProfileToValuePref = "segueProfileToValuePref"
 private let segueProfileToReport = "segueProfileToReport"
+private let segueProfileToContent = "segueProfileToContent"
 
 class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
 
@@ -295,6 +296,8 @@ class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
             performSegue(withIdentifier: segueProfileToReport, sender: nil)
         case .privacyPollicy:
             Web.openLink(link: GlobalScope.content.privacyPollicy)
+        case .selectContent:
+            performSegue(withIdentifier: segueProfileToContent, sender: nil)
         }
     }
 

@@ -93,6 +93,9 @@ class ProfilePresenter: ProfilePresenterProtocol {
             return "Stub"
         case .answerTextSize:
             return "Stub"
+        case .selectContent:
+            // TODO Add value from content repository
+            return "Stub"
         default:
             fatalError("getDetailValue - Profile item no reg")
         }

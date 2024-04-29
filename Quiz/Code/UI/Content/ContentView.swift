@@ -12,34 +12,17 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
-import Foundation
+import SwiftUI
 
-enum ProfileItemIdentifier: CaseIterable {
-    // Account section
-    case signAccount
-    // Social
-    case telegram
-    // Purchase section
-    case pro
-    case supportProject
-    case restorePurchase
-    // Link section
-    case rateApp
-    case shareFriend
-    case otherApps
-    // Settings section
-    case notification
-    case transition
-    case sortQuest
-    case vibration
-    // Text size
-    case questTextSize
-    case answerTextSize
-    // Feedback
-    case reportError
-    case privacyPollicy
-    // Content
-    case selectContent
+struct ContentView: View {
+    var body: some View {
+        // TODO Add screen “Select content” UI implementation
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+#Preview {
+    ContentView()
 }

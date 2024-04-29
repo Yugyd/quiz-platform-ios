@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rKd-0h-nna">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rKd-0h-nna">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -777,6 +777,7 @@
                         <segue destination="53Q-Fz-oKt" kind="show" identifier="segueProfileToValuePref" id="ngh-eo-R4q"/>
                         <segue destination="1Yh-z7-o6B" kind="presentation" identifier="segueProfileToReport" id="fjp-w1-tdl"/>
                         <segue destination="k5c-Jx-XdJ" kind="presentation" identifier="segueProfileToPro" id="dzZ-Wk-eOi"/>
+                        <segue destination="USr-gd-vKv" kind="show" identifier="segueProfileToContent" id="LwF-d7-cQb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD3-kL-npG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -828,6 +829,16 @@
             </objects>
             <point key="canvasLocation" x="1019" y="2290"/>
         </scene>
+        <!--ContentViewController-->
+        <scene sceneID="KFf-zJ-weH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Content" referencedIdentifier="ContentViewController" id="USr-gd-vKv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="yVo-Cf-J80"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dui-U2-3CO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2911" y="2303"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="FUP-9s-uGg"/>
@@ -859,7 +870,7 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

@@ -42,6 +42,9 @@ SUBSCRIPTION_PER_YEAR="в год";
 
 TITLE_NOT_SELECTED="Not selected";
 
+TITLE_CONTENT="Контент";
+TITLE_CONTENT_NOT_SELECTED="Контент не выбран";
+
 // Pro screen
 TITLE_WORK_ERROR_INFO="Прорабатывайте ошибки";
 TITLE_AD_OFF="Без рекламы";

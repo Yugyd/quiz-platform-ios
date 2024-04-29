@@ -17,6 +17,7 @@
 import Foundation
 
 enum SectionItem: CaseIterable {
+    case top
     case social
     case settings
     case purchase
@@ -35,6 +36,8 @@ enum SectionItem: CaseIterable {
             return NSLocalizedString("PROFILE_SECTION_SETTINGS", comment: "Settings")
         case .feedback:
             return NSLocalizedString("PROFILE_SECTION_FEEDBACK", comment: "Feedback")
+        case .top:
+           return ""
         }
     }
 }
