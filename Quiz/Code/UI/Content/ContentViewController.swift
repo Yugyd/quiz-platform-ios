@@ -23,16 +23,33 @@ class ContentViewController: UIViewController {
         super.viewDidLoad()
         
         let hostingController = createHostController()
-        addChild(hostingController)
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        let swiftUiView = hostingController.view!
+        swiftUiView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(hostingController.view)
+        addChild(hostingController)
+        view.addSubview(swiftUiView)
+        
+        NSLayoutConstraint.activate([
+            swiftUiView.topAnchor.constraint(equalTo: view.topAnchor),
+            swiftUiView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            swiftUiView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            swiftUiView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
         
         hostingController.didMove(toParent: self)
     }
     
-    private func createHostController() -> UIHostingController<ContentView> {
-        let contentView = ContentView()
+    private func createHostController() -> UIHostingController<ContentEmptyState> {
+        let contentView = ContentEmptyState(
+            onChooseFileClicked: {
+                // TODO Content: Add real implementation
+                print("onChooseFileClicked")
+            },
+            onDataFormatClicked: {
+                // TODO Content: Add real implementation
+                print("onDataFormatClicked")
+            }
+        )
         let hostingController = UIHostingController(rootView: contentView)
         return hostingController
     }

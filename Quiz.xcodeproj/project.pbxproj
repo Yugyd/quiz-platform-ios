@@ -257,8 +257,13 @@
 		03F7631C24D4753D003FE75F /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7631B24D4753D003FE75F /* ErrorType.swift */; };
 		1B0BF324CE37B1AB157A6397 /* Pods_Quiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D62E49FC6AEF47541D40DF4 /* Pods_Quiz.framework */; };
 		5B0959032BE007DC00454545 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959022BE007DC00454545 /* ContentViewController.swift */; };
-		5B0959072BE0116F00454545 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959062BE0116F00454545 /* ContentView.swift */; };
+		5B0959072BE0116F00454545 /* ContentEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959062BE0116F00454545 /* ContentEmptyState.swift */; };
 		5B09590C2BE013B100454545 /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B09590B2BE013B100454545 /* Content.storyboard */; };
+		5B0959692BE266000011BC28 /* StringsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959682BE266000011BC28 /* StringsConstants.swift */; };
+		5B09596D2BE271250011BC28 /* ButtonConstans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09596C2BE271250011BC28 /* ButtonConstans.swift */; };
+		5BE98DF82BE18A99002A08D4 /* IconWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */; };
+		5BE98DFA2BE1913D002A08D4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE98DF92BE1913D002A08D4 /* Colors.swift */; };
+		5BE98E002BE19CD7002A08D4 /* AppLocalizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BE98DFF2BE19CD7002A08D4 /* AppLocalizable.xcstrings */; };
 		61122FBFED4160A7F199EC03 /* Pods_Quiz_QuizUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94398C725E7BE92DF8A7D69C /* Pods_Quiz_QuizUITests.framework */; };
 		6DFDD0B011B28C5376C2A0D2 /* GameEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDDCCCCBECFC6F584FBC5F /* GameEnd.swift */; };
 		6DFDD0F685910B2A9B9D14B3 /* FeatureManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDD7657C55EAE256D7732A /* FeatureManagerImpl.swift */; };
@@ -560,8 +565,13 @@
 		2D62E49FC6AEF47541D40DF4 /* Pods_Quiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D0037DE0C3BA9C7CF4816B /* Pods-Quiz-QuizUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quiz-QuizUITests.release.xcconfig"; path = "Target Support Files/Pods-Quiz-QuizUITests/Pods-Quiz-QuizUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5B0959022BE007DC00454545 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		5B0959062BE0116F00454545 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5B0959062BE0116F00454545 /* ContentEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentEmptyState.swift; sourceTree = "<group>"; };
 		5B09590A2BE013B100454545 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Content.storyboard; sourceTree = "<group>"; };
+		5B0959682BE266000011BC28 /* StringsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsConstants.swift; sourceTree = "<group>"; };
+		5B09596C2BE271250011BC28 /* ButtonConstans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConstans.swift; sourceTree = "<group>"; };
+		5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithBackground.swift; sourceTree = "<group>"; };
+		5BE98DF92BE1913D002A08D4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		5BE98DFF2BE19CD7002A08D4 /* AppLocalizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppLocalizable.xcstrings; sourceTree = "<group>"; };
 		6DFDD0FB73ECFEEF8E12AD3A /* TelegramConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramConfig.swift; sourceTree = "<group>"; };
 		6DFDD1342B2D69A8FE290329 /* TwoTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTextViewCell.swift; sourceTree = "<group>"; };
 		6DFDD18DB24FE44A364F78C3 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -681,6 +691,7 @@
 				BEF3464B2B5C1E3B005F6AD0 /* Localizable.strings */,
 				03F69E7324C534FA006DB4B6 /* GoogleService-Info.plist */,
 				03619C872664208000AD6063 /* SubscriptionsConfiguration.storekit */,
+				5BE98DFF2BE19CD7002A08D4 /* AppLocalizable.xcstrings */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -1099,6 +1110,7 @@
 		033B7AA4245BFEFB00744891 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5B09596A2BE267920011BC28 /* DesignSystem */,
 				5B0959012BE007A100454545 /* Content */,
 				033B7AA5245BFF2C00744891 /* Base */,
 				033B7AAD245BFF6A00744891 /* Correct */,
@@ -1123,6 +1135,7 @@
 				03A673D124CC3B9D0055DF22 /* AlertBuilder.swift */,
 				033B7AB4245BFFEF00744891 /* ProgressViewExtension.swift */,
 				033B7AB6245C000000744891 /* ProgressColor.swift */,
+				5B0959682BE266000011BC28 /* StringsConstants.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1720,9 +1733,35 @@
 			isa = PBXGroup;
 			children = (
 				5B0959022BE007DC00454545 /* ContentViewController.swift */,
-				5B0959062BE0116F00454545 /* ContentView.swift */,
+				5B0959062BE0116F00454545 /* ContentEmptyState.swift */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		5B09596A2BE267920011BC28 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				5B09596E2BE2712A0011BC28 /* Button */,
+				5B09596B2BE267B40011BC28 /* Core */,
+				5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		5B09596B2BE267B40011BC28 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5BE98DF92BE1913D002A08D4 /* Colors.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5B09596E2BE2712A0011BC28 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				5B09596C2BE271250011BC28 /* ButtonConstans.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		6DFDD126F0A840DED75064AF /* FeatureToggle */ = {
@@ -1884,6 +1923,7 @@
 				BE838CEC2B4D3CCB00D68618 /* Main.storyboard in Resources */,
 				033B79D8245BEF1700744891 /* AppAssets.xcassets in Resources */,
 				0314A6CF246291950030B5E5 /* Assets.xcassets in Resources */,
+				5BE98E002BE19CD7002A08D4 /* AppLocalizable.xcstrings in Resources */,
 				033B79A8245BE96900744891 /* LaunchScreen.storyboard in Resources */,
 				BE838CFB2B4D3D4300D68618 /* Profile.storyboard in Resources */,
 				03717F9B24C7AE6E00659391 /* Product.plist in Resources */,
@@ -2080,6 +2120,7 @@
 				033B7B17245C0AB600744891 /* RecordEndViewProtocol.swift in Sources */,
 				033B7A36245BF84000744891 /* SectionContract.swift in Sources */,
 				033B7A73245BFB7800744891 /* AnswerAbParserDelegate.swift in Sources */,
+				5B0959692BE266000011BC28 /* StringsConstants.swift in Sources */,
 				033B7ADE245C07A100744891 /* ContentViewCellProtocol.swift in Sources */,
 				033B7AE8245C083700744891 /* GameNavigationItem.swift in Sources */,
 				033B7A5F245BFA6C00744891 /* ThemeRepositoryProtocol.swift in Sources */,
@@ -2104,6 +2145,7 @@
 				033B7ABD245C005500744891 /* HighlightState.swift in Sources */,
 				033B7B53245C0DA900744891 /* ValueItemDataDelegate.swift in Sources */,
 				033B7B8D245C10DD00744891 /* ThemeCollectionViewController.swift in Sources */,
+				5BE98DF82BE18A99002A08D4 /* IconWithBackground.swift in Sources */,
 				033B7A6F245BFB4200744891 /* AbQuestParser.swift in Sources */,
 				5B0959032BE007DC00454545 /* ContentViewController.swift in Sources */,
 				033B7B93245C114600744891 /* ReportViewController.swift in Sources */,
@@ -2137,7 +2179,7 @@
 				03F7631A24D474DD003FE75F /* ProUpdateCallback.swift in Sources */,
 				033B7B1D245C0B0000744891 /* GameSequeExtraArgs.swift in Sources */,
 				033B7A21245BF73C00744891 /* ProgressEnd.swift in Sources */,
-				5B0959072BE0116F00454545 /* ContentView.swift in Sources */,
+				5B0959072BE0116F00454545 /* ContentEmptyState.swift in Sources */,
 				033B7B50245C0D1900744891 /* BetaProfileDataSource.swift in Sources */,
 				03A673D224CC3B9D0055DF22 /* AlertBuilder.swift in Sources */,
 				033B7B6E245C0F3200744891 /* ProgressUpdateCallback.swift in Sources */,
@@ -2158,6 +2200,7 @@
 				033B7B31245C0BE800744891 /* ProfileViewProtocol.swift in Sources */,
 				033B7A68245BFAF200744891 /* Mode.swift in Sources */,
 				03761F0524C65119002E3B19 /* AppHeaderViewProtocol.swift in Sources */,
+				5BE98DFA2BE1913D002A08D4 /* Colors.swift in Sources */,
 				0381F06024C3DC9D003A18F3 /* PriceFormatterProtocol.swift in Sources */,
 				0381F04624C3DB47003A18F3 /* ProPromoViewController.swift in Sources */,
 				033B7A10245BF59600744891 /* Theme.swift in Sources */,
@@ -2211,6 +2254,7 @@
 				033B7A41245BF8ED00744891 /* LifecycleSqlDatabase.swift in Sources */,
 				033B7AE2245C07F700744891 /* BaseNavigationController.swift in Sources */,
 				0358F3372552BBAC00535126 /* SubscribeJsonMapper.swift in Sources */,
+				5B09596D2BE271250011BC28 /* ButtonConstans.swift in Sources */,
 				0381F06224C3DCAC003A18F3 /* PriceFormatter.swift in Sources */,
 				033B79F0245BF41C00744891 /* SpecSymbolFormatter.swift in Sources */,
 				033B7A5D245BFA5D00744891 /* QuestRepositoryProtocol.swift in Sources */,

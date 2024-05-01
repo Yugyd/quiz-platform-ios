@@ -12,17 +12,35 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//  
+//
 
 import SwiftUI
 
-struct ContentView: View {
+struct IconWithBackground: View {
+    let size: CGFloat
+    let icon: String
+    
     var body: some View {
-        // TODO Add screen “Select content” UI implementation
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        ZStack {
+            Image(icon)
+                .resizable()
+                .foregroundColor(Color.mdOnPrimary)
+        }
+        .padding(16)
+        .frame(
+            width: size,
+            height: size
+        )
+        .background(
+            RoundedRectangle(cornerRadius: 16.0)
+                .fill(Color.mdPrimary)
+        )
+    }    
 }
 
 #Preview {
-    ContentView()
+    IconWithBackground(
+        size: 96,
+        icon: "ic_file_open"
+    )
 }
