@@ -264,6 +264,9 @@
 		5BE98DF82BE18A99002A08D4 /* IconWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */; };
 		5BE98DFA2BE1913D002A08D4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE98DF92BE1913D002A08D4 /* Colors.swift */; };
 		5BE98E002BE19CD7002A08D4 /* AppLocalizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BE98DFF2BE19CD7002A08D4 /* AppLocalizable.xcstrings */; };
+		5BED9BBF2BE28316000D7AE3 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9BBE2BE28316000D7AE3 /* LoadingScreen.swift */; };
+		5BED9BC12BE28578000D7AE3 /* WarningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9BC02BE28578000D7AE3 /* WarningScreen.swift */; };
+		5BED9BC52BE29063000D7AE3 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9BC42BE29063000D7AE3 /* PrimaryButton.swift */; };
 		61122FBFED4160A7F199EC03 /* Pods_Quiz_QuizUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94398C725E7BE92DF8A7D69C /* Pods_Quiz_QuizUITests.framework */; };
 		6DFDD0B011B28C5376C2A0D2 /* GameEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDDCCCCBECFC6F584FBC5F /* GameEnd.swift */; };
 		6DFDD0F685910B2A9B9D14B3 /* FeatureManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDD7657C55EAE256D7732A /* FeatureManagerImpl.swift */; };
@@ -572,6 +575,9 @@
 		5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithBackground.swift; sourceTree = "<group>"; };
 		5BE98DF92BE1913D002A08D4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BE98DFF2BE19CD7002A08D4 /* AppLocalizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppLocalizable.xcstrings; sourceTree = "<group>"; };
+		5BED9BBE2BE28316000D7AE3 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		5BED9BC02BE28578000D7AE3 /* WarningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningScreen.swift; sourceTree = "<group>"; };
+		5BED9BC42BE29063000D7AE3 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		6DFDD0FB73ECFEEF8E12AD3A /* TelegramConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramConfig.swift; sourceTree = "<group>"; };
 		6DFDD1342B2D69A8FE290329 /* TwoTextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTextViewCell.swift; sourceTree = "<group>"; };
 		6DFDD18DB24FE44A364F78C3 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -1741,6 +1747,8 @@
 		5B09596A2BE267920011BC28 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				5BED9BC22BE2858A000D7AE3 /* Warning */,
+				5B09596F2BE27E3A0011BC28 /* Loading */,
 				5B09596E2BE2712A0011BC28 /* Button */,
 				5B09596B2BE267B40011BC28 /* Core */,
 				5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */,
@@ -1760,8 +1768,25 @@
 			isa = PBXGroup;
 			children = (
 				5B09596C2BE271250011BC28 /* ButtonConstans.swift */,
+				5BED9BC42BE29063000D7AE3 /* PrimaryButton.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		5B09596F2BE27E3A0011BC28 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				5BED9BBE2BE28316000D7AE3 /* LoadingScreen.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		5BED9BC22BE2858A000D7AE3 /* Warning */ = {
+			isa = PBXGroup;
+			children = (
+				5BED9BC02BE28578000D7AE3 /* WarningScreen.swift */,
+			);
+			path = Warning;
 			sourceTree = "<group>";
 		};
 		6DFDD126F0A840DED75064AF /* FeatureToggle */ = {
@@ -2215,6 +2240,7 @@
 				033B7B02245C09E000744891 /* ErrorTableViewController.swift in Sources */,
 				033B7AB9245C002A00744891 /* AnswerButton.swift in Sources */,
 				033B7ACF245C062700744891 /* ProgressHeaderViewProtocol.swift in Sources */,
+				5BED9BC52BE29063000D7AE3 /* PrimaryButton.swift in Sources */,
 				033B7B0B245C0A3200744891 /* ProgressEndDelegate.swift in Sources */,
 				033B7AB7245C000000744891 /* ProgressColor.swift in Sources */,
 				033B7A53245BF9C900744891 /* ErrorRepositoryProtocol.swift in Sources */,
@@ -2270,6 +2296,7 @@
 				033B7B84245C108500744891 /* ThemeSegmentedViewProtocol.swift in Sources */,
 				033B7A82245BFC7500744891 /* GameControlProtocol.swift in Sources */,
 				0381F06624C3DD46003A18F3 /* SubscribeViewCellProtocol.swift in Sources */,
+				5BED9BC12BE28578000D7AE3 /* WarningScreen.swift in Sources */,
 				033B7B3B245C0C5F00744891 /* ProfileItem.swift in Sources */,
 				033B7A2B245BF7DA00744891 /* UserDatabaseProtocol.swift in Sources */,
 				033B7AE4245C080800744891 /* BaseTabBarController.swift in Sources */,
@@ -2277,6 +2304,7 @@
 				033B7B20245C0B1A00744891 /* BarGameView.swift in Sources */,
 				033B7B22245C0B2E00744891 /* ContentGameView.swift in Sources */,
 				033B79F2245BF42B00744891 /* LineSeparatorFormatter.swift in Sources */,
+				5BED9BBF2BE28316000D7AE3 /* LoadingScreen.swift in Sources */,
 				038D36922556A2A5002A0672 /* BuyState.swift in Sources */,
 				033B7A2D245BF7EF00744891 /* UserDatabase.swift in Sources */,
 				0381F04224C3DB18003A18F3 /* ProPagePresenterProtocol.swift in Sources */,

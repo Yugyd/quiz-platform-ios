@@ -68,19 +68,16 @@ struct ContentEmptyState: View {
             
             Spacer().frame(height: 16)
             
-            // Выделить в отдельный компонент
-            Button(action: onChooseFileClicked) {
-                Text(
-                    "content_empty_state_button",
-                    tableName: appLocalizable
-                )
-                .font(.headline)
-            }
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.roundedRectangle(radius: largeButtonCornerRadius))
-            .controlSize(.large)
-            .tint(Color.mdPrimary)
-            
+            PrimaryButton(
+                title: .constant(
+                    Text(
+                        "content_empty_state_button",
+                        tableName: appLocalizable
+                    )
+                ),
+                action: onChooseFileClicked
+            )
+
             Spacer().frame(height: 8)
             
             Button(action: onDataFormatClicked) {
