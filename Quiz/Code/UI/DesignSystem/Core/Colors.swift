@@ -20,10 +20,15 @@ import SwiftUI
 extension Color {
     public static let mdPrimary: Color = Color(uiColor: UIColor(named: "md_primary")!)
     public static let mdOnPrimary: Color = Color(uiColor: UIColor(named: "md_on_primary")!)
+    public static let mdPrimaryContainer: Color = Color(uiColor: UIColor(named: "md_primary_container")!)
+    public static let mdOnPrimaryContainer: Color = Color(uiColor: UIColor(named: "md_on_primary_container")!)
     public static let mdSecondaryContainer: Color = Color(uiColor: UIColor(named: "md_secondary_container")!)
     public static let mdOnSecondaryContainer: Color = Color(uiColor: UIColor(named: "md_on_secondary_container")!)
     public static let mdBackground: Color = Color(uiColor: UIColor(named: "md_background")!)
     public static let mdOnBackground: Color = Color(uiColor: UIColor(named: "md_on_background")!)
+    public static let mdSurface: Color = Color(uiColor: UIColor(named: "md_surface")!)
+    public static let mdOnSurface: Color = Color(uiColor: UIColor(named: "md_on_surface")!)
     public static let mdSurfaceVariant: Color = Color(uiColor: UIColor(named: "md_surface_variant")!)
     public static let mdOnSurfaceVariant: Color = Color(uiColor: UIColor(named: "md_on_surface_variant")!)
+    public static let mdOutlineVariant: Color = Color(uiColor: UIColor(named: "md_outline_variant")!)
 }

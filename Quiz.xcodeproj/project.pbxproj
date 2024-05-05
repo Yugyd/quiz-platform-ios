@@ -261,6 +261,14 @@
 		5B09590C2BE013B100454545 /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B09590B2BE013B100454545 /* Content.storyboard */; };
 		5B0959692BE266000011BC28 /* StringsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959682BE266000011BC28 /* StringsConstants.swift */; };
 		5B09596D2BE271250011BC28 /* ButtonConstans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09596C2BE271250011BC28 /* ButtonConstans.swift */; };
+		5B306AA72BE7A4E300DBBB79 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B306AA62BE7A4E300DBBB79 /* ContentViewModel.swift */; };
+		5B306AA92BE7A91800DBBB79 /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B306AA82BE7A91800DBBB79 /* ContentItem.swift */; };
+		5B306AAC2BE7B2C700DBBB79 /* IconConstans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B306AAB2BE7B2C700DBBB79 /* IconConstans.swift */; };
+		5B306AAE2BE7B3D700DBBB79 /* NewFileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B306AAD2BE7B3D700DBBB79 /* NewFileItem.swift */; };
+		5B306AB02BE7B7EF00DBBB79 /* TonalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B306AAF2BE7B7EF00DBBB79 /* TonalButton.swift */; };
+		5B306AB22BE7C05500DBBB79 /* ContentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B306AB12BE7C05500DBBB79 /* ContentScreen.swift */; };
+		5B4D7C0B2BE6DC8300C1988E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D7C0A2BE6DC8300C1988E /* ContentView.swift */; };
+		5BCDBB5A2BE79B4A003B5A6C /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCDBB592BE79B4A003B5A6C /* ContentModel.swift */; };
 		5BE98DF82BE18A99002A08D4 /* IconWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */; };
 		5BE98DFA2BE1913D002A08D4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE98DF92BE1913D002A08D4 /* Colors.swift */; };
 		5BE98E002BE19CD7002A08D4 /* AppLocalizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BE98DFF2BE19CD7002A08D4 /* AppLocalizable.xcstrings */; };
@@ -572,6 +580,14 @@
 		5B09590A2BE013B100454545 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Content.storyboard; sourceTree = "<group>"; };
 		5B0959682BE266000011BC28 /* StringsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsConstants.swift; sourceTree = "<group>"; };
 		5B09596C2BE271250011BC28 /* ButtonConstans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConstans.swift; sourceTree = "<group>"; };
+		5B306AA62BE7A4E300DBBB79 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		5B306AA82BE7A91800DBBB79 /* ContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
+		5B306AAB2BE7B2C700DBBB79 /* IconConstans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconConstans.swift; sourceTree = "<group>"; };
+		5B306AAD2BE7B3D700DBBB79 /* NewFileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileItem.swift; sourceTree = "<group>"; };
+		5B306AAF2BE7B7EF00DBBB79 /* TonalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TonalButton.swift; sourceTree = "<group>"; };
+		5B306AB12BE7C05500DBBB79 /* ContentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScreen.swift; sourceTree = "<group>"; };
+		5B4D7C0A2BE6DC8300C1988E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5BCDBB592BE79B4A003B5A6C /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		5BE98DF72BE18A99002A08D4 /* IconWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithBackground.swift; sourceTree = "<group>"; };
 		5BE98DF92BE1913D002A08D4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BE98DFF2BE19CD7002A08D4 /* AppLocalizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppLocalizable.xcstrings; sourceTree = "<group>"; };
@@ -995,6 +1011,7 @@
 		033B7A62245BFAA200744891 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				5BCDBB582BE79B36003B5A6C /* Content */,
 				033B7A63245BFAB300744891 /* Game */,
 				033B7A66245BFAD400744891 /* Profile */,
 				033B7A64245BFABA00744891 /* Progress */,
@@ -1738,8 +1755,13 @@
 		5B0959012BE007A100454545 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				5B306AB32BE7C72900DBBB79 /* ViewModel */,
 				5B0959022BE007DC00454545 /* ContentViewController.swift */,
 				5B0959062BE0116F00454545 /* ContentEmptyState.swift */,
+				5B4D7C0A2BE6DC8300C1988E /* ContentView.swift */,
+				5B306AA82BE7A91800DBBB79 /* ContentItem.swift */,
+				5B306AAD2BE7B3D700DBBB79 /* NewFileItem.swift */,
+				5B306AB12BE7C05500DBBB79 /* ContentScreen.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -1747,6 +1769,7 @@
 		5B09596A2BE267920011BC28 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				5B306AAA2BE7B29D00DBBB79 /* Icon */,
 				5BED9BC22BE2858A000D7AE3 /* Warning */,
 				5B09596F2BE27E3A0011BC28 /* Loading */,
 				5B09596E2BE2712A0011BC28 /* Button */,
@@ -1769,6 +1792,7 @@
 			children = (
 				5B09596C2BE271250011BC28 /* ButtonConstans.swift */,
 				5BED9BC42BE29063000D7AE3 /* PrimaryButton.swift */,
+				5B306AAF2BE7B7EF00DBBB79 /* TonalButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1779,6 +1803,30 @@
 				5BED9BBE2BE28316000D7AE3 /* LoadingScreen.swift */,
 			);
 			path = Loading;
+			sourceTree = "<group>";
+		};
+		5B306AAA2BE7B29D00DBBB79 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				5B306AAB2BE7B2C700DBBB79 /* IconConstans.swift */,
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
+		5B306AB32BE7C72900DBBB79 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B306AA62BE7A4E300DBBB79 /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5BCDBB582BE79B36003B5A6C /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				5BCDBB592BE79B4A003B5A6C /* ContentModel.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		5BED9BC22BE2858A000D7AE3 /* Warning */ = {
@@ -2127,6 +2175,7 @@
 				033B7B8B245C10CC00744891 /* ThemeViewProtocol.swift in Sources */,
 				033B7AF3245C090600744891 /* CorrectViewProtocol.swift in Sources */,
 				033B7B6A245C0EFF00744891 /* ProgressPagePresenterProtocol.swift in Sources */,
+				5B306AA72BE7A4E300DBBB79 /* ContentViewModel.swift in Sources */,
 				0381F05024C3DBF6003A18F3 /* SubscribeViewProtocol.swift in Sources */,
 				033B7B09245C0A2300744891 /* ViewData.swift in Sources */,
 				033B7B41245C0C9800744891 /* ProfileRowIdentifier.swift in Sources */,
@@ -2159,6 +2208,7 @@
 				033B7A43245BF8FD00744891 /* SqliteDatabase.swift in Sources */,
 				033B7B72245C0F6000744891 /* ProgressTableViewController.swift in Sources */,
 				033B7A14245BF5B800744891 /* Point.swift in Sources */,
+				5B306AA92BE7A91800DBBB79 /* ContentItem.swift in Sources */,
 				033B7B37245C0C2E00744891 /* ProfilePresenter.swift in Sources */,
 				033B7A61245BFA7B00744891 /* SectionRepositoryProtocol.swift in Sources */,
 				033B7B00245C09C900744891 /* ErrorTableViewProtocol.swift in Sources */,
@@ -2222,6 +2272,7 @@
 				033B7ACD245C05FC00744891 /* ProgressViewCell.swift in Sources */,
 				033B7A8D245BFD1900744891 /* DataManager.swift in Sources */,
 				033B7B33245C0C0400744891 /* ProfileTableViewController.swift in Sources */,
+				5B306AAC2BE7B2C700DBBB79 /* IconConstans.swift in Sources */,
 				033B7B31245C0BE800744891 /* ProfileViewProtocol.swift in Sources */,
 				033B7A68245BFAF200744891 /* Mode.swift in Sources */,
 				03761F0524C65119002E3B19 /* AppHeaderViewProtocol.swift in Sources */,
@@ -2250,16 +2301,19 @@
 				033B7B26245C0B5200744891 /* GameViewProtocol.swift in Sources */,
 				033B7A6D245BFB3200744891 /* AbType.swift in Sources */,
 				033B7A9F245BFE8300744891 /* SectionLevel.swift in Sources */,
+				5BCDBB5A2BE79B4A003B5A6C /* ContentModel.swift in Sources */,
 				033B7AF7245C093700744891 /* CorrectPresenter.swift in Sources */,
 				03F7631C24D4753D003FE75F /* ErrorType.swift in Sources */,
 				033B7AC1245C044F00744891 /* ThemeViewCell.swift in Sources */,
 				0381F04B24C3DBB4003A18F3 /* PromoDataSourceProtocol.swift in Sources */,
 				033B7B0F245C0A5900744891 /* ErrorProgressEndDelegate.swift in Sources */,
+				5B4D7C0B2BE6DC8300C1988E /* ContentView.swift in Sources */,
 				033B7B39245C0C4C00744891 /* ProfileItemIdentifier.swift in Sources */,
 				03A555782462D1AE005BB0A9 /* AdErrorProtocol.swift in Sources */,
 				0381F05624C3DC29003A18F3 /* SubscribePresenter.swift in Sources */,
 				033B7A7A245BFC0A00744891 /* GameProcessDelegate.swift in Sources */,
 				033B7B59245C0DD900744891 /* ValuePrefMode.swift in Sources */,
+				5B306AB02BE7B7EF00DBBB79 /* TonalButton.swift in Sources */,
 				033B7A0D245BF56800744891 /* Percent.swift in Sources */,
 				033B7A7E245BFC3A00744891 /* SprintGameProcessDelegate.swift in Sources */,
 				0381F04024C3DAFA003A18F3 /* ProPageViewController.swift in Sources */,
@@ -2274,6 +2328,7 @@
 				033B7ADC245C076B00744891 /* SwitchViewCell.swift in Sources */,
 				033B7B82245C105F00744891 /* SectionPresenter.swift in Sources */,
 				033B7B98245C123500744891 /* RecordEndViewController.swift in Sources */,
+				5B306AB22BE7C05500DBBB79 /* ContentScreen.swift in Sources */,
 				033B7AC3245C04EF00744891 /* SectionViewCellProtocol.swift in Sources */,
 				0381F06424C3DCED003A18F3 /* Subscribe.swift in Sources */,
 				033B7A9C245BFE4400744891 /* TotalProgressCalculatorDelegate.swift in Sources */,
@@ -2308,6 +2363,7 @@
 				038D36922556A2A5002A0672 /* BuyState.swift in Sources */,
 				033B7A2D245BF7EF00744891 /* UserDatabase.swift in Sources */,
 				0381F04224C3DB18003A18F3 /* ProPagePresenterProtocol.swift in Sources */,
+				5B306AAE2BE7B3D700DBBB79 /* NewFileItem.swift in Sources */,
 				033B7B61245C0E3B00744891 /* ValuePrefPresenter.swift in Sources */,
 				033B7B2A245C0B7D00744891 /* GamePresenterProtocol.swift in Sources */,
 				033B7B35245C0C1B00744891 /* ProfilePresenterProtocol.swift in Sources */,

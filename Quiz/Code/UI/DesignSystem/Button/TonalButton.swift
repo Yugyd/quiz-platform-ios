@@ -16,7 +16,7 @@
 
 import SwiftUI
 
-struct PrimaryButton: View {
+struct TonalButton: View {
     
     @Binding var title: Text
     let action: () -> Void
@@ -25,18 +25,17 @@ struct PrimaryButton: View {
         Button(action: action) {
             title
                 .font(.headline)
+                .foregroundStyle(Color.mdOnSecondaryContainer)
         }
         .buttonStyle(.borderedProminent)
-        .buttonBorderShape(
-            .roundedRectangle(radius: ButtonConstans.largeButtonCornerRadius)
-        )
+        .buttonBorderShape(.roundedRectangle(radius: ButtonConstans.largeButtonCornerRadius))
         .controlSize(.large)
-        .tint(Color.mdPrimary)
+        .tint(Color.mdSecondaryContainer)
     }
 }
 
 #Preview {
-    PrimaryButton(
+    TonalButton(
         title: .constant(
             Text("Title")
         ),

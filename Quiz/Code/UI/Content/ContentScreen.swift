@@ -16,30 +16,28 @@
 
 import SwiftUI
 
-struct PrimaryButton: View {
-    
-    @Binding var title: Text
-    let action: () -> Void
+struct ContentScreen: View {
+    @StateObject var viewModel: ContentViewModel = ContentViewModel()
     
     var body: some View {
-        Button(action: action) {
-            title
-                .font(.headline)
+        if viewModel.isLoading {
+            LoadingScreen()
+        } else if viewModel.isWarning {
+            WarningScreen(
+                isRetryButtonEnabled: .constant(false),
+                onRetryClicked: nil
+            )
+        } else if viewModel.items.isEmpty {
+            ContentEmptyState(
+                onChooseFileClicked: viewModel.onOpenFileClicked,
+                onDataFormatClicked: viewModel.onContentFormatClicked
+            )
+        } else {
+            ContentView(viewModel: viewModel)
         }
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(
-            .roundedRectangle(radius: ButtonConstans.largeButtonCornerRadius)
-        )
-        .controlSize(.large)
-        .tint(Color.mdPrimary)
     }
 }
 
 #Preview {
-    PrimaryButton(
-        title: .constant(
-            Text("Title")
-        ),
-        action: {}
-    )
+    ContentScreen()
 }

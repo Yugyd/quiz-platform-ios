@@ -14,32 +14,12 @@
 //  limitations under the License.
 //
 
-import SwiftUI
+import Foundation
 
-struct PrimaryButton: View {
-    
-    @Binding var title: Text
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            title
-                .font(.headline)
-        }
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(
-            .roundedRectangle(radius: ButtonConstans.largeButtonCornerRadius)
-        )
-        .controlSize(.large)
-        .tint(Color.mdPrimary)
-    }
-}
-
-#Preview {
-    PrimaryButton(
-        title: .constant(
-            Text("Title")
-        ),
-        action: {}
-    )
+struct ContentModel: Identifiable {
+    let id: String
+    let name: String
+    let filePath: String
+    let isChecked: Bool
+    let contentMarker: String
 }

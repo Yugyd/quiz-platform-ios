@@ -12,34 +12,11 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
-import SwiftUI
+import Foundation
 
-struct PrimaryButton: View {
-    
-    @Binding var title: Text
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            title
-                .font(.headline)
-        }
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(
-            .roundedRectangle(radius: ButtonConstans.largeButtonCornerRadius)
-        )
-        .controlSize(.large)
-        .tint(Color.mdPrimary)
-    }
-}
-
-#Preview {
-    PrimaryButton(
-        title: .constant(
-            Text("Title")
-        ),
-        action: {}
-    )
+struct IconConstans {
+    static let mdDefaultIconSize = 24.0
+    static let mdIconContainerSize = 40.0
 }

@@ -39,18 +39,9 @@ class ContentViewController: UIViewController {
         hostingController.didMove(toParent: self)
     }
     
-    private func createHostController() -> UIHostingController<ContentEmptyState> {
-        let contentView = ContentEmptyState(
-            onChooseFileClicked: {
-                // TODO Content: Add real implementation
-                print("onChooseFileClicked")
-            },
-            onDataFormatClicked: {
-                // TODO Content: Add real implementation
-                print("onDataFormatClicked")
-            }
-        )
-        let hostingController = UIHostingController(rootView: contentView)
+    private func createHostController() -> UIHostingController<ContentScreen> {
+        let view = ContentScreen()
+        let hostingController = UIHostingController(rootView: view)
         return hostingController
     }
 }

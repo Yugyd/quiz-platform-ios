@@ -16,4 +16,6 @@
 
 import Foundation
 
-let largeButtonCornerRadius = 26.5
+struct ButtonConstans {
+    static let largeButtonCornerRadius = 26.5
+}

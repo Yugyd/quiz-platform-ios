@@ -77,21 +77,18 @@ struct ContentEmptyState: View {
                 ),
                 action: onChooseFileClicked
             )
-
+            
             Spacer().frame(height: 8)
             
-            Button(action: onDataFormatClicked) {
-                Text(
-                    "content_empty_state_button_data_format",
-                    tableName: appLocalizable
-                )
-                .font(.headline)
-                .foregroundStyle(Color.mdOnSecondaryContainer)
-            }
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.roundedRectangle(radius: largeButtonCornerRadius))
-            .controlSize(.large)
-            .tint(Color.mdSecondaryContainer)
+            TonalButton(
+                title: .constant(
+                    Text(
+                        "content_empty_state_button_data_format",
+                        tableName: appLocalizable
+                    )
+                ),
+                action: onDataFormatClicked
+            )
         }
         .padding(16)
     }
