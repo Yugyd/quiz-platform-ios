@@ -40,7 +40,14 @@ class ContentViewController: UIViewController {
     }
     
     private func createHostController() -> UIHostingController<ContentScreen> {
-        let view = ContentScreen()
+        let view = ContentScreen(
+            onBack: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            },
+            onNavigateToBrowser: { url in
+                Web.openLink(link: url)
+            }
+        )
         let hostingController = UIHostingController(rootView: view)
         return hostingController
     }

@@ -21,14 +21,6 @@ struct ContentEmptyState: View {
     let onChooseFileClicked: () -> Void
     let onDataFormatClicked: () -> Void
     
-    init(
-        onChooseFileClicked: @escaping () -> Void,
-        onDataFormatClicked: @escaping () -> Void
-    ) {
-        self.onChooseFileClicked = onChooseFileClicked
-        self.onDataFormatClicked = onDataFormatClicked
-    }
-    
     var body: some View {
         VStack(alignment: .center) {
             IconWithBackground(

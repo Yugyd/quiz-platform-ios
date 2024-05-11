@@ -17,27 +17,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: ContentViewModel
+    
+    @Binding var items: [ContentModel]
+    let onOpenFileClicked: () -> Void
+    let onContentFormatClicked: () -> Void
+    let onItemClicked: (ContentModel) -> Void
     
     var body: some View {
         VStack {
             List {
-                NewFileItem(onOpenFileClicked: {
-                    viewModel.onOpenFileClicked()
-                }, onContentFormatClicked: {
-                    viewModel.onContentFormatClicked()
-                })
+                NewFileItem(
+                    onOpenFileClicked: onOpenFileClicked,
+                    onContentFormatClicked: onContentFormatClicked
+                )
                 .listRowInsets(
                     EdgeInsets(top: 8, leading: 8, bottom: 24, trailing: 8)
                 )
                 .listRowSeparator(.hidden)
                 
-                ForEach(viewModel.items, id: \.id) { item in
+                ForEach(items, id: \.id) { item in
                     ContentItem(
                         model: item,
-                        onItemClicked: { model in
-                            viewModel.onItemClicked(model)
-                        }
+                        onItemClicked: onItemClicked
                     )
                     .listRowInsets(EdgeInsets())
                     .listRowSeparator(.hidden)
@@ -50,6 +51,28 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: ContentViewModel())
+        ContentView(
+            items: .constant(
+                [
+                    ContentModel(
+                        id: "1",
+                        name: "Item 1",
+                        filePath: "item_1.txt",
+                        isChecked: true,
+                        contentMarker: "1"
+                    ),
+                    ContentModel(
+                        id: "2",
+                        name: "Item 2",
+                        filePath: "item_2.txt",
+                        isChecked: false,
+                        contentMarker: "2"
+                    )
+                ]
+            ),
+            onOpenFileClicked: {},
+            onContentFormatClicked: {},
+            onItemClicked: {_ in }
+        )
     }
 }

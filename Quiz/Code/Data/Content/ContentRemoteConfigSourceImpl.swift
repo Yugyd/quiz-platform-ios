@@ -15,22 +15,20 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 
-/**
- * Contains all user progress of the user, tied to a category.
- */
-struct Point: Equatable, Hashable {
-    /**
-     * Number of questions in the category. Used to later count progress
-     * in the progress calculator.
-     */
-    let count: Int
+class ContentRemoteConfigSourceImpl: ContentRemoteConfigSource {
+    private let contentFormatUrlKey = "content_format_url"
     
-    let arcade: Int
-    let marathon: Int
-    let sprint: Int
+    private let remoteConfig: AppRemoteConfig
     
-    func isEmpty() -> Bool {
-        return arcade == 0 && marathon == 0 && sprint == 0
+    init(remoteConfig: AppRemoteConfig) {
+        self.remoteConfig = remoteConfig
+    }
+    
+    func getContentFormatUrl() async -> String {
+        // TODO: Delete mock url after integrate Remote Config
+        let contentFormatUrl = if true { "https://github.com/Yugyd/quiz-platform/blob/master/docs/CONTENT_FORMAT.md" } else { remoteConfig.fetchStringValue(key: contentFormatUrlKey) }
+        return contentFormatUrl
     }
 }

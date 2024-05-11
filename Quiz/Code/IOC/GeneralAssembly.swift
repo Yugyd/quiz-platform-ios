@@ -41,6 +41,14 @@ protocol GeneralAssembly {
     // MARK: - Domain
 
     func resolve() -> ContentMode
+    
+    func resolve() -> ContentRemoteConfigSource
+    
+    func resolve() -> ContentClient
+    
+    func resolve() -> FileRepository
+    
+    func resolve() -> ContentInteractor
 
     // MARK: - In App
 
@@ -59,4 +67,8 @@ protocol GeneralAssembly {
     func resolve() -> FeatureManager
 
     func resolve() -> RemoteConfigRepository
+    
+    // Mark: - Core
+    
+    func resolve() -> Logger
 }

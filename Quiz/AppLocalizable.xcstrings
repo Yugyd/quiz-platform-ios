@@ -103,6 +103,227 @@
         }
       }
     },
+    "content_error_add_is_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to add content"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось добавить контент"
+          }
+        }
+      }
+    },
+    "content_error_content_format_url_not_loaded" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Content format resource link not loaded"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ссылка на ресурс формата контента не загружена"
+          }
+        }
+      }
+    },
+    "content_error_delete_is_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to delete content"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить контент"
+          }
+        }
+      }
+    },
+    "content_error_invalid_uri" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to access content file"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить доступ к файлу контента"
+          }
+        }
+      }
+    },
+    "content_error_not_added_content_is_exists" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Content has already been added"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контент уже добавлен"
+          }
+        }
+      }
+    },
+    "content_error_not_select_and_delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The selected content is invalid and has been removed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный контент невалидный и был удален"
+          }
+        }
+      }
+    },
+    "content_error_one_item_not_delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The only content cannot be deleted"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единственный контент не может быть удален"
+          }
+        }
+      }
+    },
+    "content_error_select_is_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to select content"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось выбрать контент"
+          }
+        }
+      }
+    },
+    "content_error_selected_item_not_delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected content cannot be deleted"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный контент не может быть удален"
+          }
+        }
+      }
+    },
+    "content_format_error_content_quest_duplicate_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplicate IDs detected, please provide unique IDs for questions:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Обнаружены дубликаты ид, задайте уникальные ид для вопросов:"
+          }
+        }
+      }
+    },
+    "content_format_error_content_quest_not_valid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrectly written questions detected:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Обнаружены неправильно составленные вопросы:"
+          }
+        }
+      }
+    },
+    "content_format_error_content_theme_duplicate_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplicate IDs detected, please set unique IDs for topics:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Обнаружены дубликаты ид, задайте уникальные ид для тем:"
+          }
+        }
+      }
+    },
+    "content_format_error_content_theme_not_valid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrectly composed topics detected:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Обнаружены неправильно составленные темы:"
+          }
+        }
+      }
+    },
     "design_system_title_empty_state" : {
       "extractionState" : "manual",
       "localizations" : {

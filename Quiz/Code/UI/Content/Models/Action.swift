@@ -12,14 +12,19 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
 import Foundation
 
-struct ContentModel: Identifiable {
-    let id: String
-    let name: String
-    let filePath: String
-    let isChecked: Bool
-    let contentMarker: String
+enum Action {
+    case loadData
+    case onItemClicked(ContentModel)
+    case onDeleteClicked(ContentModel)
+    case onErrorMessageDismissed
+    case onNavigationHandled
+    case onOpenFileClicked
+    case onContentFormatClicked
+    case onDocumentResult(uri: URL?)
+    case onDocumentResultError(error: Error)
+    case onOpenFileProviderHandled
 }

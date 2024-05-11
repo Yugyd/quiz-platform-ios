@@ -12,25 +12,11 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
 import Foundation
 
-/**
- * Contains all user progress of the user, tied to a category.
- */
-struct Point: Equatable, Hashable {
-    /**
-     * Number of questions in the category. Used to later count progress
-     * in the progress calculator.
-     */
-    let count: Int
-    
-    let arcade: Int
-    let marathon: Int
-    let sprint: Int
-    
-    func isEmpty() -> Bool {
-        return arcade == 0 && marathon == 0 && sprint == 0
-    }
+enum NavigationState: Equatable, Hashable {
+    case navigateToContentFormat(url: String)
+    case back
 }

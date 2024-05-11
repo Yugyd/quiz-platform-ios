@@ -12,25 +12,25 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
 import Foundation
 
-/**
- * Contains all user progress of the user, tied to a category.
- */
-struct Point: Equatable, Hashable {
+protocol FileRepository {
+    
     /**
-     * Number of questions in the category. Used to later count progress
-     * in the progress calculator.
+     * Save text with content from external storage to local storage. For example, the user has created questions, we save the file with the questions in local storage.
+     * For permanent access to the file.
      */
-    let count: Int
+    func saveTextToLocalStorage(fileName: String, fileContents: String) -> String?
     
-    let arcade: Int
-    let marathon: Int
-    let sprint: Int
+    /**
+     * Reading text with content from local storage. For example, we read text to create a database from it.
+     */
+    func readTextFromFile(fileName: String) -> String
     
-    func isEmpty() -> Bool {
-        return arcade == 0 && marathon == 0 && sprint == 0
-    }
+    /**
+     * Returns the file name from the URL.
+     */
+    func getFileName(uri: String) -> String
 }

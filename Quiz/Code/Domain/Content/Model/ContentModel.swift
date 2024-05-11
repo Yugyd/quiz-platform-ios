@@ -16,21 +16,10 @@
 
 import Foundation
 
-/**
- * Contains all user progress of the user, tied to a category.
- */
-struct Point: Equatable, Hashable {
-    /**
-     * Number of questions in the category. Used to later count progress
-     * in the progress calculator.
-     */
-    let count: Int
-    
-    let arcade: Int
-    let marathon: Int
-    let sprint: Int
-    
-    func isEmpty() -> Bool {
-        return arcade == 0 && marathon == 0 && sprint == 0
-    }
+struct ContentModel: Identifiable, Equatable {
+    let id: String
+    let name: String
+    let filePath: String
+    let isChecked: Bool
+    let contentMarker: String
 }

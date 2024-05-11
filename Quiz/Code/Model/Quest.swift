@@ -16,7 +16,7 @@
 
 import Foundation
 
-struct Quest {
+struct Quest: Equatable, Hashable {
     static let minQuestLength = 5
     static let minAnswerLength = 1
     static let maxComplexity = 5

@@ -18,11 +18,13 @@ import Foundation
 
 class AppAssembly: GeneralAssembly {
 
+    // TODO: Implement synchronized access to avoid creating multiple instances from different threads
     var userRepository: UserRepository! = nil
     var contentRepository: ContentRepository! = nil
     var contentMode: ContentMode! = nil
     var decoder: DecoderProtocol! = nil
     var iapHelper: IAPHelperProtocol! = nil
+    var logger: Logger! = nil
 
     func enablePro() {
         contentRepository = nil
@@ -74,7 +76,7 @@ class AppAssembly: GeneralAssembly {
     }
 
     // MARK: - Domain
-
+    
     func resolve() -> ContentMode {
         if contentMode == nil {
             let iapHelper: IAPHelperProtocol = resolve()
@@ -88,6 +90,26 @@ class AppAssembly: GeneralAssembly {
         }
 
         return contentMode
+    }
+    
+    func resolve() -> ContentRemoteConfigSource {
+        return ContentRemoteConfigSourceImpl(
+            remoteConfig: resolve()
+        )
+    }
+    
+    func resolve() -> ContentClient {
+        return ContentClientImpl(
+            logger: resolve()
+        )
+    }
+    
+    func resolve() -> ContentInteractor {
+        return ContentInteractorImpl(
+            contentClient: resolve(),
+            fileRepository: resolve(),
+            contentRemoteConfigSource: resolve()
+        )
     }
 
     // MARK: - In App
@@ -130,5 +152,22 @@ class AppAssembly: GeneralAssembly {
 
     func resolve() -> RemoteConfigRepository {
         return RemoteConfigRepositoryImpl()
+    }
+    
+    // Mark: Core
+    func resolve() -> Logger {
+        if logger == nil {
+            logger = LoggerImpl()
+        }
+        return logger
+    }
+    
+    func resolve() -> FileRepository {
+        return FileRepositoryImpl()
+    }
+    
+    // Mark: Services
+    func resolve() -> AppRemoteConfig {
+        return AppRemoteConfigImpl(logger: resolve())
     }
 }

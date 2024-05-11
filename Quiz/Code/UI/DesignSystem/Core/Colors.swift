@@ -30,5 +30,7 @@ extension Color {
     public static let mdOnSurface: Color = Color(uiColor: UIColor(named: "md_on_surface")!)
     public static let mdSurfaceVariant: Color = Color(uiColor: UIColor(named: "md_surface_variant")!)
     public static let mdOnSurfaceVariant: Color = Color(uiColor: UIColor(named: "md_on_surface_variant")!)
+    public static let mdInverseSurfaceVariant: Color = Color(uiColor: UIColor(named: "md_inverse_surface")!)
+    public static let mdInverseOnSurfaceVariant: Color = Color(uiColor: UIColor(named: "md_inverse_on_surface")!)
     public static let mdOutlineVariant: Color = Color(uiColor: UIColor(named: "md_outline_variant")!)
 }

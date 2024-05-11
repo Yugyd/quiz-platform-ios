@@ -185,6 +185,7 @@ PODS:
   - SQLite.swift (0.14.1):
     - SQLite.swift/standard (= 0.14.1)
   - SQLite.swift/standard (0.14.1)
+  - SwiftyBeaver (1.9.5)
   - SwiftyJSON (5.0.1)
   - SwiftyStoreKit (0.16.1)
   - TPInAppReceipt (3.3.4):
@@ -200,6 +201,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (= 10.14.0)
   - MaterialComponents/Dialogs (= 124.2.0)
   - SQLite.swift (= 0.14.1)
+  - SwiftyBeaver
   - SwiftyJSON (= 5.0.1)
   - SwiftyStoreKit (= 0.16.1)
   - TPInAppReceipt (= 3.3.4)
@@ -230,6 +232,7 @@ SPEC REPOS:
     - PromisesObjC
     - PromisesSwift
     - SQLite.swift
+    - SwiftyBeaver
     - SwiftyJSON
     - SwiftyStoreKit
     - TPInAppReceipt
@@ -259,10 +262,11 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   SQLite.swift: 2992550ebf3c5b268bf4352603e3df87d2a4ed72
+  SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   TPInAppReceipt: 75ff97f2484a463cf46c172fe7f94225612aeda1
 
-PODFILE CHECKSUM: b31cbcf3f8ca4f9a452719998c3c9510f0c122a0
+PODFILE CHECKSUM: 8b194803b6a01ae52426ab20939066a6f0f3e423
 
 COCOAPODS: 1.15.2

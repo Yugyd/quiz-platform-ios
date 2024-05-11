@@ -28,6 +28,9 @@ target 'Quiz' do
   pod 'SwiftyStoreKit', '0.16.1'
   pod 'SwiftyJSON', '5.0.1'
   pod 'TPInAppReceipt', '3.3.4'
+  
+  # Logger
+  pod 'SwiftyBeaver', '1.9.5'
 
   # Test
   target 'QuizTests' do

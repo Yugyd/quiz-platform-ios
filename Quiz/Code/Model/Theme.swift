@@ -16,14 +16,14 @@
 
 import Foundation
 
-struct Theme {
+struct Theme: Equatable, Hashable {
     static let defaultThemeId = 0
-
+    
     let id: Int
     let title: String
     let info: String
     let imageName: String
     let count: Int
-
+    
     let point: Point
 }
