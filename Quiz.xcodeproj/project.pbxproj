@@ -279,6 +279,7 @@
 		5BB378AC2BEF5804007FC5A4 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378AB2BEF5804007FC5A4 /* Action.swift */; };
 		5BB378AE2BEF5813007FC5A4 /* ErrorMessageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378AD2BEF5813007FC5A4 /* ErrorMessageState.swift */; };
 		5BB378B02BEF582F007FC5A4 /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378AF2BEF582F007FC5A4 /* NavigationState.swift */; };
+		5BB378B22BEF5ADF007FC5A4 /* OpenSourceProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378B12BEF5ADF007FC5A4 /* OpenSourceProfileItem.swift */; };
 		5BCDBB5A2BE79B4A003B5A6C /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCDBB592BE79B4A003B5A6C /* ContentModel.swift */; };
 		5BDCD9B22BE95545002475F5 /* ContentClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDCD9B12BE95545002475F5 /* ContentClient.swift */; };
 		5BDCD9B52BE95B40002475F5 /* ContentClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDCD9B42BE95B40002475F5 /* ContentClientImpl.swift */; };
@@ -618,6 +619,7 @@
 		5BB378AB2BEF5804007FC5A4 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		5BB378AD2BEF5813007FC5A4 /* ErrorMessageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageState.swift; sourceTree = "<group>"; };
 		5BB378AF2BEF582F007FC5A4 /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
+		5BB378B12BEF5ADF007FC5A4 /* OpenSourceProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceProfileItem.swift; sourceTree = "<group>"; };
 		5BCDBB592BE79B4A003B5A6C /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		5BDCD9B12BE95545002475F5 /* ContentClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentClient.swift; sourceTree = "<group>"; };
 		5BDCD9B42BE95B40002475F5 /* ContentClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentClientImpl.swift; sourceTree = "<group>"; };
@@ -1288,6 +1290,7 @@
 				033B7B32245C0C0400744891 /* ProfileTableViewController.swift */,
 				033B7B34245C0C1B00744891 /* ProfilePresenterProtocol.swift */,
 				033B7B36245C0C2E00744891 /* ProfilePresenter.swift */,
+				5BB378B12BEF5ADF007FC5A4 /* OpenSourceProfileItem.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2450,6 +2453,7 @@
 				033B7A9F245BFE8300744891 /* SectionLevel.swift in Sources */,
 				5BCDBB5A2BE79B4A003B5A6C /* ContentModel.swift in Sources */,
 				033B7AF7245C093700744891 /* CorrectPresenter.swift in Sources */,
+				5BB378B22BEF5ADF007FC5A4 /* OpenSourceProfileItem.swift in Sources */,
 				03F7631C24D4753D003FE75F /* ErrorType.swift in Sources */,
 				033B7AC1245C044F00744891 /* ThemeViewCell.swift in Sources */,
 				0381F04B24C3DBB4003A18F3 /* PromoDataSourceProtocol.swift in Sources */,
