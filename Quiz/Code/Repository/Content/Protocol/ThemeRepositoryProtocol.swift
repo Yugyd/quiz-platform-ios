@@ -23,6 +23,8 @@ protocol ThemeRepositoryProtocol: AnyObject {
      * order (special identifier).
      */
     func getThemes() -> [Theme]?
+    
+    func addThemes(themes: [Theme]?)
 
     /**
      * Returns a category object based on the given id

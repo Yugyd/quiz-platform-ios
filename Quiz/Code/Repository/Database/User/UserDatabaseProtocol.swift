@@ -16,5 +16,10 @@
 
 import Foundation
 
-protocol UserDatabaseProtocol: RecordRepositoryProtocol, PointRepositoryProtocol, ErrorRepositoryProtocol, ResetRepositoryProtocol, SectionPointRepositoryProtocol {
+protocol UserDatabaseProtocol: RecordRepositoryProtocol,
+                               PointRepositoryProtocol,
+                               ErrorRepositoryProtocol,
+                               ResetRepositoryProtocol,
+                               SectionPointRepositoryProtocol,
+                               ContentRepositoryProtocol {
 }

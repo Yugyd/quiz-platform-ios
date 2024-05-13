@@ -229,7 +229,7 @@ class ContentViewModel: ObservableObject {
             do {
                 let selectedItem = items.first { $0.isChecked }
                 let fileUriAbsoluteString = uri.absoluteString
-                let contentName = await interactor.getContentNameFromUri(uri: fileUriAbsoluteString)
+                let contentName = try await interactor.getContentNameFromUri(uri: fileUriAbsoluteString)
                 
                 let isAdded = try await interactor.addContent(
                     oldModel: selectedItem,

@@ -45,8 +45,13 @@ class ThemeViewCell: UICollectionViewCell, ThemeViewCellProtocol {
 
     // MARK: - ThemeViewCellProtocol
 
-    func updateData(image: String, title: String, progress: Int) {
-        imageView?.image = UIImage(named: image)
+    func updateData(image: String?, title: String, progress: Int) {
+        if let image = image {
+            imageView?.image = UIImage(named: image)
+        } else {
+            imageView?.image = UIImage(named: "ic_no_photography")
+        }
+        
         titleLabel?.text = title
         progressView?.setProgressColor(progress: progress)
         progressView?.setProgress(progress, animated: true)

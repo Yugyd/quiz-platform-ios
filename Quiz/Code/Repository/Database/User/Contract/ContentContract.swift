@@ -12,19 +12,16 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
 import SQLite
 
-class ThemeContract {
-    static let themeTable = Table("category")
+class ContentContract {
+    static let table = Table("content")
 
     static let id = Expression<Int>("_id")
-    static let ordinal = Expression<Int>("ordinal")
     static let name = Expression<String>("name")
-    static let info = Expression<String>("info")
-    static let image = Expression<String?>("image")
-    static let count = Expression<Int>("count")
-    static let count_normal = Expression<Int>("count_normal")
-    static let count_easy = Expression<Int>("count_easy")
+    static let filePath = Expression<String>("file_path")
+    static let isChecked = Expression<Bool>("is_checked")
+    static let contentMarker = Expression<String>("content_marker")
 }

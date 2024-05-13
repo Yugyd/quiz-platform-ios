@@ -17,102 +17,58 @@
 import Foundation
 
 class FileRepositoryImpl: FileRepository {
-    
-    private let mockFileName = "example.txt"
-    private let mockStubText = """
-        [category]
-
-        1
-        Категория А Variant
-        Описание А Variant
-
-        2
-        Категория Б Variant
-        Описание Б Variant
-        https://test.com/test.png
-
-        3
-        Категория Б Variant
-        Описание Б Variant
-        https://raw.githubusercontent.com/Yugyd/quiz-platform/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp
-
-        [quest]
-
-        Вопрос 1
-        Ответ 1
-        Ответ 2
-        Ответ 3
-        Ответ 4
-        3
-        1
-        1
-
-        Вопрос 2
-        Ответ 1
-        Ответ 2
-        Ответ 3
-        Ответ 4
-        3
-        2
-        1
-
-        Вопрос 3
-        Ответ 1
-        Ответ 2
-        Ответ 3
-        Ответ 4
-        3
-        2
-        2
-
-        Вопрос 4
-        Ответ 1
-        Ответ 2
-        Ответ 3
-        Ответ 4
-        3
-        3
-        1
-
-        Вопрос 5
-        Ответ 1
-        Ответ 2
-        Ответ 3
-        Ответ 4
-        3
-        3
-        2
-
-        Вопрос 5
-        Ответ 1
-        Ответ 2
-        Ответ 3
-        Ответ 4
-        3
-        3
-        3
-        """
-
-    func saveTextToLocalStorage(fileName: String, fileContents: String) -> String? {
-        // TODO: Replace prod impl
-        let fileURL = try! FileManager
-            .default.url(
+        
+    func saveTextToLocalStorage(fileName: String, fileContents: String) throws -> String? {
+        do {
+            let documentsDirectory = try FileManager.default.url(
                 for: .documentDirectory,
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
             )
-            .appendingPathComponent(fileName)
-        return fileURL.absoluteString
+            let fileURL = documentsDirectory.appendingPathComponent(fileName)
+            
+            let isAccessing = fileURL.startAccessingSecurityScopedResource()
+            
+            if !isAccessing {
+                throw FileError.accessingSecurityScopedError
+            }
+            
+            try fileContents.write(to: fileURL, atomically: true, encoding: .utf8)
+            
+            fileURL.stopAccessingSecurityScopedResource()
+            
+            return fileURL.absoluteString
+        } catch {
+            if let fileError = error as? FileError {
+                throw error
+            } else {
+                throw FileError.saveError
+            }
+        }
     }
     
-    func readTextFromFile(fileName: String) -> String {
-        // TODO: Replace prod impl
-        return mockStubText
+    func readTextFromFile(fileName: String) throws -> String {
+        guard let fileURL = URL(string: fileName) else {
+            throw FileError.invalidFileUrl
+        }
+        
+        do {
+            let fileContents = try String(
+                contentsOf: fileURL,
+                encoding: .utf8
+            )
+            return fileContents
+        } catch {
+            throw FileError.readError
+        }
     }
     
-    func getFileName(uri: String) -> String {
-        // TODO: Replace prod impl
-        return mockFileName
+    func getFileName(uri: String) throws -> String {
+        guard let url = URL(string: uri) else {
+            throw FileError.invalidFileUrl
+        }
+        
+        return url.lastPathComponent
     }
 }

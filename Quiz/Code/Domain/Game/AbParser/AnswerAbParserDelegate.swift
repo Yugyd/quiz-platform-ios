@@ -17,46 +17,50 @@
 import Foundation
 
 class AnswerAbParserDelegate: AbQuestParser {
-
+    
     let answerA = NSLocalizedString("CODE_ANSWER_A", comment: "only A is true")
     let answerB = NSLocalizedString("CODE_ANSWER_B", comment: "only B is true")
     let answerYes = NSLocalizedString("CODE_ANSWER_YES", comment: "both statements are correct")
     let answerYesVariant = NSLocalizedString("CODE_ANSWER_YES_VARIANT", comment: "both statements are true")
     let answerNo = NSLocalizedString("CODE_ANSWER_NO", comment: "both statements are wrong")
     let answerNoVariant = NSLocalizedString("CODE_ANSWER_NO_VARIANT", comment: "both statements are wrong")
-
+    
     let answers: [String]
     let classicAnswers: [String]
     let varaintAnswers: [String]
-
+    
     init() {
         answers = [answerA, answerB, answerYes, answerYesVariant, answerNo, answerNoVariant]
         classicAnswers = [answerA, answerB, answerYes, answerNo]
         varaintAnswers = [answerA, answerB, answerYesVariant, answerNoVariant]
     }
-
+    
     func isAbQuest(_ quest: Quest) -> Bool {
         guard !quest.answers.isEmpty else {
             return false
         }
-
+        
         let isHaveOtherAnswer = quest.answers.filter {
-                    !answers.contains($0)
-                }
-                .count > 0
+            !answers.contains($0)
+        }
+            .count > 0
         return !isHaveOtherAnswer
     }
-
+    
     func format(_ tempQuest: Quest) -> Quest {
         let answers = formatAnswers(tempQuest)
-
-        return Quest(id: tempQuest.id,
-                quest: tempQuest.quest,
-                trueAnswer: tempQuest.trueAnswer,
-                answers: answers,
-                complexity: tempQuest.complexity)
+        
+        return Quest(
+            id: tempQuest.id,
+            quest: tempQuest.quest,
+            trueAnswer: tempQuest.trueAnswer,
+            answers: answers,
+            complexity: tempQuest.complexity,
+            category: tempQuest.category,
+            section: tempQuest.section
+        )
     }
-
+    
     private func formatAnswers(_ quest: Quest) -> [String] {
         switch defineAbType(quest.answers) {
         case .classic:
@@ -65,7 +69,7 @@ class AnswerAbParserDelegate: AbQuestParser {
             return varaintAnswers
         }
     }
-
+    
     private func defineAbType(_ answers: [String]) -> AbType {
         if answers.contains(answerYesVariant) && answers.contains(answerNoVariant) {
             return .variant

@@ -48,7 +48,11 @@ class ThemeCollectionViewController: UICollectionViewController, UICollectionVie
 
         if let theme = presenter?.themes[indexPath.row] {
             let progress = presenter?.calculateProgress(point: theme.point) ?? 0
-            cell.updateData(image: theme.imageName, title: theme.title, progress: progress)
+            cell.updateData(
+                image: theme.image,
+                title: theme.name,
+                progress: progress
+            )
         }
         return cell
     }
@@ -118,7 +122,7 @@ class ThemeCollectionViewController: UICollectionViewController, UICollectionVie
                 destinition.sequeExtraThemeIdArg = theme?.id
 
                 if let theme = theme {
-                    destinition.navigationItem.title = theme.title
+                    destinition.navigationItem.title = theme.name
                 }
             }
         }

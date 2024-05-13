@@ -86,8 +86,8 @@ class ContentInteractorImpl: ContentInteractor {
         return await contentRemoteConfigSource.getContentFormatUrl()
     }
     
-    func getContentNameFromUri(uri: String) async -> String {
-        let fileName = fileRepository.getFileName(uri: uri)
+    func getContentNameFromUri(uri: String) async throws -> String {
+        let fileName = try fileRepository.getFileName(uri: uri)
         let contentName = fileName.substringBeforeLast(fileTypePartPoint)
         let capitalizedContentName = contentName.prefix(1).capitalized + contentName.dropFirst()
         return capitalizedContentName

@@ -23,6 +23,8 @@ protocol QuestRepositoryProtocol: AnyObject {
      * @param id question identifier
      */
     func getQuest(id: Int) -> Quest?
+    
+    func addQuests(quests: [Quest]?)
 
     /**
      * Returns all question IDs, by given category, difficulty level, and also sorts by

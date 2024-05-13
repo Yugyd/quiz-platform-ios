@@ -16,7 +16,7 @@
 
 import Foundation
 
-struct ContentModel: Identifiable, Equatable {
+struct ContentModel: Identifiable, Equatable, Hashable {
     let id: String
     let name: String
     let filePath: String

@@ -61,7 +61,7 @@ class ProgressTableViewController: UITableViewController, ProgressViewProtocol, 
             let progressPercent = presenter?.calculateProgress(point: theme.point) ?? 0
             let levelDegree = LevelDegree.instanceByProgress(progressPercent: progressPercent)
             cell.updateData(
-                    title: theme.title,
+                    title: theme.name,
                     levelDegree: LevelDegree.getTitle(levelDegree: levelDegree),
                     progressPercent: progressPercent
             )
@@ -88,7 +88,7 @@ class ProgressTableViewController: UITableViewController, ProgressViewProtocol, 
                 destinition.hidesBottomBarWhenPushed = true
                 destinition.sequeExtraThemeIdArg = presenter?.themes[indexPath.row].id
                 destinition.updateCallback = self
-                destinition.navigationItem.title = presenter?.themes[indexPath.row].title
+                destinition.navigationItem.title = presenter?.themes[indexPath.row].name
             }
         }
     }

@@ -20,6 +20,7 @@ class AppAssembly: GeneralAssembly {
 
     // TODO: Implement synchronized access to avoid creating multiple instances from different threads
     var userRepository: UserRepository! = nil
+    var userDatabase: UserDatabaseProtocol! = nil
     var contentRepository: ContentRepository! = nil
     var contentMode: ContentMode! = nil
     var decoder: DecoderProtocol! = nil
@@ -41,7 +42,11 @@ class AppAssembly: GeneralAssembly {
     }
 
     func resolve() -> UserDatabaseProtocol {
-        return UserDatabase(version: GlobalScope.content.userDbVersion)
+        if userDatabase == nil {
+            userDatabase = UserDatabase(version: GlobalScope.content.userDbVersion)
+        }
+        
+        return userDatabase
     }
 
     func resolve() -> ContentRepository {
@@ -50,12 +55,15 @@ class AppAssembly: GeneralAssembly {
         }
         return contentRepository
     }
-
+    
     func resolve() -> ContentDatabaseProtocol {
         let questFormatter: SpecSymbolFormatter = resolve()
-        return ContentDatabase(decoder: resolve(),
-                questFormatter: questFormatter,
-                mode: resolve())
+        return ContentDatabase(
+            decoder: resolve(),
+            questFormatter: questFormatter,
+            mode: resolve(),
+            logger: resolve()
+        )
     }
 
     // MARK: - Data utils
@@ -98,8 +106,22 @@ class AppAssembly: GeneralAssembly {
         )
     }
     
+    func resolve() -> TextToContentModelMapper {
+        return TextToContentModelMapperImpl()
+    }
+    
     func resolve() -> ContentClient {
+        let contentRepository: ContentRepository = resolve()
+        let userDatabase: UserDatabaseProtocol = resolve()
         return ContentClientImpl(
+            fileRepository: resolve(),
+            textToContentEntityMapper: resolve(),
+            themeRepository: contentRepository,
+            questRepository: contentRepository,
+            userRepository: resolve(),
+            contentRepostiry: userDatabase,
+            contentResetRepostiry: contentRepository,
+            contentValidatorHelper: resolve(),
             logger: resolve()
         )
     }
@@ -169,5 +191,11 @@ class AppAssembly: GeneralAssembly {
     // Mark: Services
     func resolve() -> AppRemoteConfig {
         return AppRemoteConfigImpl(logger: resolve())
+    }
+    
+    // Mark: - Content
+    
+    func resolve() -> ContentValidatorHelper {
+        return ContentValidatorHelperImpl()
     }
 }

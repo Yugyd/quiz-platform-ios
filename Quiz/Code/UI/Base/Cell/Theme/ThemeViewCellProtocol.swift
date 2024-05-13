@@ -18,5 +18,5 @@ import Foundation
 
 protocol ThemeViewCellProtocol {
 
-    func updateData(image: String, title: String, progress: Int)
+    func updateData(image: String?, title: String, progress: Int)
 }

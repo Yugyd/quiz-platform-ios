@@ -66,10 +66,10 @@ protocol ContentInteractor {
     /**
      * Returns a reference to the content format.
      */
-    func getContentFormatUrl() async throws-> String
+    func getContentFormatUrl() async throws -> String
     
     /**
      * Returns the file name from the URL, which will be used as the content name.
      */
-    func getContentNameFromUri(uri: String) async -> String
+    func getContentNameFromUri(uri: String) async throws -> String
 }

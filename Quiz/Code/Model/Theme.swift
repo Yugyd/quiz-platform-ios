@@ -16,14 +16,15 @@
 
 import Foundation
 
-struct Theme: Equatable, Hashable {
+struct Theme: Identifiable, Equatable, Hashable {
     static let defaultThemeId = 0
     
     let id: Int
-    let title: String
+    let name: String
     let info: String
-    let imageName: String
+    let image: String?
     let count: Int
+    let ordinal: Int
     
     let point: Point
 }

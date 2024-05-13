@@ -71,4 +71,8 @@ protocol GeneralAssembly {
     // Mark: - Core
     
     func resolve() -> Logger
+    
+    // Mark: - Content
+    
+    func resolve() -> ContentValidatorHelper
 }
