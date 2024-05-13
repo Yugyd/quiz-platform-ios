@@ -22,6 +22,8 @@ Download on the [App Store](https://itunes.apple.com/app/id1510892232).
 
 # Stack
 
+## Legacy
+
 * Min SDK: iOS 13
 * Language: Swift
 * Architecture: MVP
@@ -32,6 +34,20 @@ Download on the [App Store](https://itunes.apple.com/app/id1510892232).
 * DB: SQLite.swift
 * Firebase: Analytics, Crashlytics, Messaging, Remote Config
 * Testing: Coming soon
+
+## Modern
+
+* Min SDK: iOS 15
+* Language: Swift
+* Architecture: MVVM
+* UI: SwiftUI
+* Navigation: Storyboard Navigation (Migrate Swift Navigation)
+* Threading: Combine + Swift Concurrency (async/await)
+* DI: Needle
+* DB: Core Data (Migrate to Swift Data after update to iOS 17)
+* Firebase: Analytics, Crashlytics, Messaging, Remote Config
+* Testing: JUnit
+
 
 # Contributions
 
