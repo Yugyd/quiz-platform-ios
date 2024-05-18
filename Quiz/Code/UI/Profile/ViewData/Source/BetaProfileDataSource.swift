@@ -110,6 +110,13 @@ class BetaProfileDataSource: ProfileDataSourceProtocol {
         )
         items.updateValue([reportError, privacyPollicy], forKey: SectionItem.feedback)
         
+        // Open-Source header
+        let openSourceHeader = ProfileItem(
+            identifier: .openSource,
+            row: OpenSourceAppProfileRow(title: "")
+        )
+        items.updateValue([openSourceHeader], forKey: .bottom)
+        
         return items
     }
 }

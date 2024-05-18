@@ -12,17 +12,12 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
 import Foundation
 
-class StaticScope {
-    static let mailAddress = "yugydyur@gmail.com"
-    static let mailSubject = "Quiz iOS. Report bug."
-    static let devLink = "https://itunes.apple.com/developer/roman-likhachev/id1510892231"
-    static let termsLink = "https://sites.google.com/view/yugyd/terms-conditions"
-    static let isBasedOnPlatformApp = true
+struct OpenSourceAppProfileRow: ProfileRow {
+    var title: String
     
-    static let quizPlatformProject = "https://github.com/Yugyd/quiz-platform"
-    static let quizPlatformIssues = "https://github.com/Yugyd/quiz-platform/issues"
+    let rowIdentifier: ProfileRowIdentifier = .opensource
 }

@@ -85,5 +85,8 @@ struct OpenSourceProfileItem: View {
 }
 
 #Preview {
-    OpenSourceProfileItem(onRatePlatformClicked: {}, onReportBugPlatformClicked: {})
+    OpenSourceProfileItem(
+        onRatePlatformClicked: {},
+        onReportBugPlatformClicked: {}
+    )
 }

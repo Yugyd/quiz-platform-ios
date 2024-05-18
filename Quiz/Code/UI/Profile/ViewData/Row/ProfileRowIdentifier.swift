@@ -22,4 +22,5 @@ enum ProfileRowIdentifier {
     case two_text
     case value
     case switched
+    case opensource
 }

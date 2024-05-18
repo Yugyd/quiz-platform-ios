@@ -42,4 +42,6 @@ enum ProfileItemIdentifier: CaseIterable {
     case privacyPollicy
     // Content
     case selectContent
+    // Open-Source
+    case openSource
 }

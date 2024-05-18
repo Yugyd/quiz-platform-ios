@@ -23,6 +23,7 @@ enum SectionItem: CaseIterable {
     case purchase
     case link
     case feedback
+    case bottom
 
     var title: String {
         switch self {
@@ -37,6 +38,8 @@ enum SectionItem: CaseIterable {
         case .feedback:
             return NSLocalizedString("PROFILE_SECTION_FEEDBACK", comment: "Feedback")
         case .top:
+           return ""
+        case .bottom:
            return ""
         }
     }

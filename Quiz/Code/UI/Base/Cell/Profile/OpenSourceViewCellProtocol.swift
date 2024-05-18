@@ -16,13 +16,10 @@
 
 import Foundation
 
-class StaticScope {
-    static let mailAddress = "yugydyur@gmail.com"
-    static let mailSubject = "Quiz iOS. Report bug."
-    static let devLink = "https://itunes.apple.com/developer/roman-likhachev/id1510892231"
-    static let termsLink = "https://sites.google.com/view/yugyd/terms-conditions"
-    static let isBasedOnPlatformApp = true
+protocol OpenSourceViewCellProtocol {
     
-    static let quizPlatformProject = "https://github.com/Yugyd/quiz-platform"
-    static let quizPlatformIssues = "https://github.com/Yugyd/quiz-platform/issues"
+    func updateData(
+        onRatePlatformClicked: @escaping () -> Void,
+        onReportBugPlatformClicked: @escaping () -> Void
+    )
 }

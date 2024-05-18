@@ -22,6 +22,7 @@ private let textReuseIdentifier = "TextCell"
 private let detailReuseIdentifier = "DetailCell"
 private let switchReuseIdentifier = "SwitchCell"
 private let twoTextReuseIdentifier = "TwoTextCell"
+private let openSourceReuseIdentifier = "OpenSourceCell"
 
 private let segueProfileToPro = "segueProfileToPro"
 //private let segueProfileToSupportProject = "segueProfileToSupportProject"
@@ -69,7 +70,12 @@ class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return presenter?.sectionData[section].title
+        let title = presenter?.sectionData[section].title
+        return if title?.isEmpty == true {
+            nil
+        } else {
+            title
+        }
     }
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -217,6 +223,8 @@ class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
             reuseIdentifier = switchReuseIdentifier
         case .two_text:
             reuseIdentifier = twoTextReuseIdentifier
+        case .opensource:
+            reuseIdentifier = openSourceReuseIdentifier
         }
 
         return reuseIdentifier
@@ -247,6 +255,17 @@ class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
             let typeCell = cell as! TwoTextViewCell
             let typeRow = item.row as! TwoTextProfileRow
             typeCell.updateData(title: typeRow.title, subtitle: typeRow.subtitle)
+        case .opensource:
+            let typeCell = cell as! OpenSourceViewCell
+            let typeRow = item.row as! OpenSourceAppProfileRow
+            typeCell.updateData(
+                onRatePlatformClicked: {
+                    Web.openLink(link: StaticScope.quizPlatformProject)
+                },
+                onReportBugPlatformClicked: {
+                    Web.openLink(link: StaticScope.quizPlatformIssues)
+                }
+            )
         }
     }
 
@@ -298,6 +317,9 @@ class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
             Web.openLink(link: GlobalScope.content.privacyPollicy)
         case .selectContent:
             performSegue(withIdentifier: segueProfileToContent, sender: nil)
+       
+            // Open-Source
+        case .openSource: break
         }
     }
 
