@@ -17,7 +17,7 @@
 import Foundation
 import Combine
 
-class ContentViewModel: ObservableObject {
+@MainActor class ContentViewModel: ObservableObject {
     private let loggerTag = "ContentViewModel"
     
     @Published private(set) var isBackEnabled: Bool = true
@@ -78,6 +78,7 @@ class ContentViewModel: ObservableObject {
         
         interactor
             .subscribeToContents()
+            .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     if case let .failure(error) = completion {

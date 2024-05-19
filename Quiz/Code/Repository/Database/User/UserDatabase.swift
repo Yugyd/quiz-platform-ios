@@ -20,15 +20,21 @@ import Combine
 class UserDatabase: SqliteDatabase, LifecycleSqlDatabase, UserDatabaseProtocol {
     
     private static let dbFileName = "userdata.db"
+    private let loggerTag = "UserDatabase"
     
     private let newVersion: Int
+    private let logger: Logger
     private let path: String
     private var connection: Connection?
     private var isInitializing: Bool = false
     
-    private let contentsSubject = PassthroughSubject<[ContentModel], Never>()
+    private var contentsSubject: CurrentValueSubject<[ContentModel], Never>?
     
-    init(version: Int) {
+    init(
+        version: Int,
+        logger: Logger
+    ) {
+        self.logger = logger
         self.newVersion = version
         self.path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
@@ -396,17 +402,30 @@ class UserDatabase: SqliteDatabase, LifecycleSqlDatabase, UserDatabaseProtocol {
     
     func getContents() -> [ContentModel] {
         guard let db = getReadableConnection() else {
+            logger.print(
+                tag: loggerTag,
+                message: "Get contents is failed. Connection not found"
+            )
+            
             return []
         }
         
         do {
             let result = try Array(db.prepare(ContentContract.table))
             
+            let contents: [ContentModel]
             if result.isEmpty {
-                return []
+                contents = []
             } else {
-                return result.map(mapToContentModel)
+                contents = result.map(mapToContentModel)
             }
+            
+            logger.print(
+                tag: loggerTag,
+                message: "Get contents: \(contents)"
+            )
+            
+            return contents
         } catch {
             CrashlyticsUtils.record(
                 root: error,
@@ -418,8 +437,8 @@ class UserDatabase: SqliteDatabase, LifecycleSqlDatabase, UserDatabaseProtocol {
     
     func subscribeToContentsPublisher() -> AnyPublisher<[ContentModel], Never> {
         fetchContents()
-        
-        return contentsSubject.eraseToAnyPublisher()
+
+        return contentsSubject!.eraseToAnyPublisher()
     }
     
     func getSelectedContent() -> ContentModel? {
@@ -452,7 +471,7 @@ class UserDatabase: SqliteDatabase, LifecycleSqlDatabase, UserDatabaseProtocol {
     func subscribeToSelectedContentPublisher() -> AnyPublisher<ContentModel?, Never> {
         fetchContents()
 
-        return contentsSubject
+        return contentsSubject!
             .map<ContentModel?> { key in
                 let result = key.filter { model in
                     model.isChecked == true
@@ -500,7 +519,6 @@ class UserDatabase: SqliteDatabase, LifecycleSqlDatabase, UserDatabaseProtocol {
             let query = ContentContract.table
                 .insert(
                     or:.replace,
-                    ContentContract.id <- Int(contentModel.id)!,
                     ContentContract.name <- contentModel.name,
                     ContentContract.filePath <- contentModel.filePath,
                     ContentContract.isChecked <- contentModel.isChecked,
@@ -605,7 +623,18 @@ class UserDatabase: SqliteDatabase, LifecycleSqlDatabase, UserDatabaseProtocol {
     
     // MARK: Content
     private func fetchContents() {
-        contentsSubject.send(getContents())
+        if contentsSubject == nil {
+            contentsSubject = CurrentValueSubject<[ContentModel], Never>(getContents())
+        }
+
+        let items = getContents()
+        
+        logger.print(
+            tag: loggerTag,
+            message: "Fetch contents: \(items.count)"
+        )
+        
+        contentsSubject!.send(items)
     }
     
     private func mapToContentModel(row: Row) -> ContentModel {

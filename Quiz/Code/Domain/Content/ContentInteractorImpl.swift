@@ -46,7 +46,7 @@ class ContentInteractorImpl: ContentInteractor {
     func subscribeToContents() -> AnyPublisher<[ContentModel], Never> {
         return contentClient
             .subscribeToContents()
-            .receive(
+            .subscribe(
                 on: DispatchQueue.global(qos: .background)
             )
             .eraseToAnyPublisher()
@@ -55,7 +55,7 @@ class ContentInteractorImpl: ContentInteractor {
     func subscribeToSelectedContent() -> AnyPublisher<ContentModel?, Never> {
         return contentClient
             .subscribeToSelectedContent()
-            .receive(
+            .subscribe(
                 on: DispatchQueue.global(qos: .background)
             )
             .eraseToAnyPublisher()

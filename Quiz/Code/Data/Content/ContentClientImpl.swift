@@ -98,8 +98,6 @@ class ContentClientImpl: ContentClient {
             .handleEvents(
                 receiveOutput: { [weak self] models in
                     if let self = self {
-                        let tag = self.loggerTag
-                        
                         self.logger.print(
                             tag: loggerTag,
                             message: "Subscribe to contents. New items: \(String(describing: models))"

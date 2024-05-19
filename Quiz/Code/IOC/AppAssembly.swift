@@ -17,7 +17,7 @@
 import Foundation
 
 class AppAssembly: GeneralAssembly {
-
+    
     // TODO: Implement synchronized access to avoid creating multiple instances from different threads
     var userRepository: UserRepository! = nil
     var userDatabase: UserDatabaseProtocol! = nil
@@ -26,29 +26,32 @@ class AppAssembly: GeneralAssembly {
     var decoder: DecoderProtocol! = nil
     var iapHelper: IAPHelperProtocol! = nil
     var logger: Logger! = nil
-
+    
     func enablePro() {
         contentRepository = nil
         contentMode = nil
     }
-
+    
     // MARK: - Database (content)
-
+    
     func resolve() -> UserRepository {
         if userRepository == nil {
             userRepository = UserRepository(userDb: resolve())
         }
         return userRepository
     }
-
+    
     func resolve() -> UserDatabaseProtocol {
         if userDatabase == nil {
-            userDatabase = UserDatabase(version: GlobalScope.content.userDbVersion)
+            userDatabase = UserDatabase(
+                version: GlobalScope.content.userDbVersion,
+                logger: resolve()
+            )
         }
         
         return userDatabase
     }
-
+    
     func resolve() -> ContentRepository {
         if contentRepository == nil {
             contentRepository = ContentRepository(contentDb: resolve())
@@ -65,38 +68,38 @@ class AppAssembly: GeneralAssembly {
             logger: resolve()
         )
     }
-
+    
     // MARK: - Data utils
-
+    
     func resolve() -> DecoderProtocol {
         if decoder == nil {
             decoder = DataDecoder()
         }
         return decoder
     }
-
+    
     func resolve() -> SpecSymbolFormatter {
         return SpecSymbolFormatter()
     }
-
+    
     func resolve() -> LineSeparatorFormatter {
         return LineSeparatorFormatter()
     }
-
+    
     // MARK: - Domain
     
     func resolve() -> ContentMode {
         if contentMode == nil {
             let iapHelper: IAPHelperProtocol = resolve()
             let subscriptionDate = iapHelper.expirationDateFor() ?? Date() // Use Timestamp!
-
+            
             if subscriptionDate > Date() {
                 contentMode = .pro
             } else {
                 contentMode = .lite
             }
         }
-
+        
         return contentMode
     }
     
@@ -133,45 +136,45 @@ class AppAssembly: GeneralAssembly {
             contentRemoteConfigSource: resolve()
         )
     }
-
+    
     // MARK: - In App
-
+    
     func resolve() -> IAPHelperProtocol {
         if iapHelper == nil {
             let decoder: DecoderProtocol = resolve()
             iapHelper = IAPSwiftHelper(
-                    keyDataSource: resolve(),
-                    subscribeFactory: resolve(),
-                    decoder: decoder,
-                    dateFormatterFactory: resolve(),
-                    subscribeJsonMapper: resolve()
+                keyDataSource: resolve(),
+                subscribeFactory: resolve(),
+                decoder: decoder,
+                dateFormatterFactory: resolve(),
+                subscribeJsonMapper: resolve()
             )
         }
-
+        
         return iapHelper
     }
-
+    
     func resolve() -> ProductKeyDataSourceProtocol {
         return ProductKeyDataSource()
     }
-
+    
     func resolve() -> SubscribeFactory {
         return SubscribeFactory()
     }
-
+    
     func resolve() -> DateFormatterFactory {
         return DateFormatterFactory()
     }
-
+    
     func resolve() -> SubscribeJsonMapper {
         return SubscribeJsonMapper(jsonEncoder: JSONEncoder(), jsonDecoder: JSONDecoder())
     }
-
+    
     // Mark: - FeatureToggle
     func resolve() -> FeatureManager {
         return FeatureManagerIml()
     }
-
+    
     func resolve() -> RemoteConfigRepository {
         return RemoteConfigRepositoryImpl()
     }
