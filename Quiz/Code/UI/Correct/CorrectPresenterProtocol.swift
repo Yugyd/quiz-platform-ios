@@ -16,7 +16,7 @@
 
 import Foundation
 
-protocol CorrectPresenterProtocol: AnyObject {
+@MainActor protocol CorrectPresenterProtocol: AnyObject {
 
     var isHaveErrors: Bool { get }
 
