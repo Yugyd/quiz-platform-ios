@@ -14,20 +14,32 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 
-class ProgressPresenter: ProgressPresenterProtocol {
+@MainActor class ProgressPresenter: ProgressPresenterProtocol {
 
     var themes: [Theme] = [Theme]()
     var progressCalculator: ProgressCalculator?
 
     private weak var rootView: ProgressViewProtocol?
-    private var contentRepository: ThemeRepositoryProtocol
-    private var userRepository: PointRepositoryProtocol
+    nonisolated private let contentRepository: ThemeRepositoryProtocol
+    nonisolated private let userRepository: PointRepositoryProtocol
+    private let contentInteractor: ContentInteractor
+    private let logger: Logger
+    
+    private var cancellables = Set<AnyCancellable>()
 
-    init(contentRepository: ThemeRepositoryProtocol, userRepository: PointRepositoryProtocol) {
+    init(
+        contentRepository: ThemeRepositoryProtocol,
+        userRepository: PointRepositoryProtocol,
+        contentInteractor: ContentInteractor,
+        logger: Logger
+    ) {
         self.contentRepository = contentRepository
         self.userRepository = userRepository
+        self.contentInteractor = contentInteractor
+        self.logger = logger
 
         self.progressCalculator = ProgressCalculator(delegate: TotalProgressCalculatorDelegate())
     }
@@ -37,18 +49,7 @@ class ProgressPresenter: ProgressPresenterProtocol {
     }
 
     func loadData() {
-        DispatchQueue.global().async { [weak self] in
-            let data = self?.contentRepository.getThemes()
-            var result: [Theme]?
-
-            if let data = data {
-                result = self?.userRepository.attachPoints(themes: data)
-            }
-
-            DispatchQueue.main.async { [weak self] in
-                self?.handleData(data: result)
-            }
-        }
+        subscribeToSelectedContent()
     }
 
     func calculateProgress(point: Point) -> Int {
@@ -62,8 +63,55 @@ class ProgressPresenter: ProgressPresenterProtocol {
         }
         return total / themes.count
     }
+    
+    // MARK: - Private selected content
+    
+    private func subscribeToSelectedContent() {
+        contentInteractor
+            .subscribeToSelectedContent()
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    if case let .failure(error) = completion {
+                        self?.processContentError(error: error)
+                    }
+                },
+                receiveValue: {  [weak self] content in
+                    self?.processContent(content: content)
+                }
+            )
+            .store(in: &cancellables)
+    }
+    
+    private func processContentError(error: Error) {
+        logger.recordError(error: error)
+    }
+    
+    private func processContent(content: ContentModel?) {
+        Task {
+            let result = await loadProgressData()
+            handleData(data: result)
+        }
+    }
+    
 
     //    MARK: - Private func
+    
+    private func loadProgressData() async -> [Theme]? {
+        let data = await withUnsafeContinuation { continuation in
+            DispatchQueue.global().async { [weak self] in
+                let data = self?.contentRepository.getThemes()
+                var result: [Theme]?
+
+                if let data = data {
+                    result = self?.userRepository.attachPoints(themes: data)
+                }
+                
+                continuation.resume(returning: result)
+            }
+        }
+        return data
+    }
 
     private func handleData(data: [Theme]?) {
         themes = data ?? [Theme]()
