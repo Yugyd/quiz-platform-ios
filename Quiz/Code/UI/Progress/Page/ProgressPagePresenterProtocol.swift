@@ -16,7 +16,7 @@
 
 import Foundation
 
-protocol ProgressPagePresenterProtocol: AnyObject {
+@MainActor protocol ProgressPagePresenterProtocol: AnyObject {
 
     var theme: Theme? { get }
 

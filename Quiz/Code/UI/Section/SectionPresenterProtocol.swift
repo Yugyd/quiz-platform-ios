@@ -16,7 +16,7 @@
 
 import Foundation
 
-protocol SectionPresenterProtocol {
+@MainActor protocol SectionPresenterProtocol {
 
     var theme: Theme? { get }
 

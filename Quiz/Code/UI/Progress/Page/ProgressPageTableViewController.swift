@@ -17,59 +17,59 @@
 import UIKit
 
 class ProgressPageTableViewController: UITableViewController, ProgressPageSegueProtocol, ProgressPageViewProtocol {
-
+    
     var sequeExtraThemeIdArg: Int?
-
+    
     @IBOutlet weak var resetBarButtonItem: UIBarButtonItem!
-
+    
     weak var updateCallback: ProgressUpdateCallback?
-
+    
     private var progressPresenter: ProgressPagePresenterProtocol?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if sequeExtraThemeIdArg == nil {
             setEmptyStub()
             return
         }
-
+        
         initPresenter()
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         guard let headerView = tableView.tableHeaderView else {
             return
         }
-
+        
         let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         if headerView.frame.size.height != size.height {
             headerView.frame.size.height = size.height
             tableView.tableHeaderView = headerView
         }
     }
-
+    
     // MARK: - Action binndera
-
+    
     @IBAction func actionResetProgress(_ sender: UIBarButtonItem) {
         progressPresenter?.resetProgress()
     }
-
+    
     @IBAction func actionClosePage(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return progressPresenter?.modes.count ?? 0
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ModeViewCell.reuseIdentifier, for: indexPath) as! ModeViewCell
-
+        
         if let mode = progressPresenter?.modes[indexPath.row], let theme = progressPresenter?.theme {
             let progressPercent = progressPresenter?.calculateProgress(mode: mode, point: theme.point) ?? 0
             let progressTitle = progressPresenter?.getProgressTitle(mode: mode, point: theme.point)
@@ -77,41 +77,49 @@ class ProgressPageTableViewController: UITableViewController, ProgressPageSegueP
         }
         return cell
     }
-
+    
     // MARK: - ProgressPageViewProtocol
-
+    
     func setEmptyStub() {
         present(AlertBuilder.createEmptyContent().build(), animated: true, completion: nil)
     }
-
+    
     func enableResetButton(isEnabled: Bool) {
         resetBarButtonItem.isEnabled = isEnabled
     }
-
+    
     func updateTable() {
         tableView?.reloadData()
     }
-
+    
     func updateTableHeader(progressPercent: Int, levelDegree: LevelDegree, progressLevel: ProgressLevel) {
         if let header = tableView?.tableHeaderView as? ProgressHeaderView {
             let tintColor = ProgressColor.getColorByQualifier(level: progressLevel)
             header.updateData(
-                    progressColor: tintColor,
-                    progressPercent: progressPercent,
-                    levelDegree: LevelDegree.getTitle(levelDegree: levelDegree)
+                progressColor: tintColor,
+                progressPercent: progressPercent,
+                levelDegree: LevelDegree.getTitle(levelDegree: levelDegree)
             )
         }
     }
-
+    
+    func onBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Private func
-
-    func initPresenter() {
+    
+    private func initPresenter() {
         let contentRepository: ContentRepository = IocContainer.app.resolve()
         let userRepository: UserRepository = IocContainer.app.resolve()
-
-        progressPresenter = ProgressPagePresenter(contentRepository: contentRepository,
-                userRepository: userRepository,
-                themeId: sequeExtraThemeIdArg!)
+        
+        progressPresenter = ProgressPagePresenter(
+            contentRepository: contentRepository,
+            userRepository: userRepository,
+            themeId: sequeExtraThemeIdArg!,
+            contentInteractor: IocContainer.app.resolve(),
+            logger: IocContainer.app.resolve()
+        )
         progressPresenter?.attachView(rootView: self)
         progressPresenter?.loadData()
     }

@@ -23,4 +23,6 @@ protocol SectionViewProtocol: AnyObject {
     func updateTitle(title: String)
 
     func setEmptyStub()
+    
+    func onBack()
 }

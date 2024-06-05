@@ -27,4 +27,6 @@ protocol ProgressPageViewProtocol: AnyObject {
     func updateTable()
 
     func updateTableHeader(progressPercent: Int, levelDegree: LevelDegree, progressLevel: ProgressLevel)
+    
+    func onBack()
 }
