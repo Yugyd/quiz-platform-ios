@@ -14,16 +14,17 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 
-class ThemePresenter: ThemePresenterProtocol {
-
-    static let minSectionCountForStartScreen = 1
-
+@MainActor class ThemePresenter: ThemePresenterProtocol {
+    
+    nonisolated static let minSectionCountForStartScreen = 1
+    
     typealias ThemeSectionRepositoryProtocol = ThemeRepositoryProtocol & SectionRepositoryProtocol
-
+    
     var themes: [Theme] = [Theme]()
-
+    
     var gameMode: Mode? {
         didSet {
             guard gameMode != nil else {
@@ -32,56 +33,60 @@ class ThemePresenter: ThemePresenterProtocol {
             progressCalculator = ProgressCalculator.init(mode: gameMode!)
         }
     }
-
+    
     var progressCalculator: ProgressCalculator?
-
+    
     weak fileprivate var rootView: ThemeViewProtocol?
-
-    private var contentRepository: ThemeSectionRepositoryProtocol
-    private var userRepository: PointRepositoryProtocol
+    
+    nonisolated private let contentRepository: ThemeSectionRepositoryProtocol
+    nonisolated private let userRepository: PointRepositoryProtocol
     private var isSegueAction = false
-
-    required init(contentRepository: ThemeSectionRepositoryProtocol, userRepository: PointRepositoryProtocol) {
+    
+    private let contentInteractor: ContentInteractor
+    private let logger: Logger
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    required init(
+        contentRepository: ThemeSectionRepositoryProtocol,
+        userRepository: PointRepositoryProtocol,
+        contentInteractor: ContentInteractor,
+        logger: Logger
+    ) {
         self.contentRepository = contentRepository
         self.userRepository = userRepository
+        self.contentInteractor = contentInteractor
+        self.logger = logger
     }
-
+    
     func attachRootView(rootView: ThemeViewProtocol) {
         self.rootView = rootView
     }
-
+    
     func loadData() {
-        DispatchQueue.global().async { [weak self] in
-            let data = self?.contentRepository.getThemes()
-            var result: [Theme]?
-
-            if let data = data {
-                result = self?.userRepository.attachPoints(themes: data)
-            }
-
-            DispatchQueue.main.async { [weak self] in
-                self?.handleData(data: result)
-            }
-        }
+        subscribeToSelectedContent()
     }
-
+    
     func calculateProgress(point: Point) -> Int {
         return progressCalculator?.getRecordPercent(point: point) ?? 0
     }
-
+    
     func startSegue(sender: IndexPath) {
         isSegueAction = true
         let themeId = themes[sender.row].id
-
+        
+        let gameMode = gameMode
+        
         DispatchQueue.global().async { [weak self] in
             let isSection: Bool
-            if self?.gameMode == .arcade {
+            
+            if gameMode == .arcade {
                 let count = self?.contentRepository.getSectionCount(theme: themeId) ?? 0
                 isSection = count >= ThemePresenter.minSectionCountForStartScreen
             } else {
                 isSection = false
             }
-
+            
             DispatchQueue.main.async { [weak self] in
                 if isSection {
                     self?.startSegueInView(startMode: .section, sender: sender)
@@ -91,19 +96,65 @@ class ThemePresenter: ThemePresenterProtocol {
             }
         }
     }
-
-//    MARK: - Private
-
+    
+    // MARK: - Private selected content
+    
+    private func subscribeToSelectedContent() {
+        contentInteractor
+            .subscribeToSelectedContent()
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    if case let .failure(error) = completion {
+                        self?.processContentError(error: error)
+                    }
+                },
+                receiveValue: {  [weak self] content in
+                    self?.processContent(content: content)
+                }
+            )
+            .store(in: &cancellables)
+    }
+    
+    private func processContentError(error: Error) {
+        logger.recordError(error: error)
+    }
+    
+    private func processContent(content: ContentModel?) {
+        Task {
+            let result = await loadThemeData()
+            handleData(data: result)
+        }
+    }
+    
+    //    MARK: - Private func
+    
+    func loadThemeData() async -> [Theme]? {
+        let data = await withUnsafeContinuation { continuation in
+            DispatchQueue.global().async { [weak self] in
+                let data = self?.contentRepository.getThemes()
+                var result: [Theme]?
+                
+                if let data = data {
+                    result = self?.userRepository.attachPoints(themes: data)
+                }
+                continuation.resume(returning: result)
+            }
+        }
+        return data
+    }
+    
+    
     private func handleData(data: [Theme]?) {
         themes = data ?? [Theme]()
-
+        
         if themes.isEmpty {
             rootView?.setEmptyStub()
         } else {
             rootView?.updateCollection()
         }
     }
-
+    
     private func startSegueInView(startMode: StartMode, sender: IndexPath) {
         rootView?.startSegue(startMode: startMode, sender: sender)
         isSegueAction = false

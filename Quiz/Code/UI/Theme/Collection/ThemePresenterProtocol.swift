@@ -16,7 +16,7 @@
 
 import Foundation
 
-protocol ThemePresenterProtocol {
+@MainActor protocol ThemePresenterProtocol {
 
     var themes: [Theme] { get }
 
