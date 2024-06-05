@@ -16,11 +16,13 @@
 
 import Foundation
 
-protocol ProfileViewProtocol: AnyObject {
+@MainActor protocol ProfileViewProtocol: AnyObject {
 
     func updateTable()
 
     func updateTableHeader(contentMode: ContentMode)
+    
+    func updateContent(content: String)
 
     func updateSectionTable(index: Int)
 

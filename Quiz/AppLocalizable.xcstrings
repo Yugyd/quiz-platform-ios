@@ -442,6 +442,23 @@
           }
         }
       }
+    },
+    "profile_title_content_not_selected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No content selected"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контент не выбран"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -16,7 +16,7 @@
 
 import Foundation
 
-protocol ProfilePresenterProtocol: AnyObject {
+@MainActor protocol ProfilePresenterProtocol: AnyObject {
 
     var sectionData: [SectionItem] { get }
 
@@ -31,7 +31,7 @@ protocol ProfilePresenterProtocol: AnyObject {
     func restorePurchases()
 
     func getItemByIndexPath(index: IndexPath) -> ProfileItem
-
+    
     func getContentValue(item: ProfileItem) -> (connectSubtitle: String, action: String)
 
     func getSwitchValue(item: ProfileItem) -> Bool

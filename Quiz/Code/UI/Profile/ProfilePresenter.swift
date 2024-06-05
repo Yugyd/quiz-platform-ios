@@ -15,61 +15,77 @@
 //
 
 import Foundation
+import Combine
 
-class ProfilePresenter: ProfilePresenterProtocol {
-
+@MainActor class ProfilePresenter: ProfilePresenterProtocol {
+    
     var preferences: Preferences
-
+    
     var sectionData: [SectionItem] {
         get {
             viewDataSource.sections
         }
     }
-
+    
     var itemData: Dictionary<SectionItem, [ProfileItem]> {
         get {
             viewDataSource.getData()
         }
     }
-
+    
     fileprivate weak var rootView: ProfileViewProtocol?
     private let iapHelper: IAPHelperProtocol
     private let viewDataSource: ProfileDataSourceProtocol
     //private let accountManager: AccountManagerProtocol
-
-    init(iapHelper: IAPHelperProtocol) {
+    private let contentInteractor: ContentInteractor
+    private let logger: Logger
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    private let profileContentNotSelected = String(
+        localized: "profile_title_content_not_selected",
+        table: appLocalizable
+    )
+    
+    init(
+        iapHelper: IAPHelperProtocol,
+        contentInteractor: ContentInteractor,
+        logger: Logger
+    ) {
         self.iapHelper = iapHelper
         self.preferences = UserPreferences()
         self.viewDataSource = BetaProfileDataSource()
         //self.accountManager = AccountManager()
+        self.contentInteractor = contentInteractor
+        self.logger = logger
     }
-
+    
     func attachView(rootView: ProfileViewProtocol) {
         self.rootView = rootView
     }
-
+    
     func loadData() {
-        let contentMode: ContentMode = IocContainer.app.resolve()
-        rootView?.updateTableHeader(contentMode: contentMode)
+        getContentMode()
+        subscribeToSelectedContent()
     }
-
+    
     func restorePurchases() {
         self.rootView?.visibleProgressView(true)
         iapHelper.restorePurchases { (isSuccess) in
             self.rootView?.visibleProgressView(false)
         }
     }
-
+    
     func getItemByIndexPath(index: IndexPath) -> ProfileItem {
         let key = sectionData[index.section]
         let itemsInSection = itemData[key]!
         return itemsInSection[index.row]
     }
-
+    
     func getContentValue(item: ProfileItem) -> (connectSubtitle: String, action: String) {
         fatalError("Stub - non supported method")
     }
-
+    
     func getSwitchValue(item: ProfileItem) -> Bool {
         switch item.identifier {
         case .sortQuest:
@@ -80,7 +96,7 @@ class ProfilePresenter: ProfilePresenterProtocol {
             fatalError("getSwitchValue - Profile item no reg")
         }
     }
-
+    
     func getDetailValue(item: ProfileItem) -> String {
         switch item.identifier {
         case .notification:
@@ -94,10 +110,48 @@ class ProfilePresenter: ProfilePresenterProtocol {
         case .answerTextSize:
             return "Stub"
         case .selectContent:
-            // TODO Add value from content repository
-            return "Stub"
+            return profileContentNotSelected
         default:
             fatalError("getDetailValue - Profile item no reg")
+        }
+    }
+    
+    private func getContentMode() {
+        let contentMode: ContentMode = IocContainer.app.resolve()
+        rootView?.updateTableHeader(contentMode: contentMode)
+    }
+    
+    private func subscribeToSelectedContent() {
+        contentInteractor
+            .subscribeToSelectedContent()
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    if case let .failure(error) = completion {
+                        self?.processContentError(error: error)
+                    }
+                },
+                receiveValue: { [weak self] content in
+                    self?.processContent(content: content)
+                }
+            )
+            .store(in: &cancellables)
+    }
+    
+    private func processContentError(error: Error) {
+        logger.recordError(error: error)
+    }
+    
+    private func processContent(content: ContentModel?) {
+        let contentTitle = getContentTitle(content: content)
+        rootView?.updateContent(content: contentTitle)
+    }
+    
+    private func getContentTitle(content: ContentModel?) -> String {
+        if content?.name != nil {
+            return content!.name
+        } else {
+            return profileContentNotSelected
         }
     }
 }
