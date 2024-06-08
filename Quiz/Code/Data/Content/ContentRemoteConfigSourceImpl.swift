@@ -28,7 +28,7 @@ class ContentRemoteConfigSourceImpl: ContentRemoteConfigSource {
     
     func getContentFormatUrl() async -> String {
         // TODO: Delete mock url after integrate Remote Config
-        let contentFormatUrl = if true { "https://github.com/Yugyd/quiz-platform/blob/master/docs/CONTENT_FORMAT.md" } else { remoteConfig.fetchStringValue(key: contentFormatUrlKey) }
+        let contentFormatUrl = remoteConfig.fetchStringValue(key: contentFormatUrlKey)
         return contentFormatUrl
     }
 }

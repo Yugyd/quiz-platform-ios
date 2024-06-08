@@ -22,7 +22,7 @@ import FirebaseCore
 class AppRemoteConfigImpl: AppRemoteConfig {
     
     private let loggerTag = "AppRemoteConfigImpl"
-    private let defaultPlistName = "RemoteConfigDefaults"
+    private let defaultPlistName = "remote_config_defaults"
     private let oneHour: Int = 3600
     
     private let logger: Logger
