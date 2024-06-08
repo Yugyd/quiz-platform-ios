@@ -50,19 +50,6 @@ class BetaProfileDataSource: ProfileDataSourceProtocol {
         )
         items.updateValue([telegram], forKey: SectionItem.social)
         
-        // Purchase
-        let pro = ProfileItem(
-            identifier: .pro,
-            row: TextProfileRow(
-                title: NSLocalizedString("TITLE_PRO_VERSION", comment: "Pro version")
-            )
-        )
-        let restorePurchase = ProfileItem(
-            identifier: .restorePurchase,
-            row: TextProfileRow(title: NSLocalizedString("TITLE_RESTORE_PURCHASE", comment: "Restore purchases"))
-        )
-        items.updateValue([pro/*, supportProject*/, restorePurchase], forKey: SectionItem.purchase)
-        
         // Link
         let rateApp = ProfileItem(
             identifier: .rateApp,

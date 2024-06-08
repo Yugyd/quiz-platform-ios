@@ -20,7 +20,6 @@ enum SectionItem: CaseIterable {
     case top
     case social
     case settings
-    case purchase
     case link
     case feedback
     case bottom
@@ -29,8 +28,6 @@ enum SectionItem: CaseIterable {
         switch self {
         case .social:
             return NSLocalizedString("PROFILE_SECTION_SOCIAL", comment: "Social media")
-        case .purchase:
-            return NSLocalizedString("PROFILE_SECTION_PURCHASE", comment: "Purchases")
         case .link:
             return NSLocalizedString("PROFILE_SECTION_LINK", comment: "Please us")
         case .settings:
