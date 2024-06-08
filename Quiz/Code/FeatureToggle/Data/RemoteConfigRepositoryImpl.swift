@@ -22,7 +22,7 @@ class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 
     private let telegramConfigs = [
         TelegramConfig(
-                locale: "ru-RU",
+                locale: "ru_RU",
                 gameEnd: GameEnd(
                         buttonTitle: "Подписаться",
                         message: "Вам понравилось? Подпишитесь на Telegram-канал, вас ждут ежедневные вопросы и много интересного!",
@@ -74,16 +74,16 @@ class RemoteConfigRepositoryImpl: RemoteConfigRepository {
     func fetchTelegramConfig() -> TelegramConfig? {
         let result = telegramConfigs.first { config in
             let configLocale = Locale(identifier: config.locale)
-            return configLocale == Locale.current
+            return configLocale.identifier == Locale.current.identifier
         }
 
         if result == nil {
             return telegramConfigs.first { config in
                 let configLocale = Locale(identifier: config.locale)
-                return configLocale == defaultEnLocale
+                return configLocale.identifier == defaultEnLocale.identifier
             }
         } else {
-            return nil
+            return result
         }
     }
 }

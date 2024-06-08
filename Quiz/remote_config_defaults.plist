@@ -2,19 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>content_format_url</key>
-  <string>https://github.com/Yugyd/quiz-platform/blob/master/docs/CONTENT_FORMAT.md</string>
-  <key>feature_pro</key>
-  <string>false</string>
-  <key>feature_correct</key>
-  <string>true</string>
-  <key>feature_ad</key>
-  <string>false</string>
-  <key>config_telegram</key>
-  <string>[{"locale":"en","gameEnd":{"title":"New record!","message":"Did you like it? Subscribe to the Telegram channel, daily questions and a lot of interesting things await you!","buttonTitle":"Follow"},"profileCell":{"title":"","message":"Daily questions and feedback"},"mainPopup":{"title":"We have opened a telegram channel!","message":"Daily questions and a lot of interesting things await you!","buttonTitle":"Follow"},"trainPopup":{"title":"We have opened a telegram channel!","message":"Daily questions and a lot of interesting things await you!","positiveButtonTitle":"Follow","negativeButtonTitle":"Later"},"links":[{"package":"com.yugyd.quiz","link":"quizplatformapp"},{"package":"com.yugyd.russianlanguagequiz","link":"russian_language_quiz"},{"package":"com.yugyd.russianhistoryquiz","link":"russian_history_quiz "},{"package":"com.yugyd.sociologyquiz","link":"sociology_quiz"},{"package":"com.yugyd.biologyquiz","link":"biology_quiz_app"},{"package":"com.yugyd.geographyquiz","link":"geography_quiz_app"}]},{"locale":"ru-RU","gameEnd":{"title":"Новый рекорд!","message":"Вам понравилось? Подпишитесь на телеграм канал, вас ждут ежедневные вопросы и много интересного!","buttonTitle":"Подписаться"},"profileCell":{"title":"","message":"Ежедневные вопросы и обратная связь"},"mainPopup":{"title":"Мы открыли телеграм канал!","message":"Вас ждут ежедневные вопросы и много интересного!","buttonTitle":"Подписаться"},"trainPopup":{"title":"Мы открыли телеграм канал!","message":"Вас ждут ежедневные вопросы и много интересного!","positiveButtonTitle":"Подписаться","negativeButtonTitle":"Позже"},"links":[{"package":"com.yugyd.quiz","link":"quizplatformapp"},{"package":"com.yugyd.russianlanguagequiz","link":"russian_language_quiz"},{"package":"com.yugyd.russianhistoryquiz","link":"russian_history_quiz "},{"package":"com.yugyd.sociologyquiz","link":"sociology_quiz"},{"package":"com.yugyd.biologyquiz","link":"biology_quiz_app"},{"package":"com.yugyd.geographyquiz","link":"geography_quiz_app"}]}]</string>
-  <key>force_update_version</key>
-  <string>0</string>
-  <key>feature_telegram</key>
-  <string>true</string>
+	<key>content_format_url</key>
+	<string>https://github.com/Yugyd/quiz-platform/blob/master/docs/CONTENT_FORMAT.md</string>
+	<key>feature_pro</key>
+	<string>false</string>
+	<key>feature_correct</key>
+	<string>true</string>
+	<key>feature_ad</key>
+	<string>false</string>
+	<key>config_telegram</key>
+	<string>[{&quot;locale&quot;:&quot;en&quot;,&quot;gameEnd&quot;:{&quot;title&quot;:&quot;New record!&quot;,&quot;message&quot;:&quot;Did you like it? Subscribe to the Telegram channel, daily questions and a lot of interesting things await you!&quot;,&quot;buttonTitle&quot;:&quot;Follow&quot;},&quot;profileCell&quot;:{&quot;title&quot;:&quot;&quot;,&quot;message&quot;:&quot;Daily questions and feedback&quot;},&quot;mainPopup&quot;:{&quot;title&quot;:&quot;We have opened a telegram channel!&quot;,&quot;message&quot;:&quot;Daily questions and a lot of interesting things await you!&quot;,&quot;buttonTitle&quot;:&quot;Follow&quot;},&quot;trainPopup&quot;:{&quot;title&quot;:&quot;We have opened a telegram channel!&quot;,&quot;message&quot;:&quot;Daily questions and a lot of interesting things await you!&quot;,&quot;positiveButtonTitle&quot;:&quot;Follow&quot;,&quot;negativeButtonTitle&quot;:&quot;Later&quot;},&quot;links&quot;:[{&quot;package&quot;:&quot;com.yugyd.quiz&quot;,&quot;link&quot;:&quot;quizplatformapp&quot;},{&quot;package&quot;:&quot;com.yugyd.russianlanguagequiz&quot;,&quot;link&quot;:&quot;russian_language_quiz&quot;},{&quot;package&quot;:&quot;com.yugyd.russianhistoryquiz&quot;,&quot;link&quot;:&quot;russian_history_quiz &quot;},{&quot;package&quot;:&quot;com.yugyd.sociologyquiz&quot;,&quot;link&quot;:&quot;sociology_quiz&quot;},{&quot;package&quot;:&quot;com.yugyd.biologyquiz&quot;,&quot;link&quot;:&quot;biology_quiz_app&quot;},{&quot;package&quot;:&quot;com.yugyd.geographyquiz&quot;,&quot;link&quot;:&quot;geography_quiz_app&quot;}]},{&quot;locale&quot;:&quot;ru_RU&quot;,&quot;gameEnd&quot;:{&quot;title&quot;:&quot;Новый рекорд!&quot;,&quot;message&quot;:&quot;Вам понравилось? Подпишитесь на телеграм канал, вас ждут ежедневные вопросы и много интересного!&quot;,&quot;buttonTitle&quot;:&quot;Подписаться&quot;},&quot;profileCell&quot;:{&quot;title&quot;:&quot;&quot;,&quot;message&quot;:&quot;Ежедневные вопросы и обратная связь&quot;},&quot;mainPopup&quot;:{&quot;title&quot;:&quot;Мы открыли телеграм канал!&quot;,&quot;message&quot;:&quot;Вас ждут ежедневные вопросы и много интересного!&quot;,&quot;buttonTitle&quot;:&quot;Подписаться&quot;},&quot;trainPopup&quot;:{&quot;title&quot;:&quot;Мы открыли телеграм канал!&quot;,&quot;message&quot;:&quot;Вас ждут ежедневные вопросы и много интересного!&quot;,&quot;positiveButtonTitle&quot;:&quot;Подписаться&quot;,&quot;negativeButtonTitle&quot;:&quot;Позже&quot;},&quot;links&quot;:[{&quot;package&quot;:&quot;com.yugyd.quiz&quot;,&quot;link&quot;:&quot;quizplatformapp&quot;},{&quot;package&quot;:&quot;com.yugyd.russianlanguagequiz&quot;,&quot;link&quot;:&quot;russian_language_quiz&quot;},{&quot;package&quot;:&quot;com.yugyd.russianhistoryquiz&quot;,&quot;link&quot;:&quot;russian_history_quiz &quot;},{&quot;package&quot;:&quot;com.yugyd.sociologyquiz&quot;,&quot;link&quot;:&quot;sociology_quiz&quot;},{&quot;package&quot;:&quot;com.yugyd.biologyquiz&quot;,&quot;link&quot;:&quot;biology_quiz_app&quot;},{&quot;package&quot;:&quot;com.yugyd.geographyquiz&quot;,&quot;link&quot;:&quot;geography_quiz_app&quot;}]}]</string>
+	<key>force_update_version</key>
+	<string>0</string>
+	<key>feature_telegram</key>
+	<string>true</string>
 </dict>
 </plist>
