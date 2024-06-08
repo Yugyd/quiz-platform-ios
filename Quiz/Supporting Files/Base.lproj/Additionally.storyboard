@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -97,7 +97,7 @@
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LU-06-jnI" userLabel="Info Label">
                                     <rect key="frame" x="16" y="85" width="382" height="178"/>
-                                    <mutableString key="text">To access the Pro version of the application, you must purchase one of the above subscriptions. Payment is charged to your iTunes account and is automatically renewed. You can cancel your subscription in iOS's main settings in your iTunes account settings at least 24 hours before the end of the current period. The subscription price will be charged within 24 hours after the end of the trial period. There are no refunds available for current subscriptions. Any unused portion of a free trial period, if offered, will be forfeited. Uninstalling an app does not automatically cancel your subscription.</mutableString>
+                                    <string key="text">To access the Pro version of the application, you must purchase one of the above subscriptions. Payment is charged to your iTunes account and is automatically renewed. You can cancel your subscription in iOS's main settings in your iTunes account settings at least 24 hours before the end of the current period. The subscription price will be charged within 24 hours after the end of the trial period. There are no refunds available for current subscriptions. Any unused portion of a free trial period, if offered, will be forfeited. Uninstalling an app does not automatically cancel your subscription.</string>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
@@ -195,9 +195,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" image="ic_ad_off" translatesAutoresizingMaskIntoConstraints="NO" id="Gs4-kJ-Dom" userLabel="Promo Image">
-                                <rect key="frame" x="200.5" y="72" width="13" height="321"/>
+                                <rect key="frame" x="132" y="72" width="150" height="321"/>
+                                <color key="tintColor" name="md_on_primary"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="kKA-lW-tVB"/>
+                                    <constraint firstAttribute="width" constant="150" id="kKA-lW-tVB"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Without advertising" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BW-WY-V5Z" userLabel="Title Label">
@@ -264,8 +265,11 @@
         <namedColor name="color_progress_high">
             <color red="0.2196078431372549" green="0.55686274509803924" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="md_on_primary">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

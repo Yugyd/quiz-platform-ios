@@ -71,14 +71,13 @@ class ProPageViewController: UIPageViewController, UIPageViewControllerDataSourc
     // MARK: - ProPageViewProtocol
 
     func updatePager() {
-        let contentVc = initViewController(for: 0)
-        let correctVc = initViewController(for: 1)
+        let correctVc = initViewController(for: 0)
 
         if featureManager?.isAdEnabled() == true {
-            let adVc = initViewController(for: 2)
-            promoControllers = [contentVc, correctVc, adVc]
+            let adVc = initViewController(for: 1)
+            promoControllers = [correctVc, adVc]
         } else {
-            promoControllers = [contentVc, correctVc]
+            promoControllers = [correctVc]
         }
 
         setViewControllers([promoControllers[0]], direction: .forward, animated: true, completion: nil)
