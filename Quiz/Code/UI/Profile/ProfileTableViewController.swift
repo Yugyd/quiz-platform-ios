@@ -120,6 +120,9 @@ class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
                 destinition?.sequePrefModeExtraArg = .transition
                 destinition?.navigationItem.title = "Просмотр ответа"
             }
+        } else if segue.identifier! == segueProfileToContent {
+            let destinition = segue.destination as? UIViewController & ContentViewProtocol
+            destinition?.isBackEnabled = true
         }
     }
     

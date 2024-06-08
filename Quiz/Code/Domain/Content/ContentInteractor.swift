@@ -22,7 +22,7 @@ protocol ContentInteractor {
     /**
      * Whether at least one content is selected or not.
      */
-    func isSelected() async -> Bool
+    func isSelected() async throws -> Bool
     
     /**
      * Quick access to selected content.

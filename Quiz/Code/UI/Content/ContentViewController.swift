@@ -17,7 +17,9 @@
 import Foundation
 import SwiftUI
 
-class ContentViewController: UIViewController {
+class ContentViewController: UIViewController, ContentViewProtocol {
+    
+    var isBackEnabled: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +42,25 @@ class ContentViewController: UIViewController {
     }
     
     private func createHostController() -> UIHostingController<ContentScreen> {
+        let viewModel = ContentViewModel(
+            interactor: IocContainer.app.resolve(),
+            logger: IocContainer.app.resolve(),
+            isBackEnabled: isBackEnabled
+        )
+        
         let view = ContentScreen(
             onBack: { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
             },
+            onSwitchToMainStoryboard: { [weak self] in
+                // Assuming SceneDelegate is managing the window
+                let sceneDelegate = self?.view.window?.windowScene?.delegate as? SceneDelegate
+                sceneDelegate?.contentDidComplete()
+            },
             onNavigateToBrowser: { url in
                 Web.openLink(link: url)
-            }
+            },
+            viewModel: viewModel
         )
         let hostingController = UIHostingController(rootView: view)
         return hostingController

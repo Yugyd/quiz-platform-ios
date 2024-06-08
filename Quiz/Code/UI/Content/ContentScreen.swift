@@ -19,12 +19,10 @@ import SwiftUI
 struct ContentScreen: View {
     
     var onBack: () -> Void
+    var onSwitchToMainStoryboard: () -> Void
     var onNavigateToBrowser: (String) -> Void
     
-    @StateObject var viewModel: ContentViewModel = ContentViewModel(
-        interactor: IocContainer.app.resolve(),
-        logger: IocContainer.app.resolve()
-    )
+    @StateObject var viewModel: ContentViewModel
 
     private let contentAlertFactory = ContentErrorAlertFactory()
     
@@ -101,8 +99,12 @@ struct ContentScreen: View {
         )
         .onReceive(viewModel.$navigationState) { navigationState in
             switch navigationState {
-            case .back:
-                onBack()
+            case let .back(isMain):
+                if (isMain) {
+                    onSwitchToMainStoryboard()
+                } else {
+                    onBack()
+                }
             case let .navigateToContentFormat(url):
                 onNavigateToBrowser(url)
             case .none:
@@ -119,6 +121,12 @@ struct ContentScreen: View {
 #Preview {
     ContentScreen(
         onBack: {},
-        onNavigateToBrowser: { _ in }
+        onSwitchToMainStoryboard: {},
+        onNavigateToBrowser: { _ in },
+        viewModel: ContentViewModel(
+            interactor: IocContainer.app.resolve(),
+            logger: IocContainer.app.resolve(),
+            isBackEnabled: false
+        )
     )
 }

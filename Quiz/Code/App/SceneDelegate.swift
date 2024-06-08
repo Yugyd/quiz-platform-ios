@@ -16,28 +16,66 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+@MainActor class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
     var window: UIWindow?
-
+    private let contentInteractor: ContentInteractor = IocContainer.app.resolve()
+    private let logger: Logger = IocContainer.app.resolve()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else {
-            return
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: windowScene)
+        
+        Task {
+            do {
+                let isContentSelected = try await contentInteractor.isSelected()
+                
+                if isContentSelected {
+                    showMainApp()
+                } else {
+                    showContent()
+                }
+            } catch {
+                logger.recordError(error: error)
+                showMainApp()
+            }
         }
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
     }
-
+    
     func sceneDidBecomeActive(_ scene: UIScene) {
     }
-
+    
     func sceneWillResignActive(_ scene: UIScene) {
     }
-
+    
     func sceneWillEnterForeground(_ scene: UIScene) {
     }
-
+    
     func sceneDidEnterBackground(_ scene: UIScene) {
     }
+    
+    // Call this function after completing the content process
+    func contentDidComplete() {
+        showMainApp()
+    }
+    
+    // MARK: Private
+    private func showMainApp() {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = mainStoryboard.instantiateInitialViewController()
+        self.window?.rootViewController = mainViewController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    private func showContent() {
+        let contentStoryboard = UIStoryboard(name: "Content", bundle: nil)
+        let contentViewController = contentStoryboard.instantiateInitialViewController()
+        self.window?.rootViewController = contentViewController
+        self.window?.makeKeyAndVisible()
+    }
+
 }

@@ -277,6 +277,7 @@
 		5B30CB222BECA3800056B17E /* ToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B30CB212BECA3800056B17E /* ToastConstants.swift */; };
 		5B4D7C0B2BE6DC8300C1988E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D7C0A2BE6DC8300C1988E /* ContentView.swift */; };
 		5B69147F2BF8CDEF00C488BE /* OpenSourceAppProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B69147E2BF8CDEF00C488BE /* OpenSourceAppProfileRow.swift */; };
+		5B6B893E2C14B419009FD1BD /* ContentViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B893D2C14B419009FD1BD /* ContentViewProtocol.swift */; };
 		5B710C462BF8A87700E6434B /* OpenSourceViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B710C452BF8A87700E6434B /* OpenSourceViewCellProtocol.swift */; };
 		5B710C482BF8A8FF00E6434B /* OpenSourceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B710C472BF8A8FF00E6434B /* OpenSourceViewCell.swift */; };
 		5BB378AC2BEF5804007FC5A4 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378AB2BEF5804007FC5A4 /* Action.swift */; };
@@ -629,6 +630,7 @@
 		5B30CB212BECA3800056B17E /* ToastConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastConstants.swift; sourceTree = "<group>"; };
 		5B4D7C0A2BE6DC8300C1988E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5B69147E2BF8CDEF00C488BE /* OpenSourceAppProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceAppProfileRow.swift; sourceTree = "<group>"; };
+		5B6B893D2C14B419009FD1BD /* ContentViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewProtocol.swift; sourceTree = "<group>"; };
 		5B710C452BF8A87700E6434B /* OpenSourceViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewCellProtocol.swift; sourceTree = "<group>"; };
 		5B710C472BF8A8FF00E6434B /* OpenSourceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewCell.swift; sourceTree = "<group>"; };
 		5BB378AB2BEF5804007FC5A4 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -1840,6 +1842,7 @@
 				5B306AAD2BE7B3D700DBBB79 /* NewFileItem.swift */,
 				5B306AB12BE7C05500DBBB79 /* ContentScreen.swift */,
 				5B30CB1F2BEBFE230056B17E /* ContentErrorAlertFactory.swift */,
+				5B6B893D2C14B419009FD1BD /* ContentViewProtocol.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -2497,6 +2500,7 @@
 				033B7B86245C109600744891 /* ThemeViewController.swift in Sources */,
 				033B7AEE245C086700744891 /* TimeGameNavigationItemDelegate.swift in Sources */,
 				033B7A34245BF83100744891 /* ErrorContract.swift in Sources */,
+				5B6B893E2C14B419009FD1BD /* ContentViewProtocol.swift in Sources */,
 				033B7B26245C0B5200744891 /* GameViewProtocol.swift in Sources */,
 				033B7A6D245BFB3200744891 /* AbType.swift in Sources */,
 				033B7A9F245BFE8300744891 /* SectionLevel.swift in Sources */,

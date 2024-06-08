@@ -12,11 +12,10 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//  
+//
 
 import Foundation
 
-enum NavigationState: Equatable, Hashable {
-    case navigateToContentFormat(url: String)
-    case back(isMain: Bool)
+protocol ContentViewProtocol: AnyObject {
+    var isBackEnabled: Bool { get set }
 }

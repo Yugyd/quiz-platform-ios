@@ -20,7 +20,8 @@ import Combine
 @MainActor class ContentViewModel: ObservableObject {
     private let loggerTag = "ContentViewModel"
     
-    @Published private(set) var isBackEnabled: Bool = true
+    private(set) var isBackEnabled: Bool
+    
     @Published var items: [ContentModel] = []
     @Published private(set) var isWarning: Bool = false
     @Published private(set) var isLoading: Bool = false
@@ -35,10 +36,12 @@ import Combine
     
     init(
         interactor: ContentInteractor,
-        logger: Logger
+        logger: Logger,
+        isBackEnabled: Bool
     ) {
         self.interactor = interactor
         self.logger = logger
+        self.isBackEnabled = isBackEnabled
         
         onAction(action: .loadData)
     }
@@ -138,7 +141,7 @@ import Combine
     
     private func processOnItemClicked(isAdded: Bool) {
         if isAdded {
-            navigationState = NavigationState.back
+            navigationState = NavigationState.back(isMain: !isBackEnabled)
             return
         } else {
             errorMessage = ErrorMessageState.notAddedContentIsExists
