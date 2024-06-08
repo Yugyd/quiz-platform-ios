@@ -330,7 +330,6 @@
 		BE838CF62B4D3D2700D68618 /* Progress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE838CF82B4D3D2700D68618 /* Progress.storyboard */; };
 		BE838CFB2B4D3D4300D68618 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE838CFD2B4D3D4300D68618 /* Profile.storyboard */; };
 		BE838D002B4D3D5000D68618 /* Additionally.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE838D022B4D3D5000D68618 /* Additionally.storyboard */; };
-		BE838D0F2B4D4B7100D68618 /* content-encode.db in Resources */ = {isa = PBXBuildFile; fileRef = BE838D0E2B4D4B7100D68618 /* content-encode.db */; };
 		BEF346492B5C1E3B005F6AD0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEF3464B2B5C1E3B005F6AD0 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -692,8 +691,6 @@
 		BE838CFF2B4D3D4A00D68618 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Profile.strings; sourceTree = "<group>"; };
 		BE838D012B4D3D5000D68618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Additionally.storyboard; sourceTree = "<group>"; };
 		BE838D042B4D3D5600D68618 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Additionally.strings; sourceTree = "<group>"; };
-		BE838D0D2B4D4B6400D68618 /* content-encode-pro.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "content-encode-pro.db"; sourceTree = "<group>"; };
-		BE838D0E2B4D4B7100D68618 /* content-encode.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "content-encode.db"; sourceTree = "<group>"; };
 		BEF3464A2B5C1E3B005F6AD0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BEF3464C2B5C1ECA005F6AD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CF97739793D40BC9123BBBE8 /* Pods-Quiz-QuizUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quiz-QuizUITests.debug.xcconfig"; path = "Target Support Files/Pods-Quiz-QuizUITests/Pods-Quiz-QuizUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -850,19 +847,9 @@
 		033B79CE245BE9E100744891 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				033B79D4245BEEC600744891 /* Database */,
 				0314A6CE246291950030B5E5 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		033B79D4245BEEC600744891 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				BE838D0E2B4D4B7100D68618 /* content-encode.db */,
-				BE838D0D2B4D4B6400D68618 /* content-encode-pro.db */,
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		033B79E0245BF30F00744891 /* IOC */ = {
@@ -2171,7 +2158,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE838D0F2B4D4B7100D68618 /* content-encode.db in Resources */,
 				BE838CF02B4D3CEE00D68618 /* Game.storyboard in Resources */,
 				037843732737D97200AF404D /* InfoPlist.strings in Resources */,
 				BEF346492B5C1E3B005F6AD0 /* Localizable.strings in Resources */,

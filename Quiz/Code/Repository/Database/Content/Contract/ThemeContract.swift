@@ -25,6 +25,4 @@ class ThemeContract {
     static let info = Expression<String>("info")
     static let image = Expression<String?>("image")
     static let count = Expression<Int>("count")
-    static let count_normal = Expression<Int>("count_normal")
-    static let count_easy = Expression<Int>("count_easy")
 }

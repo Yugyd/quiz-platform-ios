@@ -64,7 +64,7 @@ class AppAssembly: GeneralAssembly {
         return ContentDatabase(
             decoder: resolve(),
             questFormatter: questFormatter,
-            mode: resolve(),
+            version: GlobalScope.content.contentDbVersion,
             logger: resolve()
         )
     }

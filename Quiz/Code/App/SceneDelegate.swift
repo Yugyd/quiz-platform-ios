@@ -77,5 +77,4 @@ import UIKit
         self.window?.rootViewController = contentViewController
         self.window?.makeKeyAndVisible()
     }
-
 }

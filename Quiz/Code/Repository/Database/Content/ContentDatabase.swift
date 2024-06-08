@@ -18,67 +18,43 @@ import SQLite
 
 class ContentDatabase: ContentDatabaseProtocol {
     
+    private static let dbFileName = "content-encode.db"
     private let loggerTag = "ContentDatabase"
     
-    private static let dbFileExtension = "db"
-    
-    private var version: Int = 0
-    private let dbFileName: String
-    private let forcedUpgradeVersion: Int
+    private var newVersion: Int
+    private let logger: Logger
     private let path: String
-    
     private var connection: Connection?
     private var isInitializing: Bool = false
-    
+
     private let decoder: DecoderProtocol
     private let questFormatter: SymbolFormatter
-    private let logger: Logger
     
     init(
         decoder: DecoderProtocol,
         questFormatter: SymbolFormatter,
-        mode: ContentMode,
+        version: Int,
         logger: Logger
     ) {
         self.decoder = decoder
         self.questFormatter = questFormatter
         
-        self.dbFileName = mode.dbFileName
-        self.forcedUpgradeVersion = mode.dbVersion
-        
-        let dictionaryPath = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true
-        ).first!
-        self.path = dictionaryPath + "/" + dbFileName + "." + ContentDatabase.dbFileExtension
         self.logger = logger
+        self.newVersion = version
+        self.path = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory, .userDomainMask, true
+        ).first! + "/\(ContentDatabase.dbFileName)"
     }
     
-    // MARK: - ContentDatabaseProtocol
-    
-    /**
-     * Create and/or open a database that will be used for reading and writing.
-     * On the first call, the database will be extracted and copied from the application resources folder.
-     *
-     * <p>After a successful opening, the database is cached so you can call
-     * this method every time you need to write to the database.
-     * (Be sure to call {@link #close} when you no longer need the database.)
-     * Errors such as incorrect permissions or full disk may cause this method to fail,
-     * but future attempts may be successful if the problem is resolved.
-     *
-     * Updating the database may take a long time, you
-     * should not call this method from the main application thread, including
-     * from {@link android.content.ContentProvider#onCreate ContentProvider.onCreate()}.
-     *
-     * @throws SQLiteException if the database cannot be opened for writing
-     * @return the read/write database object is valid until {@link #close} is called
-     */
+    // MARK: - SqliteDatabaseProtocol
+
     func getReadableConnection() -> Connection? {
         return getWritableConnection()
     }
     
     func getWritableConnection() -> Connection? {
         if connection != nil {
-            return connection // The database is already open for action
+            return connection
         }
         
         if isInitializing {
@@ -91,17 +67,62 @@ class ContentDatabase: ContentDatabaseProtocol {
             }
             
             isInitializing = true
-            connection = createOrOpenDatabase(force: false)
+            connection = try Connection(path)
+        } catch {
+            CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot connect to Database. Error is:")
+            connection = nil
+        }
+        
+        if let connection = connection {
+            let version = connection.userVersion
             
-            let version = connection?.userVersion ?? 0
-            
-            if version != 0 && version < forcedUpgradeVersion {
-                connection = nil
-                connection = createOrOpenDatabase(force: true)
+            if version == 0 {
+                onCreate(db: connection)
+            } else {
+                if version < newVersion {
+                    onUpgrade(db: connection, oldVersion: Int(version), newVersion: newVersion)
+                }
             }
             
-            return connection
+            connection.userVersion = Int32(newVersion)
         }
+        
+        return connection
+    }
+    
+    func onCreate(db: Connection) {
+        do {
+            try db.run(ThemeContract.themeTable.create(ifNotExists: true) { t in
+                t.column(ThemeContract.id, primaryKey: .default)
+                t.column(ThemeContract.ordinal)
+                t.column(ThemeContract.name)
+                t.column(ThemeContract.info)
+                t.column(ThemeContract.image)
+                t.column(ThemeContract.count)
+            })
+            
+            try db.run(QuestContract.questTable.create(ifNotExists: true) { t in
+                t.column(QuestContract.id, primaryKey: .default)
+                t.column(QuestContract.quest)
+                t.column(QuestContract.true_answer)
+                t.column(QuestContract.answer2)
+                t.column(QuestContract.answer3)
+                t.column(QuestContract.answer4)
+                t.column(QuestContract.answer5)
+                t.column(QuestContract.answer6)
+                t.column(QuestContract.answer7)
+                t.column(QuestContract.answer8)
+                t.column(QuestContract.complexity)
+                t.column(QuestContract.category)
+                t.column(QuestContract.section)
+            })
+        } catch {
+            CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot create table to Database. Error is:")
+        }
+    }
+    
+    func onUpgrade(db: Connection, oldVersion: Int?, newVersion: Int?) {
+        
     }
     
     // MARK: - ThemeRepositoryProtocol
@@ -155,9 +176,7 @@ class ContentDatabase: ContentDatabaseProtocol {
                             ThemeContract.name <- theme.name,
                             ThemeContract.info <- theme.info,
                             ThemeContract.image <- theme.image,
-                            ThemeContract.count <- theme.count,
-                            ThemeContract.count_normal <- theme.count,
-                            ThemeContract.count_easy <- theme.count
+                            ThemeContract.count <- theme.count
                         )
                     
                     try db.run(query)
@@ -300,7 +319,7 @@ class ContentDatabase: ContentDatabaseProtocol {
                             QuestContract.answer4 <- quest.answers[3],
                             QuestContract.complexity <- quest.complexity,
                             QuestContract.category <- quest.category,
-                            QuestContract.section <- quest.complexity
+                            QuestContract.section <- quest.section
                         )
                     
                     try db.run(query)
@@ -427,59 +446,6 @@ class ContentDatabase: ContentDatabaseProtocol {
             tag: loggerTag,
             message: "Reset \(categoryCount) categories and \(questCount) quests"
         )
-    }
-    
-    // MARK: - Private Database
-    
-    private func createOrOpenDatabase(force: Bool) -> Connection? {
-        // First check for the presence of the db file and do not try to open it
-        var connection: Connection?
-        
-        if FileManager().fileExists(atPath: path) {
-            connection = returnConnection()
-        }
-        
-        if connection != nil {
-            // the database already exists
-            if force {
-                // Forced database update!
-                connection = nil
-                copyDatabase()
-                connection = returnConnection()
-            }
-        } else {
-            // database doesn't exist, copy it from assets and return it
-            copyDatabase()
-            connection = returnConnection()
-        }
-        
-        return connection
-    }
-    
-    private func returnConnection() -> Connection? {
-        do {
-            return try Connection(path, readonly: true)
-        } catch {
-            CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot connect to Database. Error is:")
-            return nil
-        }
-    }
-    
-    private func copyDatabase() {
-        let resDbPath = Bundle.main
-            .path(forResource: dbFileName, ofType: ContentDatabase.dbFileExtension)!
-        
-        do {
-            let fileManager = FileManager()
-            
-            if fileManager.fileExists(atPath: path) {
-                try fileManager.removeItem(atPath: path)
-            }
-            
-            try fileManager.copyItem(atPath: resDbPath, toPath: path)
-        } catch {
-            CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot copy to Database. Error is:")
-        }
     }
     
     // MARK: - Private Data
