@@ -95,8 +95,6 @@ class AppAssembly: GeneralAssembly {
             
             if subscriptionDate > Date() {
                 contentMode = .pro
-            } else {
-                contentMode = .lite
             }
         }
         

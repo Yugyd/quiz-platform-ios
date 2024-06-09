@@ -176,8 +176,6 @@ class ProfileTableViewController: UITableViewController, ProfileViewProtocol {
         if let header = tableView?.tableHeaderView as? AppHeaderView {
             let color: UIColor
             switch contentMode {
-            case .lite:
-                color = UIColor.secondaryLabel
             case .pro:
                 color = UIColor(named: "color_accent") ?? UIColor.secondaryLabel
             }

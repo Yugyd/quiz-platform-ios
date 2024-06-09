@@ -404,7 +404,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate, GADBan
 
     private func isAdEnabled() -> Bool {
         let mode: ContentMode = IocContainer.app.resolve()
-        return featureManager?.isAdEnabled() == true && mode == .lite
+        return featureManager?.isAdEnabled() == true && mode != .pro
     }
 
     private func isShowRewardedAd() -> Bool {

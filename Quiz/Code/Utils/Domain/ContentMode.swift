@@ -17,13 +17,10 @@
 import Foundation
 
 enum ContentMode {
-    case lite
     case pro
 
     var titleName: String {
         switch self {
-        case .lite:
-            return NSLocalizedString("TITLE_LITE", comment: "Lite")
         case .pro:
             return NSLocalizedString("TITLE_PRO", comment: "Pro")
         }
@@ -31,8 +28,6 @@ enum ContentMode {
 
     var dbFileName: String {
         switch self {
-        case .lite:
-            return "content-encode"
         case .pro:
             return "content-encode-pro"
         }
@@ -40,8 +35,6 @@ enum ContentMode {
 
     var dbVersion: Int {
         switch self {
-        case .lite:
-            return GlobalScope.content.contentDbVersion
         case .pro:
             return GlobalScope.content.proContentDbVersion
         }
