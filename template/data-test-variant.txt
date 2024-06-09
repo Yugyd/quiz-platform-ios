@@ -1,0 +1,188 @@
+[category]
+
+1
+Theme А Variant
+Description А Variant
+https://test.com/test.png
+
+2
+Theme B Variant
+Description B Variant
+https://raw.githubusercontent.com/Yugyd/quiz-platform/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp
+
+3
+Theme C Variant
+Description C Variant
+
+4
+Theme D Variant
+Description D Variant
+
+5
+Theme E Variant
+Description E Variant
+
+6
+Theme F Variant
+Description F Variant
+
+7
+Theme F Variant
+Description F Variant
+
+8
+Theme G Variant
+Description G Variant
+
+9
+Theme H Variant
+Description H Variant
+
+10
+Theme I Variant
+Description I Variant
+
+11
+Theme J Variant
+Description J Variant
+
+12
+Theme K Variant
+Description K Variant
+
+[quest]
+
+Quest 1
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+1
+1
+
+Quest 2
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+2
+1
+
+Quest 3
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+2
+2
+
+Quest 4
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+3
+1
+
+Quest 5
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+3
+2
+
+Quest 5
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+3
+3
+
+Quest 6
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+4
+1
+
+Quest 7
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+5
+1
+
+Quest 8
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+6
+1
+
+Quest 9
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+7
+1
+
+Quest 10
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+8
+1
+
+Quest 11
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+9
+1
+
+Quest 12
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+10
+1
+
+Quest 13
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+11
+1
+
+Quest 14
+Answer 1
+Answer 2
+Answer 3
+Answer 4
+3
+12
+1
