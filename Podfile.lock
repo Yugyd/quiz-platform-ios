@@ -201,7 +201,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (= 10.14.0)
   - MaterialComponents/Dialogs (= 124.2.0)
   - SQLite.swift (= 0.14.1)
-  - SwiftyBeaver
+  - SwiftyBeaver (= 1.9.5)
   - SwiftyJSON (= 5.0.1)
   - SwiftyStoreKit (= 0.16.1)
   - TPInAppReceipt (= 3.3.4)
@@ -267,6 +267,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   TPInAppReceipt: 75ff97f2484a463cf46c172fe7f94225612aeda1
 
-PODFILE CHECKSUM: 8b194803b6a01ae52426ab20939066a6f0f3e423
+PODFILE CHECKSUM: 0aa1b828745c50b7c612debfe2a20e731828a0c4
 
 COCOAPODS: 1.15.2

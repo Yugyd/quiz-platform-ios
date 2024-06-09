@@ -254,7 +254,6 @@
 		03EFBC9824D491B300991EC3 /* DateFormatterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EFBC9724D491B300991EC3 /* DateFormatterFactory.swift */; };
 		03F7631A24D474DD003FE75F /* ProUpdateCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7631924D474DD003FE75F /* ProUpdateCallback.swift */; };
 		03F7631C24D4753D003FE75F /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7631B24D4753D003FE75F /* ErrorType.swift */; };
-		1B0BF324CE37B1AB157A6397 /* Pods_Quiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D62E49FC6AEF47541D40DF4 /* Pods_Quiz.framework */; };
 		5B0959032BE007DC00454545 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959022BE007DC00454545 /* ContentViewController.swift */; };
 		5B0959072BE0116F00454545 /* ContentEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0959062BE0116F00454545 /* ContentEmptyState.swift */; };
 		5B09590C2BE013B100454545 /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B09590B2BE013B100454545 /* Content.storyboard */; };
@@ -324,6 +323,7 @@
 		6DFDDACFCB9C32BEBFE9BFCE /* TwoTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDD1342B2D69A8FE290329 /* TwoTextViewCell.swift */; };
 		6DFDDB534BE233F651BBC877 /* TwoTextViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDDCDCE2F7A90EB7103937 /* TwoTextViewCellProtocol.swift */; };
 		6DFDDC77B2AE0702D6C0411B /* MainPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDD81E0593DCE884D4FB30 /* MainPopup.swift */; };
+		9BDD06CE0474E4F197C28917 /* Pods_Quiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D62E49FC6AEF47541D40DF4 /* Pods_Quiz.framework */; };
 		AA8ABDD8EF978FD4CEA6964B /* Pods_QuizTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947EC3A41915932F2955E125 /* Pods_QuizTests.framework */; };
 		BE838CEC2B4D3CCB00D68618 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE838CEE2B4D3CCB00D68618 /* Main.storyboard */; };
 		BE838CF02B4D3CEE00D68618 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE838CF22B4D3CEE00D68618 /* Game.storyboard */; };
@@ -707,7 +707,7 @@
 				033B79DC245BEF6C00744891 /* StoreKit.framework in Frameworks */,
 				033B79DE245BEF9400744891 /* MessageUI.framework in Frameworks */,
 				033B79DA245BEF6200744891 /* AudioToolbox.framework in Frameworks */,
-				1B0BF324CE37B1AB157A6397 /* Pods_Quiz.framework in Frameworks */,
+				9BDD06CE0474E4F197C28917 /* Pods_Quiz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2867,16 +2867,17 @@
 				CODE_SIGN_ENTITLEMENTS = Quiz/Quiz.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = NVVR5ZFHQA;
 				INFOPLIST_FILE = Quiz/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Quiz Platform";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"c++\"",
@@ -2980,15 +2981,16 @@
 				CODE_SIGN_ENTITLEMENTS = Quiz/Quiz.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NVVR5ZFHQA;
 				INFOPLIST_FILE = Quiz/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Quiz Platform";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"c++\"",
