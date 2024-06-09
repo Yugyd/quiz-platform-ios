@@ -14,7 +14,7 @@
 /* Class = "UILabel"; text = "Теперь вопросы запомнятся!"; ObjectID = "86b-LU-ev6"; */
 "86b-LU-ev6.text" = "Теперь вопросы запомнятся!";
 
-/* Class = "UIButton"; normalTitle = "СТАРТ"; ObjectID = "8Zg-OZ-SU3"; */
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "8Zg-OZ-SU3"; */
 "8Zg-OZ-SU3.normalTitle" = "СТАРТ";
 
 /* Class = "UITabBarItem"; title = "Темы"; ObjectID = "92g-kX-vuX"; */
