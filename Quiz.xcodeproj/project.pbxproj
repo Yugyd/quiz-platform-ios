@@ -2063,6 +2063,7 @@
 				033B7996245BE96400744891 /* Resources */,
 				033B79DF245BF0B500744891 /* ShellScript */,
 				25FD47B2A9E3EB87C64F7D5D /* [CP] Embed Pods Frameworks */,
+				118322EA91DEB1273C1BA543 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2101,6 +2102,7 @@
 				033B79B6245BE96A00744891 /* Frameworks */,
 				033B79B7245BE96A00744891 /* Resources */,
 				789DC338F399C7874CED33DC /* [CP] Embed Pods Frameworks */,
+				3FEA185D20C6DAEAE8D2A445 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2238,6 +2240,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		118322EA91DEB1273C1BA543 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Quiz/Pods-Quiz-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Quiz/Pods-Quiz-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Quiz/Pods-Quiz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		25FD47B2A9E3EB87C64F7D5D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2253,6 +2272,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Quiz/Pods-Quiz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FEA185D20C6DAEAE8D2A445 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Quiz-QuizUITests/Pods-Quiz-QuizUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Quiz-QuizUITests/Pods-Quiz-QuizUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Quiz-QuizUITests/Pods-Quiz-QuizUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		53266C081BA9BD0F8D143B38 /* [CP] Check Pods Manifest.lock */ = {
@@ -2867,7 +2903,7 @@
 				CODE_SIGN_ENTITLEMENTS = Quiz/Quiz.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = NVVR5ZFHQA;
 				INFOPLIST_FILE = Quiz/Info.plist;
@@ -2981,7 +3017,7 @@
 				CODE_SIGN_ENTITLEMENTS = Quiz/Quiz.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = NVVR5ZFHQA;
 				INFOPLIST_FILE = Quiz/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Quiz Platform";
