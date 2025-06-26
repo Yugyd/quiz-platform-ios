@@ -48,11 +48,11 @@ class ContentDatabase: ContentDatabaseProtocol {
     
     // MARK: - SqliteDatabaseProtocol
 
-    func getReadableConnection() -> Connection? {
-        return getWritableConnection()
+    private func getReadableConnection() throws -> Connection? {
+        return try getWritableConnection()
     }
     
-    func getWritableConnection() -> Connection? {
+    private func getWritableConnection() throws-> Connection? {
         if connection != nil {
             return connection
         }
@@ -90,7 +90,7 @@ class ContentDatabase: ContentDatabaseProtocol {
         return connection
     }
     
-    func onCreate(db: Connection) {
+    private func onCreate(db: Connection) {
         do {
             try db.run(ThemeContract.themeTable.create(ifNotExists: true) { t in
                 t.column(ThemeContract.id, primaryKey: .default)
@@ -121,7 +121,7 @@ class ContentDatabase: ContentDatabaseProtocol {
         }
     }
     
-    func onUpgrade(db: Connection, oldVersion: Int?, newVersion: Int?) {
+    private func onUpgrade(db: Connection, oldVersion: Int?, newVersion: Int?) {
         
     }
     
@@ -130,114 +130,122 @@ class ContentDatabase: ContentDatabaseProtocol {
     /**
      * Returns a list with all categories (objects). Gets a cursor sorted in order (special identifier).
      */
-    func getThemes() -> [Theme]? {
-        guard let db = getReadableConnection() else {
-            return nil
-        }
-        
-        do {
-            let query = ThemeContract.themeTable.order(ThemeContract.ordinal.asc)
-            let result = Array(try db.prepare(query))
-            return result.map { row in
-                let point = Point(count: row[ThemeContract.count], arcade: 0, marathon: 0, sprint: 0)
-                return Theme(
-                    id: row[ThemeContract.id],
-                    name: row[ThemeContract.name],
-                    info: row[ThemeContract.info],
-                    image: row[ThemeContract.image],
-                    count: row[ThemeContract.count],
-                    ordinal: row[ThemeContract.ordinal],
-                    point: point
-                )
+    func getThemes() async throws -> [Theme]? {
+        return try await Task.detached(priority: .background) { [self] () -> [Theme]? in
+            guard let db = try getReadableConnection() else {
+                return nil
             }
-        } catch {
-            CrashlyticsUtils.record(root: error, isPrint: true)
-            return nil
-        }
+            
+            do {
+                let query = ThemeContract.themeTable.order(ThemeContract.ordinal.asc)
+                let result = Array(try db.prepare(query))
+                return result.map { row in
+                    let point = Point(count: row[ThemeContract.count], arcade: 0, marathon: 0, sprint: 0)
+                    return Theme(
+                        id: row[ThemeContract.id],
+                        name: row[ThemeContract.name],
+                        info: row[ThemeContract.info],
+                        image: row[ThemeContract.image],
+                        count: row[ThemeContract.count],
+                        ordinal: row[ThemeContract.ordinal],
+                        point: point
+                    )
+                }
+            } catch {
+                CrashlyticsUtils.record(root: error, isPrint: true)
+                return nil
+            }
+        }.value
     }
     
-    func addThemes(themes: [Theme]?) {
-        guard let db = getWritableConnection() else {
-            return
-        }
-        
-        if themes == nil {
-            return
-        }
-        
-        do {
-            try db.transaction {
-                for theme in themes! {
-                    let query = ThemeContract.themeTable
-                        .insert(
-                            or:.replace,
-                            ThemeContract.id <- theme.id,
-                            ThemeContract.ordinal <- theme.ordinal,
-                            ThemeContract.name <- theme.name,
-                            ThemeContract.info <- theme.info,
-                            ThemeContract.image <- theme.image,
-                            ThemeContract.count <- theme.count
-                        )
-                    
-                    try db.run(query)
-                }
+    func addThemes(themes: [Theme]?) async throws {
+        try await Task.detached(priority: .background) {
+            guard let db = try self.getWritableConnection() else {
+                return
             }
-        } catch {
-            CrashlyticsUtils.record(
-                root: error,
-                isPrint: true,
-                startMsg: "Cannot fill table to Database. Error is:"
-            )
-        }
+            
+            if themes == nil {
+                return
+            }
+            
+            do {
+                try db.transaction {
+                    for theme in themes! {
+                        let query = ThemeContract.themeTable
+                            .insert(
+                                or:.replace,
+                                ThemeContract.id <- theme.id,
+                                ThemeContract.ordinal <- theme.ordinal,
+                                ThemeContract.name <- theme.name,
+                                ThemeContract.info <- theme.info,
+                                ThemeContract.image <- theme.image,
+                                ThemeContract.count <- theme.count
+                            )
+                        
+                        try db.run(query)
+                    }
+                }
+            } catch {
+                CrashlyticsUtils.record(
+                    root: error,
+                    isPrint: true,
+                    startMsg: "Cannot fill table to Database. Error is:"
+                )
+            }
+        }.value
     }
     
     /**
      * Returns a category object based on the given id
      * @param id category id
      */
-    func getTheme(id: Int) -> Theme? {
-        guard let db = getReadableConnection() else {
-            return nil
-        }
-        
-        do {
-            let query = ThemeContract.themeTable.filter(ThemeContract.id == id)
-            let result = try db.pluck(query)
-            return result.map { row in
-                let point = Point(count: row[ThemeContract.count], arcade: 0, marathon: 0, sprint: 0)
-                return Theme(
-                    id: row[ThemeContract.id],
-                    name: row[ThemeContract.name],
-                    info: row[ThemeContract.info],
-                    image: row[ThemeContract.image],
-                    count: row[ThemeContract.count],
-                    ordinal: row[ThemeContract.ordinal],
-                    point: point
-                )
+    func getTheme(id: Int) async throws -> Theme? {
+        return try await Task.detached(priority: .background) { [self] () -> Theme? in
+            guard let db = try getReadableConnection() else {
+                return nil
             }
-        } catch {
-            CrashlyticsUtils.record(root: error, userInfo: ["id": "\(id)"])
-            return nil
-        }
+            
+            do {
+                let query = ThemeContract.themeTable.filter(ThemeContract.id == id)
+                let result = try db.pluck(query)
+                return result.map { row in
+                    let point = Point(count: row[ThemeContract.count], arcade: 0, marathon: 0, sprint: 0)
+                    return Theme(
+                        id: row[ThemeContract.id],
+                        name: row[ThemeContract.name],
+                        info: row[ThemeContract.info],
+                        image: row[ThemeContract.image],
+                        count: row[ThemeContract.count],
+                        ordinal: row[ThemeContract.ordinal],
+                        point: point
+                    )
+                }
+            } catch {
+                CrashlyticsUtils.record(root: error, userInfo: ["id": "\(id)"])
+                return nil
+            }
+        }.value
     }
     
-    func getThemeTitle(id: Int) -> String? {
-        guard let db = getReadableConnection() else {
-            return nil
-        }
-        
-        do {
-            let query = ThemeContract.themeTable
-                .select(ThemeContract.name)
-                .filter(ThemeContract.id == id)
-            let result = try db.pluck(query)
-            return result.map { row in
-                row[ThemeContract.name]
+    func getThemeTitle(id: Int) async throws -> String? {
+        return try await Task.detached(priority: .background) { [self] () -> String? in
+            guard let db = try getReadableConnection() else {
+                return nil
             }
-        } catch {
-            CrashlyticsUtils.record(root: error, userInfo: ["id": "\(id)"])
-            return nil
-        }
+            
+            do {
+                let query = ThemeContract.themeTable
+                    .select(ThemeContract.name)
+                    .filter(ThemeContract.id == id)
+                let result = try db.pluck(query)
+                return result.map { row in
+                    row[ThemeContract.name]
+                }
+            } catch {
+                CrashlyticsUtils.record(root: error, userInfo: ["id": "\(id)"])
+                return nil
+            }
+        }.value
     }
     
     // MARK: - QuestRepositoryProtocol
@@ -246,137 +254,145 @@ class ContentDatabase: ContentDatabaseProtocol {
      * Initializes and returns a question object by inidi factor
      * @param id question identifier
      */
-    func getQuest(id: Int) -> Quest? {
-        guard let db = getReadableConnection() else {
-            return nil
-        }
-        
-        do {
-            let query = QuestContract.questTable.filter(QuestContract.id == id)
-            let result = try db.pluck(query)
-            
-            return result.map { row in
-                var answers: [String] =
-                ([row[QuestContract.answer2],
-                  row[QuestContract.answer3],
-                  row[QuestContract.answer4],
-                  row[QuestContract.answer5],
-                  row[QuestContract.answer6],
-                  row[QuestContract.answer7],
-                  row[QuestContract.answer8]].filter { answer in
-                    answer != nil
-                } as! [String])
-                .shuffled()
-                .prefix(3)
-                .map {
-                    return $0
-                }
-                answers.append(row[QuestContract.true_answer])
-                let shuffledAnsweers: [String] = answers.shuffled()
-                
-                let decryptQuest = decoder.decrypt(encryptedText: row[QuestContract.quest])
-                let decryptTrueAnswer = decoder.decrypt(encryptedText: row[QuestContract.true_answer])
-                let decryptAnswers = shuffledAnsweers.map { answer in
-                    decoder.decrypt(encryptedText: answer)
-                }
-                
-                return Quest(
-                    id: Int(row[QuestContract.id]),
-                    quest: questFormatter.format(data: decryptQuest),
-                    trueAnswer: decryptTrueAnswer,
-                    answers: decryptAnswers,
-                    complexity: row[QuestContract.complexity],
-                    category: row[QuestContract.category],
-                    section: row[QuestContract.section]
-                )
+    func getQuest(id: Int) async throws -> Quest? {
+        return try await Task.detached(priority: .background) { [self] () -> Quest? in
+            guard let db = try getReadableConnection() else {
+                return nil
             }
-        } catch {
-            CrashlyticsUtils.record(root: error, userInfo: ["id": "\(id)"])
-            return nil
-        }
+            
+            do {
+                let query = QuestContract.questTable.filter(QuestContract.id == id)
+                let result = try db.pluck(query)
+                
+                return result.map { row in
+                    var answers: [String] =
+                    ([row[QuestContract.answer2],
+                      row[QuestContract.answer3],
+                      row[QuestContract.answer4],
+                      row[QuestContract.answer5],
+                      row[QuestContract.answer6],
+                      row[QuestContract.answer7],
+                      row[QuestContract.answer8]].filter { answer in
+                        answer != nil
+                    } as! [String])
+                    .shuffled()
+                    .prefix(3)
+                    .map {
+                        return $0
+                    }
+                    answers.append(row[QuestContract.true_answer])
+                    let shuffledAnsweers: [String] = answers.shuffled()
+                    
+                    let decryptQuest = decoder.decrypt(encryptedText: row[QuestContract.quest])
+                    let decryptTrueAnswer = decoder.decrypt(encryptedText: row[QuestContract.true_answer])
+                    let decryptAnswers = shuffledAnsweers.map { answer in
+                        decoder.decrypt(encryptedText: answer)
+                    }
+                    
+                    return Quest(
+                        id: Int(row[QuestContract.id]),
+                        quest: questFormatter.format(data: decryptQuest),
+                        trueAnswer: decryptTrueAnswer,
+                        answers: decryptAnswers,
+                        complexity: row[QuestContract.complexity],
+                        category: row[QuestContract.category],
+                        section: row[QuestContract.section]
+                    )
+                }
+            } catch {
+                CrashlyticsUtils.record(root: error, userInfo: ["id": "\(id)"])
+                return nil
+            }
+        }.value
     }
     
-    func addQuests(quests: [Quest]?) {
-        guard let db = getWritableConnection() else {
-            return
-        }
-        
-        if quests == nil {
-            return
-        }
-        
-        do {
-            try db.transaction {
-                for quest in quests! {
-                    let query = QuestContract.questTable
-                        .insert(
-                            or:.replace,
-                            QuestContract.id <- quest.id,
-                            QuestContract.quest <- quest.quest,
-                            QuestContract.true_answer <- quest.trueAnswer,
-                            QuestContract.answer2 <- quest.answers[1],
-                            QuestContract.answer3 <- quest.answers[2],
-                            QuestContract.answer4 <- quest.answers[3],
-                            QuestContract.complexity <- quest.complexity,
-                            QuestContract.category <- quest.category,
-                            QuestContract.section <- quest.section
-                        )
-                    
-                    try db.run(query)
-                }
+    func addQuests(quests: [Quest]?) async throws {
+        try await Task.detached(priority: .background) {
+            guard let db = try self.getWritableConnection() else {
+                return
             }
-        } catch {
-            CrashlyticsUtils.record(
-                root: error,
-                isPrint: true,
-                startMsg: "Cannot fill table to Database. Error is:"
-            )
-        }
+            
+            if quests == nil {
+                return
+            }
+            
+            do {
+                try db.transaction {
+                    for quest in quests! {
+                        let query = QuestContract.questTable
+                            .insert(
+                                or:.replace,
+                                QuestContract.id <- quest.id,
+                                QuestContract.quest <- quest.quest,
+                                QuestContract.true_answer <- quest.trueAnswer,
+                                QuestContract.answer2 <- quest.answers[1],
+                                QuestContract.answer3 <- quest.answers[2],
+                                QuestContract.answer4 <- quest.answers[3],
+                                QuestContract.complexity <- quest.complexity,
+                                QuestContract.category <- quest.category,
+                                QuestContract.section <- quest.section
+                            )
+                        
+                        try db.run(query)
+                    }
+                }
+            } catch {
+                CrashlyticsUtils.record(
+                    root: error,
+                    isPrint: true,
+                    startMsg: "Cannot fill table to Database. Error is:"
+                )
+            }
+        }.value
     }
     
     /**
      * Returns all question IDs, by given category, difficulty level, and also sorts by
      * level of complexity, if required, depending on the value of the variable.
      */
-    func getQuestIds(theme: Int, isSort: Bool) -> [Int]? {
-        let query: Table
-        if theme == Theme.defaultThemeId {
-            query = QuestContract.questTable.select(QuestContract.id, QuestContract.complexity)
-        } else {
-            query = QuestContract.questTable
-                .select(QuestContract.id, QuestContract.complexity)
-                .filter(QuestContract.category == theme)
-        }
-        
-        return getQuestIdsByQuery(query: query, isSort: isSort)
+    func getQuestIds(theme: Int, isSort: Bool) async throws -> [Int]? {
+        return try await Task.detached(priority: .background) { [self] () -> [Int]? in
+            let query: Table
+            if theme == Theme.defaultThemeId {
+                query = QuestContract.questTable.select(QuestContract.id, QuestContract.complexity)
+            } else {
+                query = QuestContract.questTable
+                    .select(QuestContract.id, QuestContract.complexity)
+                    .filter(QuestContract.category == theme)
+            }
+            
+            return try await getQuestIdsByQuery(query: query, isSort: isSort)
+        }.value
     }
     
-    func getErrors(ids: Set<Int>) -> [ErrorQuest]? {
-        guard let db = getReadableConnection() else {
-            return nil
-        }
-        
-        do {
-            let query = QuestContract.questTable.filter(ids.contains(QuestContract.id))
-            let result = Array(try db.prepare(query))
-            
-            if result.isEmpty {
+    func getErrors(ids: Set<Int>) async throws -> [ErrorQuest]? {
+        return try await Task.detached(priority: .background) { [self] () -> [ErrorQuest]? in
+            guard let db = try getReadableConnection() else {
                 return nil
-            } else {
-                return result.map { row in
-                    let decryptQuest = decoder.decrypt(encryptedText: row[QuestContract.quest])
-                    let quest = questFormatter.format(data: decryptQuest)
-                    let trueAnswer = decoder.decrypt(encryptedText: row[QuestContract.true_answer])
-                    
-                    return ErrorQuest(id: row[QuestContract.id],
-                                      quest: quest,
-                                      trueAnswer: trueAnswer)
-                }
             }
-        } catch {
-            CrashlyticsUtils.record(root: error, userInfo: ["errorsIds": "\(ids)"])
-            return nil
-        }
+            
+            do {
+                let query = QuestContract.questTable.filter(ids.contains(QuestContract.id))
+                let result = Array(try db.prepare(query))
+                
+                if result.isEmpty {
+                    return nil
+                } else {
+                    return result.map { row in
+                        let decryptQuest = decoder.decrypt(encryptedText: row[QuestContract.quest])
+                        let quest = questFormatter.format(data: decryptQuest)
+                        let trueAnswer = decoder.decrypt(encryptedText: row[QuestContract.true_answer])
+                        
+                        return ErrorQuest(id: row[QuestContract.id],
+                                          quest: quest,
+                                          trueAnswer: trueAnswer)
+                    }
+                }
+            } catch {
+                CrashlyticsUtils.record(root: error, userInfo: ["errorsIds": "\(ids)"])
+                return nil
+            }
+        }.value
     }
     
     // MARK: - SectionRepositoryProtocol
@@ -385,73 +401,81 @@ class ContentDatabase: ContentDatabaseProtocol {
      * Determines the number of sections in the topic. 1. Launch the sections screen.
      * 2. Displaying sections (for initialization).
      */
-    func getSectionCount(theme: Int) -> Int? {
-        guard let db = getReadableConnection() else {
-            return 0
-        }
-        guard theme != Theme.defaultThemeId else {
-            return nil
-        }
-        
-        do {
-            let query = QuestContract.questTable.filter(QuestContract.category == theme)
-            let max = try db.scalar(query.select(QuestContract.section.max)) // -> Int64?
-            return max
-        } catch {
-            CrashlyticsUtils.record(root: error, userInfo: ["theme": "\(theme)"])
-            return 0
-        }
+    func getSectionCount(theme: Int) async throws -> Int? {
+        return try await Task.detached(priority: .background) { [self] () -> Int? in
+            guard let db = try getReadableConnection() else {
+                return 0
+            }
+            guard theme != Theme.defaultThemeId else {
+                return nil
+            }
+            
+            do {
+                let query = QuestContract.questTable.filter(QuestContract.category == theme)
+                let max = try db.scalar(query.select(QuestContract.section.max)) // -> Int64?
+                return max
+            } catch {
+                CrashlyticsUtils.record(root: error, userInfo: ["theme": "\(theme)"])
+                return 0
+            }
+        }.value
     }
     
     /**
      * Gets a list of section question IDs. There can't be a common section, otherwise everything will get mixed up.
      * Used in the game when receiving a list of questions.
      */
-    func getQuestIdsBySection(theme: Int, section: Int, isSort: Bool) -> [Int]? {
-        guard theme != Theme.defaultThemeId else {
-            return nil
-        }
-        
-        let query = QuestContract.questTable
-            .select(QuestContract.id, QuestContract.complexity)
-            .filter(QuestContract.category == theme && QuestContract.section == section)
-        return getQuestIdsByQuery(query: query, isSort: isSort)
+    func getQuestIdsBySection(theme: Int, section: Int, isSort: Bool) async throws -> [Int]? {
+        return try await Task.detached(priority: .background) { [self] () -> [Int]? in
+            guard theme != Theme.defaultThemeId else {
+                return nil
+            }
+            
+            let query = QuestContract.questTable
+                .select(QuestContract.id, QuestContract.complexity)
+                .filter(QuestContract.category == theme && QuestContract.section == section)
+            return try await getQuestIdsByQuery(query: query, isSort: isSort)
+        }.value
     }
     
-    func getSections(theme: Int) -> [Section]? {
-        guard theme != Theme.defaultThemeId else {
-            return nil
-        }
-        guard let count = getSectionCount(theme: theme), count != 0 else {
-            return nil
-        }
-        
-        var result: [Section] = [Section]()
-        for sectionId in 1...count {
-            let questIds = getQuestIdsBySection(theme: theme, section: sectionId, isSort: false)
-            let questCount = questIds?.count ?? 0
-            let section = Section(id: sectionId, count: questCount, questIds: questIds, point: nil)
-            result.append(section)
-        }
-        return result
+    func getSections(theme: Int) async throws -> [Section]? {
+        return try await Task.detached(priority: .background) { [self] () -> [Section]? in
+            guard theme != Theme.defaultThemeId else {
+                return nil
+            }
+            guard let count = try await getSectionCount(theme: theme), count != 0 else {
+                return nil
+            }
+            
+            var result: [Section] = [Section]()
+            for sectionId in 1...count {
+                let questIds = try await getQuestIdsBySection(theme: theme, section: sectionId, isSort: false)
+                let questCount = questIds?.count ?? 0
+                let section = Section(id: sectionId, count: questCount, questIds: questIds, point: nil)
+                result.append(section)
+            }
+            return result
+        }.value
     }
     
     // MARK: - ContentResetRepositoryProtocol
     
-    func reset() throws {
-        let categoryCount = resetCategory()
-        let questCount = resetQuest()
-        
-        logger.print(
-            tag: loggerTag,
-            message: "Reset \(categoryCount) categories and \(questCount) quests"
-        )
+    func reset() async throws {
+        return try await Task.detached(priority: .background) {
+            let categoryCount = try await self.resetCategory()
+            let questCount = try await self.resetQuest()
+            
+            self.logger.print(
+                tag: self.loggerTag,
+                message: "Reset \(categoryCount) categories and \(questCount) quests"
+            )
+        }.value
     }
     
     // MARK: - Private Data
     
-    private func getQuestIdsByQuery(query: Table, isSort: Bool) -> [Int]? {
-        guard let db = getReadableConnection() else {
+    private func getQuestIdsByQuery(query: Table, isSort: Bool) async throws -> [Int]? {
+        guard let db = try getReadableConnection() else {
             return nil
         }
         
@@ -476,8 +500,8 @@ class ContentDatabase: ContentDatabaseProtocol {
         }
     }
     
-    private func resetCategory() -> Int {
-        guard let db = getWritableConnection() else {
+    private func resetCategory() async throws -> Int {
+        guard let db = try getWritableConnection() else {
             return 0
         }
         
@@ -492,8 +516,8 @@ class ContentDatabase: ContentDatabaseProtocol {
         }
     }
     
-    private func resetQuest() -> Int {
-        guard let db = getWritableConnection() else {
+    private func resetQuest() async throws -> Int {
+        guard let db = try getWritableConnection() else {
             return 0
         }
         

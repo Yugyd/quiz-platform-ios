@@ -14,28 +14,61 @@
 //  limitations under the License.
 //
 
-import Combine
-import UIKit
+import Foundation
+import SwiftUI
 
-class CorrectViewController: UIViewController, CorrectViewProtocol {
+class CorrectViewController: UIViewController {
     
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var infoLabel: UILabel!
-    
-    fileprivate var presenter: CorrectPresenterProtocol?
-    
+    private var viewModel: CorrectViewModel!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initPresenter()
+        let hostingController = createHostController()
+        let swiftUiView = hostingController.view!
+        swiftUiView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(hostingController)
+        view.addSubview(swiftUiView)
+        
+        NSLayoutConstraint.activate([
+            swiftUiView.topAnchor.constraint(equalTo: view.topAnchor),
+            swiftUiView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            swiftUiView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            swiftUiView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+        
+        hostingController.didMove(toParent: self)
         
         configuratePurchaseNotification()
+        
+        navigationItem.title = String(localized: "ds_navbar_title_correct", table: appLocalizable)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        viewModel?.onAction(action: .loadData)
+    }
+    
+    private func createHostController() -> UIHostingController<CorrectScreen> {
+        viewModel = CorrectViewModel(
+            repository: IocContainer.app.resolve(),
+            contentInteractor: IocContainer.app.resolve(),
+            logger: IocContainer.app.resolve()
+        )
         
-        presenter?.loadData()
+        let view = CorrectScreen(
+            onNavigateToGame: { [weak self] in
+                self?.performSegue(withIdentifier: "segueCorrectToGame", sender: nil)
+            },
+            onBack: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            },
+            viewModel: viewModel
+        )
+        let hostingController = UIHostingController(rootView: view)
+        return hostingController
     }
     
     // MARK: - IBAction
@@ -53,40 +86,17 @@ class CorrectViewController: UIViewController, CorrectViewProtocol {
         }
     }
     
-    // MARK: - CorrectViewProtocol
-    
-    func enableStartButton(isEnable: Bool) {
-        startButton?.isEnabled = isEnable
-    }
-    
-    func hideInfoLabel(isHide: Bool) {
-        infoLabel?.isHidden = isHide
-        startButton?.isHidden = !isHide
-    }
-    
-    func setEmptyStub() {
-        present(AlertBuilder.createEmptyContent().build(), animated: true, completion: nil)
-    }
-    
-    // MARK: - Public func
-    
-    @objc func updateUi() {
-        presenter?.loadData()
-    }
-    
-    // MARK: - Private func
-    
-    private func initPresenter() {
-        let userRepository: UserRepository = IocContainer.app.resolve()
-        presenter = CorrectPresenter(
-            repository: userRepository,
-            contentInteractor: IocContainer.app.resolve(),
-            logger: IocContainer.app.resolve()
-        )
-        presenter?.attachView(rootView: self)
-    }
-    
+    // MARK: Notification center
     private func configuratePurchaseNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUi), name: NSNotification.Name.IAPHelperPurchaseNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateUi),
+            name: NSNotification.Name.IAPHelperPurchaseNotification,
+            object: nil
+        )
+    }
+    
+    @objc private func updateUi() {
+        viewModel?.onAction(action: .loadData)
     }
 }

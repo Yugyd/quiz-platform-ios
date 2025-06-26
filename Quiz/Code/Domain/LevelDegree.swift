@@ -40,23 +40,23 @@ enum LevelDegree {
     static func getTitle(levelDegree: LevelDegree) -> String {
         switch levelDegree {
         case .schoolboy:
-            return NSLocalizedString("TITLE_SCHOOLBOY", comment: "Schoolboy")
+            return String(localized: "progress_title_level_schoolboy", table: appLocalizable)
         case .amateur:
-            return NSLocalizedString("TITLE_AMATEUR", comment: "Amateur")
+            return String(localized: "progress_title_level_amateur", table: appLocalizable)
         case .student:
-            return NSLocalizedString("TITLE_STUDENT", comment: "Student")
+            return String(localized: "progress_title_level_student", table: appLocalizable)
         case .master:
-            return NSLocalizedString("TITLE_MASTER", comment: "Master")
+            return String(localized: "progress_title_level_master", table: appLocalizable)
         case .postgraduate:
-            return NSLocalizedString("TITLE_POSTGRADUATE", comment: "Graduate student")
+            return String(localized: "progress_title_level_postgraduate", table: appLocalizable)
         case .candidate:
-            return NSLocalizedString("TITLE_CANDIDATE", comment: "Candidate of science")
+            return String(localized: "progress_title_level_candidate", table: appLocalizable)
         case .doctor:
-            return NSLocalizedString("TITLE_DOCTOR", comment: "PhD")
+            return String(localized: "progress_title_level_doctor", table: appLocalizable)
         case .professor:
-            return NSLocalizedString("TITLE_PROFESSOR", comment: "Professor")
+            return String(localized: "progress_title_level_professor", table: appLocalizable)
         case .academic:
-            return NSLocalizedString("TITLE_ACADEMIC", comment: "Academic")
+            return String(localized: "progress_title_level_academic", table: appLocalizable)
         }
     }
 

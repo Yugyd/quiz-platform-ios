@@ -26,59 +26,59 @@ class ContentRepository: ThemeRepositoryProtocol, QuestRepositoryProtocol, Secti
 
     // MARK: - ThemeRepositoryProtocol
 
-    func getThemes() -> [Theme]? {
-        return contentDb.getThemes()?.filter {
+    func getThemes() async throws -> [Theme]? {
+        return try await contentDb.getThemes()?.filter {
             $0.id != Theme.defaultThemeId
         }
     }
     
-    func addThemes(themes: [Theme]?) {
-        contentDb.addThemes(themes: themes)
+    func addThemes(themes: [Theme]?) async throws {
+        try await contentDb.addThemes(themes: themes)
     }
 
-    func getTheme(id: Int) -> Theme? {
-        return contentDb.getTheme(id: id)
+    func getTheme(id: Int) async throws -> Theme? {
+        return try await contentDb.getTheme(id: id)
     }
 
-    func getThemeTitle(id: Int) -> String? {
-        return contentDb.getThemeTitle(id: id)
+    func getThemeTitle(id: Int) async throws -> String? {
+        return try await contentDb.getThemeTitle(id: id)
     }
 
     // MARK: - QuestRepositoryProtocol
 
-    func getQuest(id: Int) -> Quest? {
-        return contentDb.getQuest(id: id)
+    func getQuest(id: Int) async throws -> Quest? {
+        return try await contentDb.getQuest(id: id)
     }
     
-    func addQuests(quests: [Quest]?) {
-        contentDb.addQuests(quests: quests)
+    func addQuests(quests: [Quest]?) async throws {
+        try await contentDb.addQuests(quests: quests)
     }
 
-    func getQuestIds(theme: Int, isSort: Bool) -> [Int]? {
-        return contentDb.getQuestIds(theme: theme, isSort: isSort)
+    func getQuestIds(theme: Int, isSort: Bool) async throws -> [Int]? {
+        return try await contentDb.getQuestIds(theme: theme, isSort: isSort)
     }
 
-    func getErrors(ids: Set<Int>) -> [ErrorQuest]? {
-        return contentDb.getErrors(ids: ids)
+    func getErrors(ids: Set<Int>) async throws -> [ErrorQuest]? {
+        return try await contentDb.getErrors(ids: ids)
     }
 
     // MARK: - SectionRepositoryProtocol
 
-    func getSectionCount(theme: Int) -> Int? {
-        return contentDb.getSectionCount(theme: theme)
+    func getSectionCount(theme: Int) async throws -> Int? {
+        return try await contentDb.getSectionCount(theme: theme)
     }
 
-    func getQuestIdsBySection(theme: Int, section: Int, isSort: Bool) -> [Int]? {
-        return contentDb.getQuestIdsBySection(theme: theme, section: section, isSort: isSort)
+    func getQuestIdsBySection(theme: Int, section: Int, isSort: Bool) async throws -> [Int]? {
+        return try await contentDb.getQuestIdsBySection(theme: theme, section: section, isSort: isSort)
     }
 
-    func getSections(theme: Int) -> [Section]? {
-        return contentDb.getSections(theme: theme)
+    func getSections(theme: Int) async throws -> [Section]? {
+        return try await contentDb.getSections(theme: theme)
     }
     
     // MARK: - ContentResetRepositoryProtocol
     
-    func reset() throws {
-        try contentDb.reset()
+    func reset() async throws {
+        try await contentDb.reset()
     }
 }

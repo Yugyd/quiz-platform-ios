@@ -22,15 +22,15 @@ protocol ThemeRepositoryProtocol: AnyObject {
      * Returns a list with all categories (objects). Gets a cursor sorted by
      * order (special identifier).
      */
-    func getThemes() -> [Theme]?
-    
-    func addThemes(themes: [Theme]?)
+    func getThemes() async throws -> [Theme]?
+
+    func addThemes(themes: [Theme]?) async throws
 
     /**
      * Returns a category object based on the given id
      * @param id category id
      */
-    func getTheme(id: Int) -> Theme?
+    func getTheme(id: Int) async throws -> Theme?
 
-    func getThemeTitle(id: Int) -> String?
+    func getThemeTitle(id: Int) async throws -> String?
 }

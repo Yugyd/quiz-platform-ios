@@ -17,9 +17,9 @@ target 'Quiz' do
   pod 'FirebaseMessaging', '10.19.0'
   pod 'FirebaseCrashlytics', '10.19.0'
   pod 'FirebaseRemoteConfig', '10.19.0'
-
-  # Ad
-  pod 'Google-Mobile-Ads-SDK', '10.14.0'
+  
+  # Network
+  pod 'Alamofire', '5.10.2'
 
   # Database
   pod 'SQLite.swift', '0.14.1'

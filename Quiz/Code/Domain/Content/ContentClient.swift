@@ -24,12 +24,12 @@ protocol ContentClient {
      *
      * - Returns: Whether the content has been selected.
      */
-    func isSelected() async -> Bool
+    func isSelected() async throws-> Bool
     
     /**
      * The method provides quick access to selected content. Useful for quickly displaying selected content data. For example, a cell in a profile.
      */
-    func getSelectedContent() async -> ContentModel?
+    func getSelectedContent() async throws -> ContentModel?
     
     /**
      * The method provides a subscription for quick access to a list of all content. For example, the content screen.
@@ -65,5 +65,5 @@ protocol ContentClient {
     /**
      * Removing content.
      */
-    func deleteContent(id: String) async
+    func deleteContent(id: String) async throws
 }

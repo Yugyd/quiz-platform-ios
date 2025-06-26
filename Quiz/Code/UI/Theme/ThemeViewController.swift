@@ -30,6 +30,8 @@ class ThemeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = String(localized: "ds_navbar_title_theme", table: appLocalizable)
 
         initCollectionController()
 

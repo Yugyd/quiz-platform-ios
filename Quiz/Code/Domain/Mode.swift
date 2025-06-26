@@ -21,24 +21,27 @@ enum Mode: CaseIterable {
     case marathon
     case sprint
     case error
+    case aiTasks
     case unused
 
     var title: String {
         switch self {
         case .arcade:
-            return NSLocalizedString("TITLE_ARCADE", comment: "Arcade")
+            return String(localized: "ds_game_mode_title_arcade", table: appLocalizable)
         case .marathon:
-            return NSLocalizedString("TITLE_MARATHON", comment: "Marathon")
+            return String(localized: "ds_game_mode_title_marathon", table: appLocalizable)
         case .sprint:
-            return NSLocalizedString("TITLE_SPRINT", comment: "Sprint")
+            return String(localized: "ds_game_mode_title_sprint", table: appLocalizable)
         case .error, .unused:
             fatalError("Non support mode title")
+        case .aiTasks:
+            return String(localized: "ds_game_mode_title_ai_tasks", table: appLocalizable)
         }
     }
 
     func isContinueMode() -> Bool {
         switch self {
-        case .arcade, .marathon, .error:
+        case .arcade, .marathon, .error, .aiTasks:
             return true
         case .sprint, .unused:
             return false

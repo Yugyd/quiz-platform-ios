@@ -20,7 +20,6 @@ import SwiftyStoreKit
 
 import FirebaseCore
 import FirebaseMessaging
-import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let featureManager: FeatureManager = assembler.resolve()
         if featureManager.isAdEnabled() {
-            GADMobileAds.sharedInstance().start(completionHandler: nil)
+            // TODO Add new ad manager
         }
 
         IocContainer.app = assembler

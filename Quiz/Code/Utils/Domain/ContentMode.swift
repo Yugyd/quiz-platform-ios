@@ -22,7 +22,7 @@ enum ContentMode {
     var titleName: String {
         switch self {
         case .pro:
-            return NSLocalizedString("TITLE_PRO", comment: "Pro")
+            return String(localized: "profile_title_pro_version", table: appLocalizable)
         }
     }
 

@@ -52,11 +52,9 @@ struct WarningScreen: View {
                 Spacer().frame(height: 16)
                 
                 PrimaryButton(
-                    title: .constant(
-                        Text(
-                            "design_system_title_empty_state_retry",
-                            tableName: appLocalizable
-                        )
+                    title: Text(
+                        "design_system_title_empty_state_retry",
+                        tableName: appLocalizable
                     ),
                     action:{
                         self.onRetryClicked?()

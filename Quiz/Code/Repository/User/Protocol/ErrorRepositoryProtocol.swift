@@ -18,11 +18,11 @@ import Foundation
 
 protocol ErrorRepositoryProtocol: AnyObject {
 
-    func getErrorIds() -> [Int]?
+    func getErrorIds() async throws -> [Int]?
 
-    func isHaveErrors() -> Bool
+    func isHaveErrors() async throws -> Bool
 
-    func updateErrors(errors: Set<Int>)
+    func updateErrors(errors: Set<Int>) async throws
 
-    func resolveErrors(resolved: Set<Int>)
+    func resolveErrors(resolved: Set<Int>) async throws
 }

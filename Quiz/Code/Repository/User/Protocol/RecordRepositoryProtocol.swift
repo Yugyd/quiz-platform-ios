@@ -18,5 +18,5 @@ import Foundation
 
 protocol RecordRepositoryProtocol: AnyObject {
 
-    func addRecord(mode: Mode, theme: Int, value: Int, time: Int)
+    func addRecord(mode: Mode, theme: Int, value: Int, time: Int) async throws
 }

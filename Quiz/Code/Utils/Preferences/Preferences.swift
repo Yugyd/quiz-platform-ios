@@ -18,13 +18,13 @@ import Foundation
 
 protocol Preferences: AnyObject {
 
-    var notification: Int { get set }
-
     var transition: Double { get set }
 
     var isVibration: Bool { get set }
 
     var isSorting: Bool { get set }
+    
+    var isAiEnabled: Bool { get set }
 
     var questTextSize: Int { get set }
 

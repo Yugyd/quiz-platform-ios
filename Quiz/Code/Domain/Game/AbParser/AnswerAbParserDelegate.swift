@@ -18,12 +18,12 @@ import Foundation
 
 class AnswerAbParserDelegate: AbQuestParser {
     
-    let answerA = NSLocalizedString("CODE_ANSWER_A", comment: "only A is true")
-    let answerB = NSLocalizedString("CODE_ANSWER_B", comment: "only B is true")
-    let answerYes = NSLocalizedString("CODE_ANSWER_YES", comment: "both statements are correct")
-    let answerYesVariant = NSLocalizedString("CODE_ANSWER_YES_VARIANT", comment: "both statements are true")
-    let answerNo = NSLocalizedString("CODE_ANSWER_NO", comment: "both statements are wrong")
-    let answerNoVariant = NSLocalizedString("CODE_ANSWER_NO_VARIANT", comment: "both statements are wrong")
+    let answerA = String(localized: "simple_quest_code_answer_a", table: appLocalizable)
+    let answerB = String(localized: "simple_quest_code_answer_b", table: appLocalizable)
+    let answerYes = String(localized: "simple_quest_code_answer_yes", table: appLocalizable)
+    let answerYesVariant = String(localized: "simple_quest_code_answer_yes_variant", table: appLocalizable)
+    let answerNo = String(localized: "simple_quest_code_answer_no", table: appLocalizable)
+    let answerNoVariant = String(localized: "simple_quest_code_answer_no_variant", table: appLocalizable)
     
     let answers: [String]
     let classicAnswers: [String]

@@ -58,8 +58,8 @@ class ContentClientImpl: ContentClient {
         self.logger = logger
     }
     
-    func isSelected() async -> Bool {
-        let isSelected = contentRepostiry.getSelectedContent() != nil
+    func isSelected() async throws -> Bool {
+        let isSelected = try await contentRepostiry.getSelectedContent() != nil
         
         logger.print(
             tag: loggerTag,
@@ -69,8 +69,8 @@ class ContentClientImpl: ContentClient {
         return isSelected
     }
     
-    func getSelectedContent() async -> ContentModel? {
-        let data = contentRepostiry.getSelectedContent()
+    func getSelectedContent() async throws -> ContentModel? {
+        let data = try await contentRepostiry.getSelectedContent()
         
         logger.print(
             tag: loggerTag,
@@ -117,7 +117,7 @@ class ContentClientImpl: ContentClient {
         
         // Read content file from external storage
         let filePath = newModel.filePath
-        let rawText = try fileRepository.readTextFromFile(fileName: newModel.filePath)
+        let rawText = try await fileRepository.readTextFromFile(fileName: newModel.filePath)
         
         // Generate content tag
         let contentMarker = String(rawText.hashValue)
@@ -128,13 +128,13 @@ class ContentClientImpl: ContentClient {
         )
         
         // Check that this is not current content
-        guard isNewSelected(contentMarker: contentMarker) else {
+        guard try await isNewSelected(contentMarker: contentMarker) else {
             return false
         }
         
         do {
             // Process content
-            try processContent(rawText: rawText, contentMarker: contentMarker)
+            try await processContent(rawText: rawText, contentMarker: contentMarker)
             
             let checkedNewModel = ContentModel(
                 id: newModel.id,
@@ -150,8 +150,8 @@ class ContentClientImpl: ContentClient {
                 isChecked: false,
                 contentMarker: oldModel.contentMarker
             )
-            contentRepostiry.updateContent(contentModel: checkedNewModel)
-            contentRepostiry.updateContent(contentModel: uncheckedOldModel)
+            try await contentRepostiry.updateContent(contentModel: checkedNewModel)
+            try await contentRepostiry.updateContent(contentModel: uncheckedOldModel)
             
             logger.print(
                 tag: loggerTag,
@@ -171,7 +171,7 @@ class ContentClientImpl: ContentClient {
                 message: "Delete new content item"
             )
             
-            contentRepostiry.deleteContent(id: newModel.id)
+            try await contentRepostiry.deleteContent(id: newModel.id)
             
             throw ContentNotValidError(
                 message: "Delete old content item is \(newModel)",
@@ -194,7 +194,7 @@ class ContentClientImpl: ContentClient {
         )
         
         // Read content file from external storage
-        let rawText = try fileRepository.readTextFromFile(fileName: filePath)
+        let rawText = try await fileRepository.readTextFromFile(fileName: filePath)
         
         // Generate content tag
         let contentMarker = String(rawText.hashValue)
@@ -205,7 +205,7 @@ class ContentClientImpl: ContentClient {
         )
         
         // Check that this is not current content
-        guard isNewSelected(contentMarker: contentMarker), isExists(contentMarker: contentMarker) else {
+        guard try await isNewSelected(contentMarker: contentMarker), try await isExists(contentMarker: contentMarker) else {
             return false
         }
         
@@ -216,7 +216,7 @@ class ContentClientImpl: ContentClient {
             message: "Local content file name: \(localStorageFile)"
         )
         
-        let internalFile = try fileRepository.saveTextToLocalStorage(
+        let internalFile = try await fileRepository.saveTextToLocalStorage(
             fileName: localStorageFile,
             fileContents: rawText
         )
@@ -226,7 +226,7 @@ class ContentClientImpl: ContentClient {
         )
         
         // Process content
-        try processContent(rawText: rawText, contentMarker: contentMarker)
+        try await processContent(rawText: rawText, contentMarker: contentMarker)
         
         if let oldModel = oldModel {
             let uncheckedOldModel = ContentModel(
@@ -236,7 +236,7 @@ class ContentClientImpl: ContentClient {
                 isChecked: false,
                 contentMarker: oldModel.contentMarker
             )
-            contentRepostiry.updateContent(contentModel: uncheckedOldModel)
+            try await contentRepostiry.updateContent(contentModel: uncheckedOldModel)
         }
         
         let name = contentName ?? localStorageFile.components(separatedBy: ".").first!
@@ -247,7 +247,7 @@ class ContentClientImpl: ContentClient {
             isChecked: true,
             contentMarker: contentMarker
         )
-        contentRepostiry.addContent(contentModel: checkedNewModel)
+        try await contentRepostiry.addContent(contentModel: checkedNewModel)
         
         logger.print(
             tag: loggerTag,
@@ -257,13 +257,13 @@ class ContentClientImpl: ContentClient {
         return true
     }
     
-    func deleteContent(id: String) async {
+    func deleteContent(id: String) async throws {
         logger.print(
             tag: loggerTag,
             message: "Delete content: \(id)"
         )
         
-        contentRepostiry.deleteContent(id: id)
+        try await contentRepostiry.deleteContent(id: id)
     }
     
     // MARK: Private
@@ -282,8 +282,8 @@ class ContentClientImpl: ContentClient {
         )
     }
     
-    private func isNewSelected(contentMarker: String) -> Bool {
-        guard let oldContentMarker = contentRepostiry.getSelectedContent()?.contentMarker else {
+    private func isNewSelected(contentMarker: String) async throws -> Bool {
+        guard let oldContentMarker = try await contentRepostiry.getSelectedContent()?.contentMarker else {
             return true
         }
         
@@ -298,7 +298,7 @@ class ContentClientImpl: ContentClient {
         }
     }
     
-    private func processContent(rawText: String, contentMarker: String) throws {
+    private func processContent(rawText: String, contentMarker: String) async throws {
         logger.print(
             tag: loggerTag,
             message: "Process content is started. Raw text length: \(rawText.count), marker: \(contentMarker)"
@@ -317,14 +317,14 @@ class ContentClientImpl: ContentClient {
         try contentValidatorHelper.validateContent(contentData: contentData)
         
         // Reset data to database content
-        try contentResetRepostiry.reset()
+        try await contentResetRepostiry.reset()
         
         // Write models to database
-        themeRepository.addThemes(themes: contentData.themes)
-        questRepository.addQuests(quests: contentData.quests)
+        try await themeRepository.addThemes(themes: contentData.themes)
+        try await questRepository.addQuests(quests: contentData.quests)
         
         // Reset progress
-        let result = userRepository.reset()
+        let result = try await userRepository.reset()
         
         logger.print(
             tag: loggerTag,
@@ -362,8 +362,8 @@ class ContentClientImpl: ContentClient {
             .components(separatedBy: ContentClientImpl.QUEST_SECTION)[1]
     }
     
-    private func isExists(contentMarker: String) -> Bool {
-        let contentMarkers = contentRepostiry.getContents().map { $0.contentMarker }
+    private func isExists(contentMarker: String) async throws -> Bool {
+        let contentMarkers = try await contentRepostiry.getContents().map { $0.contentMarker }
         
         if contentMarkers.contains(contentMarker) {
             logger.print(

@@ -35,12 +35,12 @@ class ContentInteractorImpl: ContentInteractor {
         self.contentRemoteConfigSource = contentRemoteConfigSource
     }
     
-    func isSelected() async -> Bool {
-        await contentClient.isSelected()
+    func isSelected() async throws -> Bool {
+        try await contentClient.isSelected()
     }
     
-    func getSelectedContent() async -> ContentModel? {
-        await contentClient.getSelectedContent()
+    func getSelectedContent() async throws -> ContentModel? {
+        try await contentClient.getSelectedContent()
     }
     
     func subscribeToContents() -> AnyPublisher<[ContentModel], Never> {
@@ -68,8 +68,8 @@ class ContentInteractorImpl: ContentInteractor {
         )
     }
     
-    func deleteContent(id: String) async {
-        await contentClient.deleteContent(id: id)
+    func deleteContent(id: String) async throws {
+        try await contentClient.deleteContent(id: id)
     }
     
     func selectContent(oldModel: ContentModel, newModel: ContentModel) async throws -> Bool {

@@ -1,4 +1,14 @@
 {
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
   "identifier" : "82CED15C",
   "nonRenewingSubscriptions" : [
 
@@ -89,7 +99,10 @@
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Test Month",
           "subscriptionGroupID" : "B5815881",
-          "type" : "RecurringSubscription"
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
         },
         {
           "adHocOffers" : [
@@ -114,13 +127,16 @@
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Test Year",
           "subscriptionGroupID" : "B5815881",
-          "type" : "RecurringSubscription"
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
         }
       ]
     }
   ],
   "version" : {
-    "major" : 3,
+    "major" : 4,
     "minor" : 0
   }
 }

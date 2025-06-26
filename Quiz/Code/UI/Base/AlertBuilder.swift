@@ -41,7 +41,7 @@ class AlertBuilder {
         } else if let title = title {
             action = UIAlertAction(title: title, style: .default, handler: handler)
         } else {
-            action = UIAlertAction(title: NSLocalizedString("ACTION_OK", comment: "OK"), style: .default, handler: handler)
+            action = UIAlertAction(title: String(localized: "ds_ok", table: appLocalizable), style: .default, handler: handler)
         }
 
         alert.addAction(action)
@@ -54,12 +54,5 @@ class AlertBuilder {
 
     static func with() -> AlertBuilder {
         return AlertBuilder(alert: UIAlertController(title: nil, message: nil, preferredStyle: .alert))
-    }
-
-    static func createEmptyContent() -> AlertBuilder {
-        return AlertBuilder.with()
-                .setTitle(NSLocalizedString("TITLE_ERROR", comment: "Error"))
-                .setMsg(NSLocalizedString("TITLE_TRY_AGAIN", comment: "Try again."))
-                .setAction(title: NSLocalizedString("ACTION_OK", comment: "OK"))
     }
 }

@@ -17,6 +17,9 @@
 import Foundation
 
 class FeatureManagerIml: FeatureManager {
+    func isAiTasksEnabled() -> Bool {
+        return true
+    }
 
     func isTelegramEnabled() -> Bool {
         return true

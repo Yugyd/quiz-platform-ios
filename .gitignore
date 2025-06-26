@@ -107,5 +107,6 @@ iOSInjectionProject/
 # Google Services (e.g. APIs or Firebase)
 secret/
 Quiz/GoogleService-Info.plist
+/Quiz/GoogleService-Info.plist
 
 Quiz/StoreKitTestCertificate.cer

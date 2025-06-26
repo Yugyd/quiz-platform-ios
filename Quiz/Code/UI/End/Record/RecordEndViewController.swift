@@ -14,73 +14,64 @@
 //  limitations under the License.
 //
 
-import UIKit
-import StoreKit
+import Foundation
+import SwiftUI
 
 private let segueNext = "segueRecordToEnd"
 
-class RecordEndViewController: UIViewController, RecordEndViewProtocol {
-
+class RecordEndViewController: UIViewController, EndViewProtocol {
+    
     var sequeExtraArgs: EndSequeExtraArgs?
-
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var actionButton: UIButton!
-
-    fileprivate var presenter: RecordEndPresenter?
-
+    
+    private var viewModel: RecordEndViewModel!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if sequeExtraArgs == nil || isErrorSequeExtraArgs() {
-            setEmptyStub()
-            return
-        }
-
-        initPresenter()
+        
+        let hostingController = createHostController()
+        let swiftUiView = hostingController.view!
+        swiftUiView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(hostingController)
+        view.addSubview(swiftUiView)
+        
+        NSLayoutConstraint.activate([
+            swiftUiView.topAnchor.constraint(equalTo: view.topAnchor),
+            swiftUiView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            swiftUiView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            swiftUiView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+        
+        hostingController.didMove(toParent: self)
     }
-
-    // MARK: - IBAction
-
-    @IBAction func actionRate(_ sender: Any) {
-        presenter?.onActionClicked()
+    
+    private func createHostController() -> UIHostingController<RecordEndScreen> {
+        viewModel = RecordEndViewModel(
+            featureManager: IocContainer.app.resolve(),
+            remoteConfigRepository: IocContainer.app.resolve(),
+            mode: sequeExtraArgs!.gameMode,
+            logger: IocContainer.app.resolve()
+        )
+        
+        let view = RecordEndScreen(
+            onNavigateToGameEnd: { [weak self] in
+                self?.performSegue(withIdentifier: segueNext, sender: self?.sequeExtraArgs)
+            },
+            onNavigateToRate: {
+                Web.openRateApp()
+            },
+            onNavigateToTelegram: {
+                Web.openTelegram(channelDomain: GlobalScope.content.telegramDomain)
+            },
+            onBack: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            },
+            viewModel: viewModel
+        )
+        let hostingController = UIHostingController(rootView: view)
+        return hostingController
     }
-
-    @IBAction func actionNext(_ sender: Any) {
-        startNext()
-    }
-
-    // MARK: - RecordEndViewProtocol
-
-    func setEmptyStub() {
-        present(AlertBuilder.createEmptyContent().build(), animated: true, completion: nil)
-        startNext()
-    }
-
-    func updateContent(title: String, subtitle: String, button: String) {
-        titleLabel?.text = title
-        subtitleLabel?.text = subtitle
-        actionButton.setTitle(button, for: .normal)
-    }
-
-    func navigateToRate() {
-        Web.openRateApp()
-    }
-
-    func navigateToTelegram() {
-        Web.openTelegram(channelDomain: GlobalScope.content.telegramDomain)
-    }
-
-    // MARK: - Private section
-
-    private func isErrorSequeExtraArgs() -> Bool {
-        return !(sequeExtraArgs?.isValid() ?? true)
-    }
-
-    private func startNext() {
-        performSegue(withIdentifier: segueNext, sender: sequeExtraArgs)
-    }
-
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,20 +82,5 @@ class RecordEndViewController: UIViewController, RecordEndViewProtocol {
         if let destinition = segue.destination as? UIViewController & EndViewProtocol {
             destinition.sequeExtraArgs = sequeData
         }
-    }
-
-    // MARK: - Private func
-
-    private func initPresenter() {
-        let featureManager: FeatureManager = IocContainer.app.resolve()
-        let remoteConfigRepository: RemoteConfigRepository = IocContainer.app.resolve()
-
-        presenter = RecordEndPresenter(
-                featureManager: featureManager,
-                remoteConfigRepository: remoteConfigRepository,
-                mode: sequeExtraArgs!.gameMode
-        )
-        presenter?.attachRootView(rootView: self)
-        presenter?.loadData()
     }
 }

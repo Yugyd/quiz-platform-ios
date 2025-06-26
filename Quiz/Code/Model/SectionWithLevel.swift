@@ -16,7 +16,7 @@
 
 import Foundation
 
-struct SectionWithLevel {
+struct SectionWithLevel: Equatable {
     let item: Section
     let level: SectionLevel
 }

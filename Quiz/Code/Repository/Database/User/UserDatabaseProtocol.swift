@@ -17,9 +17,9 @@
 import Foundation
 
 protocol UserDatabaseProtocol: RecordRepositoryProtocol,
-                               PointRepositoryProtocol,
-                               ErrorRepositoryProtocol,
+                               PointDatabaseProtocol,
+                               ErrorDatabaseProtocol,
                                ResetRepositoryProtocol,
-                               SectionPointRepositoryProtocol,
+                               SectionPointDatabaseProtocol,
                                ContentRepositoryProtocol {
 }

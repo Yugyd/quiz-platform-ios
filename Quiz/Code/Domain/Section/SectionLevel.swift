@@ -16,7 +16,7 @@
 
 import Foundation
 
-enum SectionLevel {
+enum SectionLevel: Equatable {
     case empty // 0
     case low // (1 - 10) in 20
     case normal // (11-18) in 20
