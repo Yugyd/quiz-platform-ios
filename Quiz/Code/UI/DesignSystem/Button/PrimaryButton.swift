@@ -18,13 +18,21 @@ import SwiftUI
 
 struct PrimaryButton: View {
     
-    @Binding var title: Text
+    let title: Text
+    let matchParent: Bool
     let action: () -> Void
+    
+    init(title: Text, matchParent: Bool = false, action: @escaping () -> Void) {
+        self.title = title
+        self.matchParent = matchParent
+        self.action = action
+    }
     
     var body: some View {
         Button(action: action) {
             title
                 .font(.headline)
+                .frame(maxWidth: matchParent ? .infinity : nil)
         }
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(
@@ -37,9 +45,7 @@ struct PrimaryButton: View {
 
 #Preview {
     PrimaryButton(
-        title: .constant(
-            Text("Title")
-        ),
+        title: Text("Title"),
         action: {}
     )
 }

@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import SwiftUICore
 
 class ProgressColor: UIColor {
 
@@ -45,5 +46,9 @@ class ProgressColor: UIColor {
         case .high:
             return ProgressColor.high
         }
+    }
+    
+    static func getColor(level: ProgressLevel) -> Color {
+        return Color(uiColor: ProgressColor.getColorByQualifier(level: level))
     }
 }

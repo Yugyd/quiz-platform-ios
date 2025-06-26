@@ -24,14 +24,14 @@ protocol FileRepository {
      *
      * - Throws: ContentFileError.saveError is any error that occurred when writing to the file system. ContentFileError.accessingSecurityScopedError error accessing file URL.
      */
-    func saveTextToLocalStorage(fileName: String, fileContents: String) throws -> String?
+    func saveTextToLocalStorage(fileName: String, fileContents: String) async throws -> String?
     
     /**
      * Reading text with content from local storage. For example, we read text to create a database from it.
      *
      * - Throws: ContentFileError.readError is any error encountered while reading from the file system. ContentFileError.invalidFileUrl file does not exist.
      */
-    func readTextFromFile(fileName: String) throws -> String
+    func readTextFromFile(fileName: String) async throws -> String
     
     /**
      * Returns the file name from the URL.

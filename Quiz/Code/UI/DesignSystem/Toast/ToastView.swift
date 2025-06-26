@@ -19,11 +19,11 @@ import SwiftUI
 
 struct ToastView: View {
     
-    @Binding var message: String
+    @Binding var message: Text
     let onDismissRequest: () -> Void
     
     var body: some View {
-        Text(message)
+        message
             .padding()
             .background(Color.mdInverseSurfaceVariant)
             .foregroundColor(Color.mdInverseOnSurfaceVariant)
@@ -43,7 +43,7 @@ struct ToastView: View {
 
 #Preview {
     ToastView(
-        message: .constant("Title"),
+        message: .constant(Text("Title")),
         onDismissRequest: {}
     )
 }

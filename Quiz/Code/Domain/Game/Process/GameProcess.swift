@@ -82,7 +82,7 @@ final class GameProcess: GameProcessProtocol {
 
     convenience init(mode: Mode) {
         switch mode {
-        case .arcade, .marathon, .error:
+        case .arcade, .marathon, .error, .aiTasks:
             self.init(mode: mode, delegate: ContinueGameProcessDelegate())
         case .sprint:
             self.init(mode: mode, delegate: SprintGameProcessDelegate())

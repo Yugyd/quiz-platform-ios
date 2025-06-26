@@ -16,6 +16,6 @@
 
 import Foundation
 
-protocol PreferenceData {
+protocol PreferenceData: Equatable {
     var title: String { get }
 }

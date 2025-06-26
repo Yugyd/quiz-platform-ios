@@ -75,7 +75,7 @@ class SubscribeViewController: UITableViewController, SubscribeViewProtocol {
             if (presenter?.canMakePayments() ?? false) {
                 price = presenter?.priceFormatter.format(subscribe: data) ?? "\(data.price) ₽"
             } else {
-                price = NSLocalizedString("NOT_AVAILABLE", comment: "Not available")
+                price = String(localized: "subscribe_not_available", table: appLocalizable)
             }
 
             cell.updateCell(title: data.title, price: price)
@@ -106,15 +106,15 @@ class SubscribeViewController: UITableViewController, SubscribeViewProtocol {
             if isRestored {
                 alert = AlertBuilder
                         .with()
-                        .setTitle(NSLocalizedString("RESTORE_ALERT_TITLE", comment: "Successfully"))
-                        .setMsg(NSLocalizedString("RESTORE_ALERT_MSG", comment: "Purchases have been restored."))
-                        .setAction(title: NSLocalizedString("RESTORE_ALERT_ACTION", comment: "OK"))
+                        .setTitle(String(localized: "RESTORE_ALERT_TITLE", table: appLocalizable))
+                        .setMsg(String(localized: "RESTORE_ALERT_MSG", table: appLocalizable))
+                        .setAction(title: String(localized: "RESTORE_ALERT_ACTION", table: appLocalizable))
                         .build()
             } else {
                 alert = AlertBuilder.with()
-                        .setTitle(NSLocalizedString("RESTORE_ALERT_ERROR_TITLE", comment: "Error"))
-                        .setMsg(NSLocalizedString("RESTORE_ALERT_ERROR_MSG", comment: "Error"))
-                        .setAction(title: NSLocalizedString("RESTORE_ALERT_ACTION", comment: "OK"))
+                        .setTitle(String(localized: "RESTORE_ALERT_ERROR_TITLE", table: appLocalizable))
+                        .setMsg(String(localized: "RESTORE_ALERT_ERROR_MSG", table: appLocalizable))
+                        .setAction(title: String(localized: "RESTORE_ALERT_ACTION", table: appLocalizable))
                         .build()
             }
             if presentedViewController == nil {
@@ -134,9 +134,10 @@ class SubscribeViewController: UITableViewController, SubscribeViewProtocol {
     }
 
     func showProductErrorAlert(type: ErrorType) {
-        let alert = AlertBuilder.with().setTitle(NSLocalizedString("RESTORE_ALERT_ERROR_TITLE", comment: "Error"))
-                .setMsg(NSLocalizedString("PRODUCTS_ALERT_ERROR_MSG", comment: "Failed to load products. Try again."))
-                .setAction(title: NSLocalizedString("RESTORE_ALERT_ACTION", comment: "OK")).build()
+        let alert = AlertBuilder.with().setTitle(String(localized: "RESTORE_ALERT_ERROR_TITLE", table: appLocalizable))
+                .setMsg(String(localized: "PRODUCTS_ALERT_ERROR_MSG", table: appLocalizable))
+                .setAction(title: String(localized: "RESTORE_ALERT_ACTION", table: appLocalizable))
+                .build()
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -147,15 +148,16 @@ class SubscribeViewController: UITableViewController, SubscribeViewProtocol {
         case .requestProducts:
             alert = AlertBuilder
                     .with()
-                    .setTitle(NSLocalizedString("RESTORE_ALERT_ERROR_TITLE", comment: "Error"))
-                    .setMsg(NSLocalizedString("PRODUCTS_ALERT_ERROR_MSG", comment: "Failed to load products. Try again."))
-                    .setAction(title: NSLocalizedString("RESTORE_ALERT_ACTION", comment: "OK")).build()
+                    .setTitle(String(localized: "RESTORE_ALERT_ERROR_TITLE", table: appLocalizable))
+                    .setMsg(String(localized: "PRODUCTS_ALERT_ERROR_MSG", table: appLocalizable))
+                    .setAction(title: String(localized: "RESTORE_ALERT_ACTION", table: appLocalizable))
+                    .build()
         case .buyProduct:
             alert = AlertBuilder
                     .with()
-                    .setTitle(NSLocalizedString("RESTORE_ALERT_ERROR_TITLE", comment: "Error"))
-                    .setMsg(NSLocalizedString("PRODUCT_BUY_ALERT_ERROR_MSG", comment: "Failed to complete the purchase. Try again."))
-                    .setAction(title: NSLocalizedString("RESTORE_ALERT_ACTION", comment: "OK"))
+                    .setTitle(String(localized: "RESTORE_ALERT_ERROR_TITLE", table: appLocalizable))
+                    .setMsg(String(localized: "PRODUCT_BUY_ALERT_ERROR_MSG", table: appLocalizable))
+                    .setAction(title: String(localized: "RESTORE_ALERT_ACTION", table: appLocalizable))
                     .build()
         }
 

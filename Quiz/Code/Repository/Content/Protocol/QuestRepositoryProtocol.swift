@@ -22,18 +22,18 @@ protocol QuestRepositoryProtocol: AnyObject {
      * Initializes and returns a question object by inidifactor
      * @param id question identifier
      */
-    func getQuest(id: Int) -> Quest?
+    func getQuest(id: Int) async throws -> Quest?
     
-    func addQuests(quests: [Quest]?)
+    func addQuests(quests: [Quest]?) async throws
 
     /**
      * Returns all question IDs, by given category, difficulty level, and also sorts by
      * difficulty level, if required.
      */
-    func getQuestIds(theme: Int, isSort: Bool) -> [Int]?
+    func getQuestIds(theme: Int, isSort: Bool) async throws -> [Int]?
 
     /**
      * Returns questions that contain errors.
      */
-    func getErrors(ids: Set<Int>) -> [ErrorQuest]?
+    func getErrors(ids: Set<Int>) async throws -> [ErrorQuest]?
 }

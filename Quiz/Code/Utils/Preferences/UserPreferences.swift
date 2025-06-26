@@ -17,26 +17,13 @@
 import Foundation
 
 class UserPreferences: Preferences {
-    static let notificationKey = "com.yudyd.quiz.PREF_NOTIFICATION"
+    
     static let transitionKey = "com.yudyd.quiz.PREF_TRANSITION"
     static let vibrationKey = "com.yudyd.quiz.PREF_VIBRATION"
     static let sortingKey = "com.yudyd.quiz.PREF_SORTING"
+    static let aiEnabledKey = "com.yudyd.quiz.PREF_AI_ENABLED"
     static let questTextSizeKey = "com.yudyd.quiz.PREF_QUEST_TEXT_SIZE"
     static let answerTextSizeKey = "com.yudyd.quiz.PREF_ANSWER_TEXT_SIZE"
-
-    var notification: Int {
-        get {
-            if userDefaults.object(forKey: UserPreferences.notificationKey) == nil {
-                return NotificationPreference.disableValue
-            } else {
-                return userDefaults.integer(forKey: UserPreferences.notificationKey)
-            }
-        }
-
-        set {
-            userDefaults.set(newValue, forKey: UserPreferences.notificationKey)
-        }
-    }
 
     var transition: Double {
         get {
@@ -77,6 +64,20 @@ class UserPreferences: Preferences {
 
         set {
             userDefaults.set(newValue, forKey: UserPreferences.sortingKey)
+        }
+    }
+    
+    var isAiEnabled: Bool {
+        get {
+            if userDefaults.object(forKey: UserPreferences.aiEnabledKey) == nil {
+                return false
+            } else {
+                return userDefaults.bool(forKey: UserPreferences.aiEnabledKey)
+            }
+        }
+
+        set {
+            userDefaults.set(newValue, forKey: UserPreferences.aiEnabledKey)
         }
     }
 

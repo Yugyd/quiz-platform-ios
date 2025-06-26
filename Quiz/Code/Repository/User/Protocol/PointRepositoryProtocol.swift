@@ -18,5 +18,5 @@ import Foundation
 
 protocol PointRepositoryProtocol: AnyObject {
 
-    func attachPoints(themes: [Theme]) -> [Theme]
+    func attachPoints(themes: [Theme]) async throws -> [Theme]
 }

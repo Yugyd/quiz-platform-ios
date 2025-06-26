@@ -43,6 +43,8 @@ class GlobalScope {
     // MARK: - Dev
 
     class Dev: Content {
+        let apiUrl: String = "https://www.replaceme.com/api/"
+        
         // Db
         let contentDbVersion = 3 // Old 2
         let proContentDbVersion = 3
@@ -61,7 +63,7 @@ class GlobalScope {
         var kGameRewardedAdUnitID: String = "ca-app-pub-3940256099942544/1712485313"
 
         // Title Over 3,000 questions and no ads!
-        var contentPromo: String = NSLocalizedString("CONTENT_PROMO", comment: "Title Over 3,000 questions and no ads!")
+        var contentPromo: String = String(localized: "pro_title_extended_content_info", table: appLocalizable)
     }
 }
 
@@ -93,4 +95,7 @@ protocol Content {
 
     // Title
     var contentPromo: String { get }
+    
+    // Network
+    var apiUrl: String { get }
 }

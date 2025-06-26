@@ -30,6 +30,7 @@ class GamePreferences: Preferences {
     var transition: Double
     var isVibration: Bool
     var isSorting: Bool
+    var isAiEnabled: Bool
     var questTextSize: Int
     var answerTextSize: Int
 
@@ -43,5 +44,6 @@ class GamePreferences: Preferences {
         self.isSorting = userPreferences.isSorting
         self.questTextSize = userPreferences.questTextSize
         self.answerTextSize = userPreferences.answerTextSize
+        self.isAiEnabled = userPreferences.isAiEnabled
     }
 }

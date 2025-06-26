@@ -19,12 +19,26 @@ import Foundation
 import UIKit
 import MessageUI
 
-class ReportViewController: UIViewController, MFMailComposeViewControllerDelegate {
+protocol ReportViewProtocol: AnyObject {
+    var sequeExtraMetadataArg: String? { get set }
+}
 
+class ReportViewController: UIViewController, MFMailComposeViewControllerDelegate, ReportViewProtocol {
+    
+    var sequeExtraMetadataArg: String?
+
+    @IBOutlet var sendBtn: UIBarButtonItem!
+    @IBOutlet var cancelBtn: UIBarButtonItem!
+    @IBOutlet var msgLabel: UILabel!
     @IBOutlet var msgTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sendBtn.title = String(localized: "report_action_send", table: appLocalizable)
+        cancelBtn.title = String(localized: "report_action_cancel", table: appLocalizable)
+        msgLabel.text = String(localized: "report_title_message", table: appLocalizable)
+        msgTextField.placeholder = String(localized: "report_title_describe_error", table: appLocalizable)
     }
 
     // MARK: - IBAction
@@ -54,7 +68,8 @@ class ReportViewController: UIViewController, MFMailComposeViewControllerDelegat
             let mc: MFMailComposeViewController = MFMailComposeViewController()
             mc.mailComposeDelegate = self
             mc.setSubject(StaticScope.mailSubject)
-            mc.setMessageBody(msg, isHTML: false)
+            let finalMessage = (sequeExtraMetadataArg ?? "") + msg
+            mc.setMessageBody(finalMessage, isHTML: false)
             mc.setToRecipients([StaticScope.mailAddress])
 
             present(mc, animated: true, completion: nil)

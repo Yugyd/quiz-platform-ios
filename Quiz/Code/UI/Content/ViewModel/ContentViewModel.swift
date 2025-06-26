@@ -27,7 +27,7 @@ import Combine
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: ErrorMessageState? = nil
     @Published var startFileProvider: Bool = false
-    @Published var navigationState: NavigationState? = nil
+    @Published var navigationState: ContentNavigationState? = nil
     
     private let interactor: ContentInteractor
     private let logger: Logger
@@ -46,7 +46,7 @@ import Combine
         onAction(action: .loadData)
     }
     
-    func onAction(action: Action) {
+    func onAction(action: ContentAction) {
         switch action {
         case .loadData:
             loadData()
@@ -141,7 +141,7 @@ import Combine
     
     private func processOnItemClicked(isAdded: Bool) {
         if isAdded {
-            navigationState = NavigationState.back(isMain: !isBackEnabled)
+            navigationState = ContentNavigationState.back(isMain: !isBackEnabled)
             return
         } else {
             errorMessage = ErrorMessageState.notAddedContentIsExists
@@ -278,7 +278,7 @@ import Combine
         Task {
             do {
                 let url = try await interactor.getContentFormatUrl()
-                navigationState = NavigationState.navigateToContentFormat(url: url)
+                navigationState = ContentNavigationState.navigateToContentFormat(url: url)
             } catch {
                 processError(error: error)
                 

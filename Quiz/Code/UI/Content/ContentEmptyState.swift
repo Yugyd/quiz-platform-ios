@@ -61,11 +61,9 @@ struct ContentEmptyState: View {
             Spacer().frame(height: 16)
             
             PrimaryButton(
-                title: .constant(
-                    Text(
-                        "content_empty_state_button",
-                        tableName: appLocalizable
-                    )
+                title: Text(
+                    "content_empty_state_button",
+                    tableName: appLocalizable
                 ),
                 action: onChooseFileClicked
             )
@@ -73,11 +71,9 @@ struct ContentEmptyState: View {
             Spacer().frame(height: 8)
             
             TonalButton(
-                title: .constant(
-                    Text(
-                        "content_empty_state_button_data_format",
-                        tableName: appLocalizable
-                    )
+                title: Text(
+                    "content_empty_state_button_data_format",
+                    tableName: appLocalizable
                 ),
                 action: onDataFormatClicked
             )

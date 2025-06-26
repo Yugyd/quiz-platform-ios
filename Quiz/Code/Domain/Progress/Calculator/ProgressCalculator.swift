@@ -45,7 +45,7 @@ class ProgressCalculator: ProgressCalculatorProtocol {
             self.init(delegate: MarathonProgressCalculatorDelegate())
         case .sprint:
             self.init(delegate: SprintProgressCalculatorDelegate())
-        case .error, .unused:
+        case .aiTasks, .error, .unused:
             fatalError("Non valid game mode")
         }
     }

@@ -20,13 +20,13 @@ protocol DataManagerProtocol: AnyObject {
 
     var mode: Mode { get }
 
-    func loadQuest(id: Int) -> Quest?
+    func loadQuest(id: Int, theme: Int) async throws -> Quest?
 
-    func loadQuestIds(theme: Int, section: Int?, isSort: Bool) -> [Int]?
+    func loadQuestIds(theme: Int, section: Int?, isSort: Bool) async throws -> [Int]?
 
-    func saveSectionData(theme: Int, section: Int?, sectionQuestIds: Set<Int>) -> Int
+    func saveSectionData(theme: Int, section: Int?, sectionQuestIds: Set<Int>) async throws -> Int
 
-    func saveRecord(theme: Int, point: Int, time: Int)
+    func saveRecord(theme: Int, point: Int, time: Int) async throws
 
-    func saveErrorData(errorQuestIds: Set<Int>?, rightQuestIds: Set<Int>?)
+    func saveErrorData(errorQuestIds: Set<Int>?, rightQuestIds: Set<Int>?) async throws
 }

@@ -19,7 +19,7 @@ import Foundation
 /**
  * Model of errors that are shown at the end of the game.
  */
-struct ErrorQuest {
+struct ErrorQuest: Identifiable, Equatable {
     let id: Int
     let quest: String
     let trueAnswer: String

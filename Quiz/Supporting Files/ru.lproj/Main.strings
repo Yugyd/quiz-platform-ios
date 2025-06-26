@@ -1,22 +1,4 @@
 
-/* Class = "UILabel"; text = "0%"; ObjectID = "3Dj-it-Q8g"; */
-"3Dj-it-Q8g.text" = "0%";
-
-/* Class = "UILabel"; text = "Киевская Русь"; ObjectID = "3XJ-Qp-zcP"; */
-"3XJ-Qp-zcP.text" = "Киевская Русь";
-
-/* Class = "UILabel"; text = "100%"; ObjectID = "5wm-9I-AjV"; */
-"5wm-9I-AjV.text" = "100%";
-
-/* Class = "UILabel"; text = "Доктор наук"; ObjectID = "72U-Nw-alc"; */
-"72U-Nw-alc.text" = "Доктор наук";
-
-/* Class = "UILabel"; text = "Теперь вопросы запомнятся!"; ObjectID = "86b-LU-ev6"; */
-"86b-LU-ev6.text" = "Теперь вопросы запомнятся!";
-
-/* Class = "UIButton"; normalTitle = "START"; ObjectID = "8Zg-OZ-SU3"; */
-"8Zg-OZ-SU3.normalTitle" = "СТАРТ";
-
 /* Class = "UITabBarItem"; title = "Темы"; ObjectID = "92g-kX-vuX"; */
 "92g-kX-vuX.title" = "Темы";
 
@@ -29,74 +11,11 @@
 /* Class = "UISegmentedControl"; AKu-2E-uWj.segmentTitles[2] = "Спринт"; ObjectID = "AKu-2E-uWj"; */
 "AKu-2E-uWj.segmentTitles[2]" = "Спринт";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "D5K-ff-tKq"; */
-"D5K-ff-tKq.text" = "Title";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "EbQ-zh-K9i"; */
-"EbQ-zh-K9i.text" = "Detail";
-
-/* Class = "UILabel"; text = "Доступно только в Pro."; ObjectID = "FFx-6N-2iB"; */
-"FFx-6N-2iB.text" = "Доступно только в Pro.";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "Gt6-4M-Cs3"; */
-"Gt6-4M-Cs3.text" = "Detail";
-
-/* Class = "UINavigationItem"; title = "Уровни"; ObjectID = "Iui-DD-Td2"; */
-"Iui-DD-Td2.title" = "Уровни";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "KQy-xk-lFs"; */
-"KQy-xk-lFs.text" = "Title";
-
-/* Class = "UILabel"; text = "Исправляйте ошибки для закрепления материала. Здесь собраны все ошибки."; ObjectID = "ME5-JG-IaG"; */
-"ME5-JG-IaG.text" = "Исправляйте ошибки для закрепления материала. Здесь собраны все ошибки.";
-
-/* Class = "UINavigationItem"; title = "Темы"; ObjectID = "OyY-s0-uBd"; */
-"OyY-s0-uBd.title" = "Темы";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "UA3-WC-Mjm"; */
-"UA3-WC-Mjm.text" = "Label";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "VFI-Cf-y6m"; */
-"VFI-Cf-y6m.text" = "Title";
-
-/* Class = "UINavigationItem"; title = "Правка"; ObjectID = "XCk-5S-5j4"; */
-"XCk-5S-5j4.title" = "Правка";
-
-/* Class = "UILabel"; text = "Русский Язык"; ObjectID = "ZqL-so-hIk"; */
-"ZqL-so-hIk.text" = "Русский Язык";
-
-/* Class = "UILabel"; text = "Pro-версия"; ObjectID = "bWe-5p-1hX"; */
-"bWe-5p-1hX.text" = "Pro-версия";
-
 /* Class = "UITabBarItem"; title = "Профиль"; ObjectID = "cZH-UV-6bk"; */
 "cZH-UV-6bk.title" = "Профиль";
 
-/* Class = "UILabel"; text = "Войдите для доступа к игровым сервисам"; ObjectID = "enD-0g-5hJ"; */
-"enD-0g-5hJ.text" = "Войдите для доступа к игровым сервисам";
-
-/* Class = "UINavigationItem"; title = "Прогресс"; ObjectID = "gLv-16-U6C"; */
-"gLv-16-U6C.title" = "Прогресс";
-
-/* Class = "UINavigationItem"; title = "Профиль"; ObjectID = "koX-bp-2E3"; */
-"koX-bp-2E3.title" = "Профиль";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "onT-dD-8ks"; */
-"onT-dD-8ks.text" = "Title";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "r84-LI-jtB"; */
-"r84-LI-jtB.text" = "Title";
-
 /* Class = "UITabBarItem"; title = "Правка"; ObjectID = "rFD-Tp-sxQ"; */
 "rFD-Tp-sxQ.title" = "Правка";
-
-/* Class = "UILabel"; text = "1"; ObjectID = "uJA-Qs-jKh"; */
-"uJA-Qs-jKh.text" = "1";
-
-/* Class = "UILabel"; text = "Студент"; ObjectID = "xpS-O7-gUh"; */
-"xpS-O7-gUh.text" = "Студент";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "yIK-Io-8Zg"; */
-"yIK-Io-8Zg.normalTitle" = "Button";
 
 /* Class = "UITabBarItem"; title = "Прогресс"; ObjectID = "yiQ-jX-fxy"; */
 "yiQ-jX-fxy.title" = "Прогресс";

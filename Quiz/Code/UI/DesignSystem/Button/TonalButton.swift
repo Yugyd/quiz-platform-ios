@@ -18,14 +18,22 @@ import SwiftUI
 
 struct TonalButton: View {
     
-    @Binding var title: Text
+    let title: Text
+    let matchParent: Bool
     let action: () -> Void
+    
+    init(title: Text, matchParent: Bool = false, action: @escaping () -> Void) {
+        self.title = title
+        self.matchParent = matchParent
+        self.action = action
+    }
     
     var body: some View {
         Button(action: action) {
             title
                 .font(.headline)
                 .foregroundStyle(Color.mdOnSecondaryContainer)
+                .frame(maxWidth: matchParent ? .infinity : nil)
         }
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.roundedRectangle(radius: ButtonConstans.largeButtonCornerRadius))
@@ -36,9 +44,7 @@ struct TonalButton: View {
 
 #Preview {
     TonalButton(
-        title: .constant(
-            Text("Title")
-        ),
+        title: Text("Title"),
         action: {}
     )
 }

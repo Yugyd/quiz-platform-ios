@@ -19,17 +19,17 @@ import Combine
 
 protocol ContentRepositoryProtocol: AnyObject {
     
-    func getContents() -> [ContentModel]
+    func getContents() async throws -> [ContentModel]
     
     func subscribeToContentsPublisher() -> AnyPublisher<[ContentModel], Never>
     
-    func getSelectedContent() -> ContentModel?
+    func getSelectedContent() async throws -> ContentModel?
     
     func subscribeToSelectedContentPublisher() -> AnyPublisher<ContentModel?, Never>
     
-    func deleteContent(id: String)
+    func deleteContent(id: String) async throws
     
-    func addContent(contentModel: ContentModel)
+    func addContent(contentModel: ContentModel) async throws
     
-    func updateContent(contentModel: ContentModel)
+    func updateContent(contentModel: ContentModel) async throws
 }

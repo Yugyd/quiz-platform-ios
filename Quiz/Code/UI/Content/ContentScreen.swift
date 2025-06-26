@@ -68,7 +68,7 @@ struct ContentScreen: View {
                         errorMessage: viewModel.errorMessage!
                     )
                     ToastView(
-                        message: .constant(message),
+                        message: .constant(Text(message)),
                         onDismissRequest: {
                             viewModel.onAction(action: .onErrorMessageDismissed)
                         }

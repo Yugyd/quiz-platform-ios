@@ -46,18 +46,16 @@ struct NewFileItem: View {
             )
             .font(.body)
             .foregroundStyle(Color.mdPrimary)
-
+            
             Spacer().frame(height: 16)
             
             HStack {
                 Spacer()
                 
                 PrimaryButton(
-                    title: .constant(
-                        Text(
-                            "content_empty_state_button",
-                            tableName: appLocalizable
-                        )
+                    title: Text(
+                        "content_empty_state_button",
+                        tableName: appLocalizable
                     ),
                     action: onOpenFileClicked
                 )
@@ -69,11 +67,9 @@ struct NewFileItem: View {
                 Spacer()
                 
                 TonalButton(
-                    title: .constant(
-                        Text(
-                            "content_empty_state_button_data_format",
-                            tableName: appLocalizable
-                        )
+                    title: Text(
+                        "content_empty_state_button_data_format",
+                        tableName: appLocalizable
                     ),
                     action: onContentFormatClicked
                 )

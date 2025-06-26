@@ -20,7 +20,7 @@ class DatabaseMode {
 
     let mode: Mode
 
-    // HARD VALUE CONSRAIT IN DATABASE
+    // HARD VALUE CONSRAIT IN DATABASE, equal android value
     var id: Int {
         switch mode {
         case .unused:
@@ -33,6 +33,8 @@ class DatabaseMode {
             return 2
         case .sprint:
             return 3
+        case .aiTasks:
+            return 6
         }
     }
 

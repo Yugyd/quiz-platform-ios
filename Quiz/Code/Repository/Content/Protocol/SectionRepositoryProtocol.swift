@@ -18,9 +18,9 @@ import Foundation
 
 protocol SectionRepositoryProtocol: AnyObject {
 
-    func getSectionCount(theme: Int) -> Int?
+    func getSectionCount(theme: Int) async throws -> Int?
 
-    func getQuestIdsBySection(theme: Int, section: Int, isSort: Bool) -> [Int]?
+    func getQuestIdsBySection(theme: Int, section: Int, isSort: Bool) async throws -> [Int]?
 
-    func getSections(theme: Int) -> [Section]?
+    func getSections(theme: Int) async throws -> [Section]?
 }

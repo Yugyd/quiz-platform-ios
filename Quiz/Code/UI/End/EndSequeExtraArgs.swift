@@ -16,23 +16,23 @@
 
 import Foundation
 
-class EndSequeExtraArgs {
+class EndSequeExtraArgs: Equatable {
 
-    private static let initValue = -1
+    static let initValue = -1
 
-    private (set) var gameMode: Mode = .unused
+    private(set) var gameMode: Mode = .unused
 
-    private (set) var themeId: Int?
+    private(set) var themeId: Int?
 
-    private (set) var oldRecord: Int = EndSequeExtraArgs.initValue
+    private(set) var oldRecord: Int = EndSequeExtraArgs.initValue
 
-    private (set) var point: Int = EndSequeExtraArgs.initValue
+    private(set) var point: Int = EndSequeExtraArgs.initValue
 
-    private (set) var count: Int = EndSequeExtraArgs.initValue
+    private(set) var count: Int = EndSequeExtraArgs.initValue
 
-    private (set) var errorQuestIds: Set<Int>?
+    private(set) var errorQuestIds: Set<Int>?
 
-    private (set) var isRewardedSuccess: Bool = false
+    private(set) var isRewardedSuccess: Bool = false
 
     init(mode: Mode) {
         self.gameMode = mode
@@ -43,6 +43,18 @@ class EndSequeExtraArgs {
                 && self.oldRecord != EndSequeExtraArgs.initValue
                 && self.point != EndSequeExtraArgs.initValue
                 && self.count != EndSequeExtraArgs.initValue
+    }
+    
+    // MARK: - Equatable
+    
+    static func == (lhs: EndSequeExtraArgs, rhs: EndSequeExtraArgs) -> Bool {
+        return lhs.gameMode == rhs.gameMode &&
+            lhs.themeId == rhs.themeId &&
+            lhs.oldRecord == rhs.oldRecord &&
+            lhs.point == rhs.point &&
+            lhs.count == rhs.count &&
+            lhs.errorQuestIds == rhs.errorQuestIds &&
+            lhs.isRewardedSuccess == rhs.isRewardedSuccess
     }
 
     class Builder {
@@ -95,11 +107,11 @@ class EndSequeExtraArgs {
             return self
         }
 
-        func build() -> EndSequeExtraArgs? {
+        func build() -> EndSequeExtraArgs {
             if sequeExtraArgs.isValid() {
                 return sequeExtraArgs
             } else {
-                return nil
+                fatalError("Args is invaid")
             }
         }
     }

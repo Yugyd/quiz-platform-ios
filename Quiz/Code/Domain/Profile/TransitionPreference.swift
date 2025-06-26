@@ -45,9 +45,9 @@ enum TransitionPreference: PreferenceData, CaseIterable {
 
     var title: String {
         if self.value >= 1.0 {
-            return "\(Int(self.value)) " + NSLocalizedString("TITLE_SEC", comment: "sec.")
+            return "\(Int(self.value)) " + String(localized: "transition_format_time_second", table: appLocalizable)
         } else {
-            return "\(self.value) " + NSLocalizedString("TITLE_SEC", comment: "sec.")
+            return "\(self.value) " + String(localized: "transition_format_time_second", table: appLocalizable)
         }
     }
 

@@ -38,18 +38,16 @@ struct OpenSourceProfileItem: View {
             )
             .font(.body)
             .foregroundColor(Color.mdOnSurfaceVariant)
-
+            
             Spacer().frame(height: 16)
             
             HStack {
                 Spacer()
                 
                 PrimaryButton(
-                    title: .constant(
-                        Text(
-                            "profile_content_banner_rate",
-                            tableName: appLocalizable
-                        )
+                    title: Text(
+                        "profile_content_banner_rate",
+                        tableName: appLocalizable
                     ),
                     action: onRatePlatformClicked
                 )
@@ -61,12 +59,11 @@ struct OpenSourceProfileItem: View {
                 Spacer()
                 
                 TonalButton(
-                    title: .constant(
-                        Text(
-                            "profile_content_banner_report_error",
-                            tableName: appLocalizable
-                        )
-                    ),
+                    title: Text(
+                        "profile_content_banner_report_error",
+                        tableName: appLocalizable
+                    )
+                    ,
                     action: onReportBugPlatformClicked
                 )
             }

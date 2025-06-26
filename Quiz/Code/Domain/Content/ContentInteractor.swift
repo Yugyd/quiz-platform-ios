@@ -27,7 +27,7 @@ protocol ContentInteractor {
     /**
      * Quick access to selected content.
      */
-    func getSelectedContent() async -> ContentModel?
+    func getSelectedContent() async throws -> ContentModel?
     
     
     /**

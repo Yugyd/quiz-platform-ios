@@ -26,59 +26,59 @@ class UserRepository: UserRepositoryProtocol {
 
 //    MARK: - RecordRepositoryProtocol
 
-    func addRecord(mode: Mode, theme: Int, value: Int, time: Int) {
-        return userDb.addRecord(mode: mode, theme: theme, value: value, time: time)
+    func addRecord(mode: Mode, theme: Int, value: Int, time: Int) async throws {
+        return try await userDb.addRecord(mode: mode, theme: theme, value: value, time: time)
     }
 
 //    MARK: - PointRepositoryProtocol
 
-    func attachPoints(themes: [Theme]) -> [Theme] {
-        return userDb.attachPoints(themes: themes)
+    func attachPoints(themes: [Theme]) async throws -> [Theme] {
+        return try await userDb.attachPoints(themes: themes)
     }
 
 //    MARK: - ErrorRepositoryProtocol
 
-    func getErrorIds() -> [Int]? {
-        return userDb.getErrorIds()
+    func getErrorIds() async throws -> [Int]? {
+        return try await userDb.getErrorIds()
     }
 
-    func isHaveErrors() -> Bool {
-        return userDb.isHaveErrors()
+    func isHaveErrors() async throws -> Bool {
+        return try await userDb.isHaveErrors()
     }
 
-    func updateErrors(errors: Set<Int>) {
-        userDb.updateErrors(errors: errors)
+    func updateErrors(errors: Set<Int>) async throws {
+        try await userDb.updateErrors(errors: errors)
     }
 
-    func resolveErrors(resolved: Set<Int>) {
-        userDb.resolveErrors(resolved: resolved)
+    func resolveErrors(resolved: Set<Int>) async throws {
+        try await userDb.resolveErrors(resolved: resolved)
     }
 
 //    MARK: - ResetRepositoryProtocol
 
-    func resetThemeProgress(theme: Int) -> Bool {
-        return userDb.resetThemeProgress(theme: theme)
+    func resetThemeProgress(theme: Int) async throws -> Bool {
+        return try await userDb.resetThemeProgress(theme: theme)
     }
 
-    func resetSectionProgress(questIds: [Int]?) -> Bool {
-        return userDb.resetSectionProgress(questIds: questIds)
+    func resetSectionProgress(questIds: [Int]?) async throws -> Bool {
+        return try await userDb.resetSectionProgress(questIds: questIds)
     }
 
-    func reset() -> Bool {
-        return userDb.reset()
+    func reset() async throws -> Bool {
+        return try await userDb.reset()
     }
 
 //    MARK: - SectionPointRepositoryProtocol
 
-    func attachPoints(sections: [Section]) -> [Section] {
-        userDb.attachPoints(sections: sections)
+    func attachPoints(sections: [Section]) async throws -> [Section] {
+        try await userDb.attachPoints(sections: sections)
     }
 
-    func updateSectionProgress(questIds: Set<Int>) {
-        userDb.updateSectionProgress(questIds: questIds)
+    func updateSectionProgress(questIds: Set<Int>) async throws {
+        try await userDb.updateSectionProgress(questIds: questIds)
     }
 
-    func getTotalProgressSections(questIds: [Int]?) -> Int {
-        return userDb.getTotalProgressSections(questIds: questIds)
+    func getTotalProgressSections(questIds: [Int]?) async throws -> Int {
+        return try await userDb.getTotalProgressSections(questIds: questIds)
     }
 }

@@ -20,11 +20,11 @@ class PriceFormatter: PriceFormatterProtocol {
 
     func format(subscribe: Subscribe) -> String {
         if subscribe.period <= 31 {
-            return "\(subscribe.localizedPrice) / " + NSLocalizedString("SUBSCRIPTION_PER_MONTH", comment: "per month")
+            return "\(subscribe.localizedPrice) / " + String(localized: "subcribe_per_month", table: appLocalizable)
         } else if subscribe.period <= 93 {
-            return "\(subscribe.localizedPrice) / " + NSLocalizedString("SUBSCRIPTION_PER_QUARTER", comment: "per quarter")
+            return "\(subscribe.localizedPrice) / " + String(localized: "subcribe_per_quarter", table: appLocalizable)
         } else if subscribe.period <= 365 {
-            return "\(subscribe.localizedPrice) / " + NSLocalizedString("SUBSCRIPTION_PER_YEAR", comment: "per year")
+            return "\(subscribe.localizedPrice) / " + String(localized: "subcribe_per_year", table: appLocalizable)
         } else {
             return "\(subscribe.localizedPrice)"
         }

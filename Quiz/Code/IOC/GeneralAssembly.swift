@@ -37,6 +37,14 @@ protocol GeneralAssembly {
     func resolve() -> SpecSymbolFormatter
 
     func resolve() -> LineSeparatorFormatter
+    
+    func resolve() -> UserPreferences
+    
+    func resolve() -> GamePreferences
+    
+    func resolve() -> TimeCalculator
+    
+    func resolve() -> DefaultAbQuestParser
 
     // MARK: - Domain
 
@@ -49,6 +57,10 @@ protocol GeneralAssembly {
     func resolve() -> FileRepository
     
     func resolve() -> ContentInteractor
+    
+    func resolve() -> TransitionInteractor
+    
+    func resolve() -> ProfileInteractor
 
     // MARK: - In App
 
@@ -75,4 +87,32 @@ protocol GeneralAssembly {
     // Mark: - Content
     
     func resolve() -> ContentValidatorHelper
+    
+    // MARK: - AI client
+    
+    func resolve() -> AiConnectionClient
+    
+    func resolve() -> AiRemoteConfigSource
+    
+    // MARK: - Network
+    
+    func resolve() -> NetworkFactory
+    
+    // MARK: - AI
+    
+    func resolve() -> QuizPlatformApi
+    
+    func resolve() -> AiQuestRemoteSource
+    
+    func resolve() -> AiTasksInMemorySource
+
+    func resolve() -> AiQuestInteractor
+    
+    func resolve() -> AiTasksInteractor
+    
+    // MARK: - Courses
+    
+    func resolve() -> CourseInMemorySource
+    
+    func resolve() -> CourseInteractor
 }

@@ -18,9 +18,9 @@ import Foundation
 
 protocol SectionPointRepositoryProtocol: AnyObject {
 
-    func attachPoints(sections: [Section]) -> [Section]
+    func attachPoints(sections: [Section]) async throws -> [Section]
 
-    func updateSectionProgress(questIds: Set<Int>)
+    func updateSectionProgress(questIds: Set<Int>) async throws
 
-    func getTotalProgressSections(questIds: [Int]?) -> Int
+    func getTotalProgressSections(questIds: [Int]?) async throws -> Int
 }

@@ -26,6 +26,12 @@ class AppAssembly: GeneralAssembly {
     var decoder: DecoderProtocol! = nil
     var iapHelper: IAPHelperProtocol! = nil
     var logger: Logger! = nil
+    var aiConnectionLocalSource: AiConnectionLocalSource! = nil
+    var aiRemoteConfigSource: AiRemoteConfigSource! = nil
+    var aiQuestRemoteSource: AiQuestRemoteSource! = nil
+    var courseInMemorySource: CourseInMemorySource! = nil
+    var aiTasksInMemorySource: AiTasksInMemorySource! = nil
+    var courseInteractor: CourseInteractor! = nil
     
     func enablePro() {
         contentRepository = nil
@@ -86,6 +92,14 @@ class AppAssembly: GeneralAssembly {
         return LineSeparatorFormatter()
     }
     
+    func resolve() -> TimeCalculator {
+        return TimeCalculator()
+    }
+    
+    func resolve() -> DefaultAbQuestParser {
+        return DefaultAbQuestParser()
+    }
+    
     // MARK: - Domain
     
     func resolve() -> ContentMode {
@@ -135,6 +149,28 @@ class AppAssembly: GeneralAssembly {
             fileRepository: resolve(),
             contentRemoteConfigSource: resolve()
         )
+    }
+    
+    func resolve() -> UserPreferences {
+        return UserPreferences()
+    }
+    
+    func resolve() -> GamePreferences {
+        let userPreferences: UserPreferences = resolve()
+        return GamePreferences(
+            preferences: userPreferences
+        )
+    }
+    
+    func resolve() -> TransitionInteractor {
+        let pref: UserPreferences = resolve()
+        return TransitionInteractor(
+            preferences: pref
+        )
+    }
+    
+    func resolve() -> ProfileInteractor {
+        return ProfileInteractorImpl()
     }
     
     // MARK: - In App
@@ -200,5 +236,95 @@ class AppAssembly: GeneralAssembly {
     
     func resolve() -> ContentValidatorHelper {
         return ContentValidatorHelperImpl()
+    }
+    
+    // MARK:- AI
+    
+    func resolve() -> AiConnectionLocalSource {
+        if aiConnectionLocalSource == nil {
+            aiConnectionLocalSource = AiConnectionLocalDataSource()
+        }
+        return aiConnectionLocalSource
+    }
+    
+    func resolve() -> AiConnectionClient {
+        return AiConnectionClientImpl(
+            aiConnectionLocalSource: resolve(),
+            logger: resolve()
+        )
+    }
+    
+    func resolve() -> AiRemoteConfigSource {
+        return AiRemoteConfigDataSource(
+            remoteConfig: resolve(),
+            aiInstructionConfigMapper: AiInstructionConfigMapper(),
+            logger: resolve(),
+            jsonDecoder: JSONDecoder()
+        )
+    }
+    
+    // MARK: - Network
+    
+    func resolve() -> NetworkFactory {
+        return NetworkFactory()
+    }
+    
+    // MARK: - AI
+    
+    func resolve() -> QuizPlatformApi {
+        return QuizPlatformApiImpl(
+            networkManager: resolve()
+        )
+    }
+    
+    func resolve() -> AiQuestRemoteSource {
+        if aiQuestRemoteSource == nil {
+            aiQuestRemoteSource = AiQuestRemoteDataSource(
+                api: resolve(),
+                mapper: AiQuestMapperImpl()
+            )
+        }
+        return aiQuestRemoteSource
+    }
+
+    func resolve() -> AiQuestInteractor {
+        return AiQuestInteractorImpl(remoteSource: resolve())
+    }
+    
+    func resolve() -> AiTasksInMemorySource {
+        if aiTasksInMemorySource == nil {
+            aiTasksInMemorySource = AiTasksInMemoryDataSource()
+        }
+        
+        return aiTasksInMemorySource
+    }
+    
+    func resolve() -> AiTasksInteractor {
+        return AiTasksInteractorImpl(
+            aiQuestInteractor: resolve(),
+            aiTasksInMemorySource: resolve())
+        
+    }
+    
+    // MARK: - Courses
+    
+    func resolve() -> CourseInMemorySource {
+        if courseInMemorySource == nil {
+            courseInMemorySource = CourseInMemoryDataSource()
+        }
+        
+        return courseInMemorySource
+    }
+    
+    func resolve() -> CourseInteractor {
+        if courseInteractor == nil {
+            courseInteractor = CourseInteractorImpl(
+                aiQuestInteractor: resolve(),
+                courseInMemorySource: resolve()
+                
+            )
+        }
+        
+        return courseInteractor
     }
 }

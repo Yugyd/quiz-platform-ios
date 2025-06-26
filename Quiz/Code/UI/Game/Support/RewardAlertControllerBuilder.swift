@@ -17,10 +17,10 @@
 import MaterialComponents.MaterialDialogs
 
 class RewardAlertControllerBuilder {
-    private let title = NSLocalizedString("TITLE_ADD_LIFE", comment: "Extra life")
-    private let message = NSLocalizedString("MSG_ADD_LIFE", comment: "Get an extra life by watching a promotional video")
-    private let next = NSLocalizedString("ACTION_NEXT", comment: "Next").uppercased()
-    private let extraLife = NSLocalizedString("ACTION_WATCH", comment: "View").uppercased()
+    private let title = String(localized: "game_title_add_life", table: appLocalizable)
+    private let message = String(localized: "game_msg_add_life", table: appLocalizable)
+    private let next = String(localized: "game_action_next", table: appLocalizable).uppercased()
+    private let extraLife = String(localized: "game_action_watch", table: appLocalizable).uppercased()
 
     let alertController: MDCAlertController
 

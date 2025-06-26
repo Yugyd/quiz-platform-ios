@@ -18,50 +18,56 @@ import Foundation
 
 class FileRepositoryImpl: FileRepository {
         
-    func saveTextToLocalStorage(fileName: String, fileContents: String) throws -> String? {
-        do {
-            let documentsDirectory = try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            )
-            let fileURL = documentsDirectory.appendingPathComponent(fileName)
-            
-            let isAccessing = fileURL.startAccessingSecurityScopedResource()
-            
-            if !isAccessing {
-                throw FileError.accessingSecurityScopedError
+    func saveTextToLocalStorage(fileName: String, fileContents: String) async throws -> String? {
+        // Miragte to full async
+        try await Task.detached(priority: .background) {
+            do {
+                let documentsDirectory = try FileManager.default.url(
+                    for: .documentDirectory,
+                    in: .userDomainMask,
+                    appropriateFor: nil,
+                    create: true
+                )
+                let fileURL = documentsDirectory.appendingPathComponent(fileName)
+                
+                let isAccessing = fileURL.startAccessingSecurityScopedResource()
+                
+                if !isAccessing {
+                    throw FileError.accessingSecurityScopedError
+                }
+                
+                try fileContents.write(to: fileURL, atomically: true, encoding: .utf8)
+                
+                fileURL.stopAccessingSecurityScopedResource()
+                
+                return fileURL.absoluteString
+            } catch {
+                if let fileError = error as? FileError {
+                    throw error
+                } else {
+                    throw FileError.saveError
+                }
             }
-            
-            try fileContents.write(to: fileURL, atomically: true, encoding: .utf8)
-            
-            fileURL.stopAccessingSecurityScopedResource()
-            
-            return fileURL.absoluteString
-        } catch {
-            if let fileError = error as? FileError {
-                throw error
-            } else {
-                throw FileError.saveError
-            }
-        }
+        }.value
     }
     
-    func readTextFromFile(fileName: String) throws -> String {
-        guard let fileURL = URL(string: fileName) else {
-            throw FileError.invalidFileUrl
-        }
-        
-        do {
-            let fileContents = try String(
-                contentsOf: fileURL,
-                encoding: .utf8
-            )
-            return fileContents
-        } catch {
-            throw FileError.readError
-        }
+    func readTextFromFile(fileName: String) async throws -> String {
+        // Miragte to full async
+        try await Task.detached(priority: .background) {
+            guard let fileURL = URL(string: fileName) else {
+                throw FileError.invalidFileUrl
+            }
+            
+            do {
+                let fileContents = try String(
+                    contentsOf: fileURL,
+                    encoding: .utf8
+                )
+                return fileContents
+            } catch {
+                throw FileError.readError
+            }
+        }.value
     }
     
     func getFileName(uri: String) throws -> String {

@@ -17,5 +17,5 @@
 import Foundation
 
 protocol ContentResetRepositoryProtocol: AnyObject {
-    func reset() throws
+    func reset() async throws
 }

@@ -18,9 +18,9 @@ import Foundation
 
 protocol ResetRepositoryProtocol: AnyObject {
 
-    func resetThemeProgress(theme: Int) -> Bool
+    func resetThemeProgress(theme: Int) async throws -> Bool
 
-    func resetSectionProgress(questIds: [Int]?) -> Bool
+    func resetSectionProgress(questIds: [Int]?) async throws -> Bool
 
-    func reset() -> Bool
+    func reset() async throws -> Bool
 }

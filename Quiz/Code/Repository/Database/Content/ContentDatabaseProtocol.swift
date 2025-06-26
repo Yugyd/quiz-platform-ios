@@ -16,9 +16,8 @@
 
 import Foundation
 
-protocol ContentDatabaseProtocol: SqliteDatabase,
-                                  ThemeRepositoryProtocol,
-                                  QuestRepositoryProtocol,
-                                  SectionRepositoryProtocol,
+protocol ContentDatabaseProtocol: ThemeDatabaseProtocol,
+                                  QuestDatabaseProtocol,
+                                  SectionDatabaseProtocol,
                                   ContentResetRepositoryProtocol {
 }

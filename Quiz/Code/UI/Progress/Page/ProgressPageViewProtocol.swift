@@ -17,16 +17,5 @@
 import Foundation
 
 protocol ProgressPageViewProtocol: AnyObject {
-
     var updateCallback: ProgressUpdateCallback? { get set }
-
-    func setEmptyStub()
-
-    func enableResetButton(isEnabled: Bool)
-
-    func updateTable()
-
-    func updateTableHeader(progressPercent: Int, levelDegree: LevelDegree, progressLevel: ProgressLevel)
-    
-    func onBack()
 }

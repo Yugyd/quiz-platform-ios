@@ -17,8 +17,5 @@
 import Foundation
 
 protocol EndViewProtocol: AnyObject {
-
     var sequeExtraArgs: EndSequeExtraArgs? { get set }
-
-    func setEmptyStub()
 }

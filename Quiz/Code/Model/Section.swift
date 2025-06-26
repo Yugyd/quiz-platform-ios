@@ -16,7 +16,7 @@
 
 import Foundation
 
-struct Section {
+struct Section: Equatable {
     let id: Int
     let count: Int
     let questIds: [Int]?

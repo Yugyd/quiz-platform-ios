@@ -32,15 +32,15 @@ class PromoDataSource: PromoDataSourceProtocol {
 
         let correctPromo = PromoViewData(
                 imageQualifier: "ic_rocket_launch",
-                title: NSLocalizedString("TITLE_WORK_ERROR", comment: "Work on mistakes"),
-                subtitle: NSLocalizedString("TITLE_WORK_ERROR_INFO", comment: "Work through mistakes")
+                title: String(localized: "pro_title_work_error", table: appLocalizable),
+                subtitle: String(localized: "pro_title_work_error_info", table: appLocalizable)
         )
         data.append(correctPromo)
         if featureManager.isAdEnabled() == true {
             let adPromo = PromoViewData(
                     imageQualifier: "ic_ad_off",
-                    title: NSLocalizedString("TITLE_AD_OFF", comment: "Without advertising"),
-                    subtitle: NSLocalizedString("TITLE_AD_OFF_INFO", comment: "Don't be distracted by ads")
+                    title: String(localized: "pro_title_ad_off", table: appLocalizable),
+                    subtitle: String(localized: "pro_title_ad_off_info", table: appLocalizable)
             )
             data.append(adPromo)
         }

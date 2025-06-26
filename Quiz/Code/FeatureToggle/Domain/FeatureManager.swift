@@ -19,4 +19,5 @@ import Foundation
 protocol FeatureManager: AnyObject {
     func isTelegramEnabled() -> Bool
     func isAdEnabled() -> Bool
+    func isAiTasksEnabled() -> Bool
 }
