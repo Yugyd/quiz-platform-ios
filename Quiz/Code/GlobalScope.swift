@@ -51,9 +51,9 @@ class GlobalScope {
         let userDbVersion = 1
 
         // Link
-        let privacyPollicy = "https://sites.google.com/view/yugyd/privacy-policy/quiz-platform/"
+        let privacyPollicy = "https://www.replaceme.com/privacy-policy/quiz-platform/"
         let appLink = "https://itunes.apple.com/app/REPLACE_ME"
-        let telegramDomain = "quizplatformapp"
+        let telegramDomain = "replaceme"
 
         // AdMob
         // DEV
