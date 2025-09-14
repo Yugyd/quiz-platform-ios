@@ -56,6 +56,8 @@ import Combine
     func onAction(action: ThemeAction) {
         switch action {
         case .loadData:
+            selectedMode = Mode.arcade
+            progressCalculator = ProgressCalculator.init(mode: selectedMode)
             loadData()
         case .onGameModeChanged(let mode):
             onGameModeChanged(mode: mode)
