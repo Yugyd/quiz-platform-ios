@@ -120,6 +120,9 @@ PODS:
   - GoogleUtilities/UserDefaults (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
+  - GRDB.swift (6.24.1):
+    - GRDB.swift/standard (= 6.24.1)
+  - GRDB.swift/standard (6.24.1)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
   - MaterialComponents/Buttons (124.2.0):
@@ -206,6 +209,7 @@ DEPENDENCIES:
   - FirebaseCrashlytics (= 10.19.0)
   - FirebaseMessaging (= 10.19.0)
   - FirebaseRemoteConfig (= 10.19.0)
+  - GRDB.swift
   - MaterialComponents/Dialogs (= 124.2.0)
   - SQLite.swift (= 0.14.1)
   - SwiftyBeaver (= 1.9.5)
@@ -231,6 +235,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - GRDB.swift
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -260,6 +265,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 68afe759316673c6554dac35a0c7ae8f5d6cb4ed
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
+  GRDB.swift: 136dcb5d8dddca50aae3ba7d77475f79e7232cd8
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
@@ -272,6 +278,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   TPInAppReceipt: 75ff97f2484a463cf46c172fe7f94225612aeda1
 
-PODFILE CHECKSUM: 690a5c00f9ca4dd9d3989358bc4d5e6d0e13203d
+PODFILE CHECKSUM: b9044f8f2194070e91fcafa2907cf81588323011
 
 COCOAPODS: 1.16.2

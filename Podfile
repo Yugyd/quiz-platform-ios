@@ -23,6 +23,7 @@ target 'Quiz' do
 
   # Database
   pod 'SQLite.swift', '0.14.1'
+  pod 'GRDB.swift', '6.24.1'
 
   # In App
   pod 'SwiftyStoreKit', '0.16.1'
