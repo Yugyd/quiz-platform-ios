@@ -133,7 +133,7 @@ class CourseDetailsViewModel: ObservableObject {
             }
 
             do {
-                let isAiTasksEnabled = featureManager.isAiTasksEnabled()
+                let isAiTasksEnabled = featureManager.isFeatureEnabled(FeatureToggle.aiTasks)
                 let courseDetails = try await courseInteractor.getCourseDetails(courseId: initialArgs.courseId)
                 await courseInteractor.setCurrentCourse(courseDetails)
                 

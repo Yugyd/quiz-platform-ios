@@ -421,6 +421,7 @@
 		5BED9BBF2BE28316000D7AE3 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9BBE2BE28316000D7AE3 /* LoadingScreen.swift */; };
 		5BED9BC12BE28578000D7AE3 /* WarningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9BC02BE28578000D7AE3 /* WarningScreen.swift */; };
 		5BED9BC52BE29063000D7AE3 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED9BC42BE29063000D7AE3 /* PrimaryButton.swift */; };
+		5BF208BE2E7EE91400143097 /* FeatureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF208BD2E7EE91400143097 /* FeatureToggle.swift */; };
 		61122FBFED4160A7F199EC03 /* Pods_Quiz_QuizUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94398C725E7BE92DF8A7D69C /* Pods_Quiz_QuizUITests.framework */; };
 		6DFDD0B011B28C5376C2A0D2 /* GameEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDDCCCCBECFC6F584FBC5F /* GameEnd.swift */; };
 		6DFDD0F685910B2A9B9D14B3 /* FeatureManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDD7657C55EAE256D7732A /* FeatureManagerImpl.swift */; };
@@ -883,6 +884,7 @@
 		5BED9BBE2BE28316000D7AE3 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		5BED9BC02BE28578000D7AE3 /* WarningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningScreen.swift; sourceTree = "<group>"; };
 		5BED9BC42BE29063000D7AE3 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		5BF208BD2E7EE91400143097 /* FeatureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureToggle.swift; sourceTree = "<group>"; };
 		6DFDD0FB73ECFEEF8E12AD3A /* TelegramConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramConfig.swift; sourceTree = "<group>"; };
 		6DFDD18DB24FE44A364F78C3 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		6DFDD279C4C498785D1727B4 /* IDETemplateMacros.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = IDETemplateMacros.plist; path = Quiz.xcodeproj/xcshareddata/IDETemplateMacros.plist; sourceTree = "<group>"; };
@@ -2734,6 +2736,7 @@
 				6DFDD81E0593DCE884D4FB30 /* MainPopup.swift */,
 				6DFDD18DB24FE44A364F78C3 /* ProfileCell.swift */,
 				6DFDDC48F58DD7301D54FB4E /* TrainPopup.swift */,
+				5BF208BD2E7EE91400143097 /* FeatureToggle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3354,6 +3357,7 @@
 				0381F06624C3DD46003A18F3 /* SubscribeViewCellProtocol.swift in Sources */,
 				5BED9BC12BE28578000D7AE3 /* WarningScreen.swift in Sources */,
 				033B7B3B245C0C5F00744891 /* ProfileItem.swift in Sources */,
+				5BF208BE2E7EE91400143097 /* FeatureToggle.swift in Sources */,
 				5BD9D67C2E2169FC00AE06F1 /* AiConnectionProviderModel.swift in Sources */,
 				033B7A2B245BF7DA00744891 /* UserDatabaseProtocol.swift in Sources */,
 				033B7AE4245C080800744891 /* BaseTabBarController.swift in Sources */,

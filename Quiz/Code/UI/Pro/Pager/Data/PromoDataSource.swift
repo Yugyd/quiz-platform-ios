@@ -36,7 +36,7 @@ class PromoDataSource: PromoDataSourceProtocol {
                 subtitle: String(localized: "pro_title_work_error_info", table: appLocalizable)
         )
         data.append(correctPromo)
-        if featureManager.isAdEnabled() == true {
+        if featureManager.isFeatureEnabled(FeatureToggle.ad) == true {
             let adPromo = PromoViewData(
                     imageQualifier: "ic_ad_off",
                     title: String(localized: "pro_title_ad_off", table: appLocalizable),

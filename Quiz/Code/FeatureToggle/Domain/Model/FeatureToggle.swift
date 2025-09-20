@@ -12,12 +12,12 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+//  
 
 import Foundation
 
-protocol FeatureManager: AnyObject {
-    func fetchRemoteConfig(completion: @escaping (Bool) -> Void)
-    func isFeatureEnabled(_ feature: FeatureToggle) -> Bool
-
+enum FeatureToggle: String {
+    case ad = "feature_ad"
+    case telegram = "feature_telegram"
+    case aiTasks = "feature_ai_tasks"
 }

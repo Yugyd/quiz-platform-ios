@@ -73,7 +73,7 @@ class ProPageViewController: UIPageViewController, UIPageViewControllerDataSourc
     func updatePager() {
         let correctVc = initViewController(for: 0)
 
-        if featureManager?.isAdEnabled() == true {
+        if featureManager?.isFeatureEnabled(FeatureToggle.ad) == true {
             let adVc = initViewController(for: 1)
             promoControllers = [correctVc, adVc]
         } else {

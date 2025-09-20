@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         let featureManager: FeatureManager = assembler.resolve()
-        if featureManager.isAdEnabled() {
+        if featureManager.isFeatureEnabled(FeatureToggle.ad) {
             // TODO Add new ad manager
         }
 
@@ -44,10 +44,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         configurateNotification(application)
 
+        configureRemoteConfig()
         configurateIAPHelper()
 
         return true
     }
+    
+    private func configureRemoteConfig() {
+           let featureManager: FeatureManager = IocContainer.app.resolve()
+           featureManager.fetchRemoteConfig(
+               completion: { isFetched in
+                   print("Remote config: \(isFetched)")
+               }
+           )
+       }
 
     // MARK: UISceneSession Lifecycle
 

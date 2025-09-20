@@ -15,17 +15,50 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 
 class FeatureManagerIml: FeatureManager {
-    func isAiTasksEnabled() -> Bool {
-        return true
+    
+    private var remoteConfig: RemoteConfig
+    
+    init(
+        remoteConfig: RemoteConfig = RemoteConfig.remoteConfig()
+    ) {
+        self.remoteConfig = remoteConfig
+        self.remoteConfig.configSettings = RemoteConfigSettings()
+        
+        // Set default values for feature flags and the force update version
+        let defaultValues: [String: NSObject] = [
+            FeatureToggle.ad.rawValue: false as NSObject,
+            FeatureToggle.aiTasks.rawValue: false as NSObject,
+            FeatureToggle.telegram.rawValue: false as NSObject,
+        ]
+        
+        self.remoteConfig.setDefaults(defaultValues)
     }
-
-    func isTelegramEnabled() -> Bool {
-        return true
+    
+    func fetchRemoteConfig(completion: @escaping (Bool) -> Void) {
+        remoteConfig.fetchAndActivate { fetchStatus, error in
+            if fetchStatus == .successFetchedFromRemote || fetchStatus == .successUsingPreFetchedData {
+                print("Remote config: fetched")
+                completion(true)
+            } else {
+                print("Remote config: Error fetching \(error?.localizedDescription ?? "Unknown error")")
+                
+                completion(false)
+            }
+        }
     }
-
-    func isAdEnabled() -> Bool {
-        return false
+    
+    func isFeatureEnabled(_ feature: FeatureToggle) -> Bool {
+        let isEnabled = remoteConfig[feature.rawValue].boolValue
+        print("Feature toggle: \(feature.rawValue), \(isEnabled)")
+        return remoteConfig[feature.rawValue].boolValue
+    }
+    
+    func getForceUpdateVersion() -> Int {
+        let forceUpdate = remoteConfig["force_update_version"].numberValue.intValue
+        print("Force update: \(forceUpdate)")
+        return forceUpdate
     }
 }

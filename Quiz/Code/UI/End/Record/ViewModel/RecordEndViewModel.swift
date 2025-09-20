@@ -80,7 +80,7 @@ import SwiftUI
     }
 
     private func loadData() {
-        isTelegramFeatureEnabled = featureManager.isTelegramEnabled()
+        isTelegramFeatureEnabled = featureManager.isFeatureEnabled(FeatureToggle.telegram)
         
         let config = remoteConfigRepository.fetchTelegramConfig()
 

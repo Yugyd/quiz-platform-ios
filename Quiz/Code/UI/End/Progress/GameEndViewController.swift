@@ -160,7 +160,7 @@ class GameEndViewController: UIViewController, EndViewProtocol {
     
     private func isAdEnabled() -> Bool {
         let mode: ContentMode = IocContainer.app.resolve()
-        return featureManager?.isAdEnabled() == true && mode != .pro
+        return featureManager?.isFeatureEnabled(FeatureToggle.ad) == true && mode != .pro
     }
 
     private func isShowAd(isRewardedSuccess: Bool) -> Bool {
