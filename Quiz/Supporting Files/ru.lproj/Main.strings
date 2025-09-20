@@ -19,3 +19,6 @@
 
 /* Class = "UITabBarItem"; title = "Прогресс"; ObjectID = "yiQ-jX-fxy"; */
 "yiQ-jX-fxy.title" = "Прогресс";
+
+/* Class = "UITabBarItem"; title = "Курсы"; ObjectID = "jDv-Zq-tAy"; */
+"jDv-Zq-tAy.title" = "Курсы";

@@ -12,7 +12,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//  
+//
 
 import Foundation
 
@@ -91,5 +91,41 @@ final class CourseInteractorImpl: CourseInteractor {
             parentCourseId: nil,
             isDetail: themeDetail.detail
         )
+    }
+
+
+    func getCachedCourseDetails(courseId: Int) async throws -> CourseDetailModel? {
+        // First, check if we already have a cached current course
+        if let cached = courseInMemorySource.cachedCurrentCourse, cached.id == courseId {
+            return cached
+        }
+        
+        // Next, check if it's in cachedCourses
+        if let course = courseInMemorySource.cachedCourses.first(where: { $0.id == courseId }) {
+            return map(course: course)
+        }
+        
+        // Or check if it's in cachedSubCourses
+        for (_, subCourses) in courseInMemorySource.cachedSubCourses {
+            if let course = subCourses.first(where: { $0.id == courseId }) {
+                return map(course: course)
+            }
+        }
+        
+        // If not found in any cache
+        return nil
+    }
+    
+    private func map(course: CourseModel) -> CourseDetailModel {
+        let themeDetail = CourseDetailModel(
+            id: course.id,
+            name: course.name,
+            description: course.description,
+            content: "",
+            icon: course.icon,
+            parentCourseId: course.parentCourseId,
+            isDetail: course.isDetail
+        )
+        return themeDetail
     }
 }

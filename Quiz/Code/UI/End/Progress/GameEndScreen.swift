@@ -20,7 +20,7 @@ import SwiftUI
 
 struct GameEndScreen: View {
     
-    var onNavigateToErrorsList: () -> Void
+    var onNavigateToErrorsList: (ErrorsInitialArgs) -> Void
     var onNaviateToGame: (Mode, Bool) -> Void
     
     @ObservedObject var viewModel: GameEndViewModel
@@ -106,8 +106,8 @@ struct GameEndScreen: View {
         }
         .onChange(of: viewModel.navigationState) { navigationState in
             switch navigationState {
-            case .navigateToErrorsList:
-                onNavigateToErrorsList()
+            case .navigateToErrorsList(let args):
+                onNavigateToErrorsList(args)
             case .navigateToGame(let mode, let isRewardedSuccess):
                 onNaviateToGame(mode, isRewardedSuccess)
             case .none:
@@ -123,7 +123,7 @@ struct GameEndScreen: View {
 
 #Preview {
     GameEndScreen(
-        onNavigateToErrorsList: {},
+        onNavigateToErrorsList: {_ in },
         onNaviateToGame: { _, _ in },
         viewModel: GameEndViewModel(
             contentRepository: IocContainer.app.resolve(),
@@ -137,7 +137,8 @@ struct GameEndScreen: View {
             ),
             isRewardedOpen: false,
             logger: IocContainer.app.resolve(),
-            featureManager: IocContainer.app.resolve()
+            featureManager: IocContainer.app.resolve(),
+            courseInteractor: IocContainer.app.resolve()
         )
     )
 }

@@ -33,7 +33,7 @@ class GameEndViewController: UIViewController, EndViewProtocol {
     private var featureManager: FeatureManager!
     
     private var isFinish = false
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,26 +62,29 @@ class GameEndViewController: UIViewController, EndViewProtocol {
         let contentRepository: ContentRepository = IocContainer.app.resolve()
         let userRepository: UserRepository = IocContainer.app.resolve()
         featureManager = IocContainer.app.resolve()
-
-        let data = ProgressEnd(mode: sequeExtraArgs!.gameMode,
-                themeId: sequeExtraArgs!.themeId,
-                point: sequeExtraArgs!.point,
-                count: sequeExtraArgs!.count,
-                errorQuestIds: sequeExtraArgs!.errorQuestIds)
+        
+        let data = ProgressEnd(
+            mode: sequeExtraArgs!.gameMode,
+            themeId: sequeExtraArgs!.themeId,
+            point: sequeExtraArgs!.point,
+            count: sequeExtraArgs!.count,
+            errorQuestIds: sequeExtraArgs!.errorQuestIds
+        )
         let isRewardedOpen = sequeExtraArgs!.isRewardedSuccess
-
+        
         viewModel = GameEndViewModel(
             contentRepository: contentRepository,
             userRepository: userRepository,
             data: data,
             isRewardedOpen: isRewardedOpen,
             logger: IocContainer.app.resolve(),
-            featureManager: featureManager
+            featureManager: featureManager,
+            courseInteractor: IocContainer.app.resolve()
         )
         
         let view = GameEndScreen(
-            onNavigateToErrorsList: { [weak self] in
-                self?.performSegue(withIdentifier: segueNext, sender: self?.sequeExtraArgs!.errorQuestIds)
+            onNavigateToErrorsList: { [weak self] args in
+                self?.performSegue(withIdentifier: segueNext, sender: args)
             },
             onNaviateToGame: { [weak self] mode, isRewardedSuccess in
                 if self?.isShowAd(isRewardedSuccess: isRewardedSuccess) == true {
@@ -100,9 +103,9 @@ class GameEndViewController: UIViewController, EndViewProtocol {
         guard !isFinish else {
             return
         }
-
+        
         isFinish = true
-
+        
         switch mode {
         case .arcade:
             performSegue(withIdentifier: unwindToSection, sender: nil)
@@ -117,19 +120,22 @@ class GameEndViewController: UIViewController, EndViewProtocol {
     }
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == unwindToTheme
-                   || segue.identifier! == unwindToCorrect
-                   || segue.identifier! == unwindToSection {
+            || segue.identifier! == unwindToCorrect
+            || segue.identifier! == unwindToSection
+            || segue.identifier! == unwindToCourseDetails {
             self.navigationController?.setNavigationBarHidden(false, animated: false)
         } else if segue.identifier! == segueNext {
-            guard let sequeData = sender as? Set<Int>? else {
+            guard let sequeData = sender as? ErrorsInitialArgs else {
                 return
             }
-
+            
             if let destinition = (segue.destination as? UINavigationController)?.viewControllers[0] as? ErrorViewProtocol {
-                destinition.sequeExtraErrorIdsArg = sequeData
+                destinition.sequeExtraErrorIdsArg = sequeData.errorIds
+                destinition.sequeExtraModeArg = sequeData.mode
+                destinition.sequeExtraAiThemeArg = sequeData.aiThemeId
             }
         }
     }
@@ -142,7 +148,7 @@ class GameEndViewController: UIViewController, EndViewProtocol {
             }
             return
         }
-
+        
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
                 DispatchQueue.main.async { [weak self] in
@@ -153,7 +159,7 @@ class GameEndViewController: UIViewController, EndViewProtocol {
             createAndLoadAd()
         }
     }
-
+    
     private func createAndLoadAd() {
         // TODO Add new ad manager
     }
@@ -162,7 +168,7 @@ class GameEndViewController: UIViewController, EndViewProtocol {
         let mode: ContentMode = IocContainer.app.resolve()
         return featureManager?.isFeatureEnabled(FeatureToggle.ad) == true && mode != .pro
     }
-
+    
     private func isShowAd(isRewardedSuccess: Bool) -> Bool {
         return isAdEnabled() && isRewardedSuccess == false
     }

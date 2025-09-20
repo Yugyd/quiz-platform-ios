@@ -44,14 +44,14 @@ struct SimpleQuestContent: View {
 }
 
 func getButtonColor(highlight: AnswersModel, buttonIndex: Int) -> Color? {
-    if highlight.trueAnswerIndex == nil {
-        return nil
-    } else if highlight.isCorrect {
-        if buttonIndex == highlight.trueAnswerIndex {
+    if highlight.isCorrect {
+        if buttonIndex == highlight.selectedAnswerIndex {
             return Color.green
         } else {
             return nil
         }
+    } else if highlight.trueAnswerIndex == nil {
+        return nil
     } else {
         if buttonIndex == highlight.trueAnswerIndex {
             return Color.green

@@ -84,8 +84,10 @@ import Combine
                 switch args.mode {
                 case .aiTasks:
                     data = await getAiTasks()
-                case .arcade,.marathon,.sprint,.error, .unused, nil:
+                case .arcade,.marathon,.sprint,.error, .unused:
                     data = try await self.repository.getErrors(ids: args.errorIds)
+                case nil:
+                    fatalError("Unsupported mode")
                 }
                                 
                 if data != nil {
@@ -112,6 +114,9 @@ import Combine
         
         return aiTasksInteractor
             .getAiTasks(aiThemeId: args.aiThemeId!)
+            .filter { aiTask in
+                args.errorIds.contains(aiTask.id)
+            }
             .map { aiTask in
                 ErrorQuest(
                     id: aiTask.id,

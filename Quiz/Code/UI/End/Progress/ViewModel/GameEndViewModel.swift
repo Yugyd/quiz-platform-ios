@@ -12,7 +12,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//  
+//
 
 import Foundation
 
@@ -35,31 +35,40 @@ import SwiftUI
     
     private var contentRepository: ThemeRepositoryProtocol
     private var userRepository: ErrorRepositoryProtocol
+    private var courseInteractor: CourseInteractor
     private let logger: Logger
-
     private var mode: Mode
+    private var errorIds: Set<Int>?
+    private var aiThemeId: Int?
+
     private var progressEnd: ProgressEnd
     private var isRewardedSuccess: Bool
     private var featureManager: FeatureManager
-
+    
     init(
         contentRepository: ThemeRepositoryProtocol,
         userRepository: ErrorRepositoryProtocol,
         data: ProgressEnd,
         isRewardedOpen: Bool,
         logger: Logger,
-        featureManager: FeatureManager
+        featureManager: FeatureManager,
+        courseInteractor: CourseInteractor
     ) {
         self.contentRepository = contentRepository
         self.userRepository = userRepository
         self.logger = logger
-
+        
         self.mode = data.mode
+        self.aiThemeId = data.themeId
+        self.mode = data.mode
+        self.errorIds = data.errorQuestIds
         self.progressEnd = data
-
+        
         self.isRewardedSuccess = isRewardedOpen
         
         self.featureManager = featureManager
+        
+        self.courseInteractor = courseInteractor
     }
     
     func onAction(action: GameEndAction) {
@@ -74,15 +83,20 @@ import SwiftUI
             onNavigationHandled()
         }
     }
-
+    
     private func onNewGameClicked() {
         navigationState = .navigateToGame(mode, isRewardedSuccess)
     }
     
     private func onShowErrorsClicked() {
-        navigationState = .navigateToErrorsList
+        let args = ErrorsInitialArgs(
+            errorIds: errorIds!,
+            mode: mode,
+            aiThemeId: aiThemeId
+        )
+        navigationState = .navigateToErrorsList(args)
     }
-
+    
     private func onNavigationHandled() {
         navigationState = nil
     }
@@ -91,44 +105,65 @@ import SwiftUI
         Task {
             showLoading()
             
-            let themeId = self.progressEnd.themeId!
+            let themeId = self.progressEnd.themeId
             
             do {
-                if let themeTitle = try await contentRepository.getThemeTitle(id: themeId) {
-                    
-                    let point = progressEnd.point
-                    let count = progressEnd.count
-                    
-                    if self.progressEnd.mode == .error {
-                        showData(
-                            themeTitle: GameEndTitleState.error,
-                            progressPoint: point,
-                            progressCount: count,
-                            progressPercent: Percent.calculatePercent(
-                                value: point,
-                                count: count
-                            ),
-                            errorQuestIds: progressEnd.errorQuestIds
+                let point = progressEnd.point
+                let count = progressEnd.count
+                
+                if self.progressEnd.mode == .error {
+                    showData(
+                        themeTitle: GameEndTitleState.error,
+                        progressPoint: point,
+                        progressCount: count,
+                        progressPercent: Percent.calculatePercent(
+                            value: point,
+                            count: count
+                        ),
+                        errorQuestIds: progressEnd.errorQuestIds
+                    )
+                } else {
+                    let stubProgressPercent = 0
+                    let progressPercent: Int
+                    if mode == .aiTasks {
+                        progressPercent = Percent.calculatePercent(
+                            value: point,
+                            count: count
                         )
                     } else {
-                        let themeTitle = themeTitle
                         let progressCalculator = ProgressCalculator(mode: mode)
-
-                        let stubProgressPercent = 0
-                        let progressPercent = progressCalculator?.getRecordPercentByValue(value: point, count: count) ?? stubProgressPercent
-
-                        showData(
-                            themeTitle: GameEndTitleState.themeTitle(themeTitle),
-                            progressPoint: point,
-                            progressCount: count,
-                            progressPercent: progressPercent,
-                            errorQuestIds: progressEnd.errorQuestIds
-                        )
+                        progressPercent = progressCalculator?.getRecordPercentByValue(value: point, count: count) ?? stubProgressPercent
                     }
+                    
+                    let themeTitle = try await getThemeTitle(mode: mode, themeId: themeId)
+                    showData(
+                        themeTitle: GameEndTitleState.themeTitle(themeTitle),
+                        progressPoint: point,
+                        progressCount: count,
+                        progressPercent: progressPercent,
+                        errorQuestIds: progressEnd.errorQuestIds
+                    )
                 }
             } catch {
                 logger.recordError(error: error)
             }
+        }
+    }
+    
+    private func getThemeTitle(mode: Mode, themeId: Int?) async throws -> String {
+        guard let themeId = themeId else {
+            return ""
+        }
+        
+        switch mode {
+        case .arcade, .sprint, .marathon:
+            let themeTitle = try await contentRepository.getThemeTitle(id: themeId) ?? ""
+            return themeTitle
+        case .aiTasks:
+            let themeTitle = try await courseInteractor.getCachedCourseDetails(courseId: themeId)?.name ?? ""
+            return themeTitle
+        case .error, .unused:
+            return ""
         }
     }
     

@@ -22,4 +22,5 @@ protocol CourseInteractor {
     func getCurrentCourse() async -> CourseDetailModel?
     func setCurrentCourse(_ courseModel: CourseDetailModel) async
     func getCourseDetails(courseId: Int) async throws -> CourseDetailModel
+    func getCachedCourseDetails(courseId: Int) async throws -> CourseDetailModel?
 }

@@ -87,7 +87,7 @@ import SwiftUI
         if isTelegramFeatureEnabled && config != nil {
             title = config!.gameEnd.title
             subtitle = config!.gameEnd.message
-            buttonType = RecordEndActionMode.telegram(config!.gameEnd.buttonTitle.uppercased())
+            buttonType = RecordEndActionMode.telegram(config!.gameEnd.buttonTitle)
         } else {
             title = nil
             subtitle = nil

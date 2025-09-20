@@ -17,6 +17,6 @@
 import Foundation
 
 enum GameEndNavigationState: Equatable {
-    case navigateToErrorsList
+    case navigateToErrorsList(ErrorsInitialArgs)
     case navigateToGame(Mode, Bool)
 }

@@ -41,11 +41,11 @@ class ProgressCalculator: ProgressCalculatorProtocol {
         switch mode {
         case .arcade:
             self.init(delegate: ArcadeProgressCalculatorDelegate())
-        case .marathon:
+        case .aiTasks, .marathon:
             self.init(delegate: MarathonProgressCalculatorDelegate())
         case .sprint:
             self.init(delegate: SprintProgressCalculatorDelegate())
-        case .aiTasks, .error, .unused:
+        case .error, .unused:
             fatalError("Non valid game mode")
         }
     }
