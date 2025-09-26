@@ -48,15 +48,62 @@ Download on the [App Store](https://itunes.apple.com/app/id1510892232).
 * Firebase: Analytics, Crashlytics, Messaging, Remote Config
 * Testing: JUnit
 
-
 # Contributions
 
 [Guide](docs/CONTRIBUTION.md)
 
+# Deploy
+
+### First deploy
+
+* Set up Firebase project
+    * Create a new Firebase project
+    * Add iOS app to the project
+    * Set up Analytics, Crashlytics, Messaging, Remote Config
+    * Fill Remote Config values
+    * Set up APNs for Messaging
+    * Download GoogleService-Info.plist and remote_config_defaults.plist
+* Set up App Store Connect account
+    * Create a new App ID in Apple Developer account
+    * Create a new App record in App Store Connect
+    * Create certificates and profiles for distribution and development
+    * Set up signing in Xcode project settings (General + Signing & Capabilities)
+* [Publish](#update-app-on-app-store)
+
+### Update
+
+* Set up the codebase
+    * Edit data in GlobalScope
+    * Edit data in StaticScope]
+    * Edit standalone configuration
+* Set up resources
+    * Replace DisplayName in info and General project
+    * Replace bundleName
+    * Replace Resources
+        * Assets
+        * Databases
+    * Check app icon
+* Set up configuration files
+    * Info.plist -> GADApplicationIdentifier
+    * Product.plist -> Remove products
+    * Update remote_config_defaults.plist
+    * Update GoogleService-Info.plist
+* Update metadata
+    * Check the Info tab
+    * Increase versions
+* Build
+    * Select your release profile
+    * Select `Any iOS Device`
+* Publish to App Store
+    * Archive
+    * Upload to App Store
+    * Fill in the information in App Store Connect
+    * Submit for review
+
 # License
 
 ```
-   Copyright 2024 Roman Likhachev
+   Copyright 2025 Roman Likhachev
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
