@@ -22,6 +22,7 @@ class ContentDatabase: ContentDatabaseProtocol {
     private let loggerTag = "ContentDatabase"
     
     private var newVersion: Int
+    private let forcedUpgradeVersion: Int
     private let logger: Logger
     private let path: String
     private var connection: Connection?
@@ -41,6 +42,9 @@ class ContentDatabase: ContentDatabaseProtocol {
         
         self.logger = logger
         self.newVersion = version
+        
+        self.forcedUpgradeVersion = ContentMode.pro.dbVersion
+        
         self.path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
         ).first! + "/\(ContentDatabase.dbFileName)"
@@ -49,45 +53,77 @@ class ContentDatabase: ContentDatabaseProtocol {
     // MARK: - SqliteDatabaseProtocol
 
     private func getReadableConnection() throws -> Connection? {
-        return try getWritableConnection()
+        if StaticScope.isBasedOnPlatformApp {
+            if connection != nil {
+                return connection // База данных уже открыта для действий
+            }
+            
+            if isInitializing {
+                fatalError("getReadableConnection вызывается рекурсивно")
+            }
+                    
+            do {
+                defer {
+                    isInitializing = false
+                }
+                
+                isInitializing = true
+                connection = createOrOpenDatabase(force: false)
+                
+                let version = connection?.userVersion ?? 0
+                
+                if version != 0 && version < forcedUpgradeVersion {
+                    connection = nil
+                    connection = createOrOpenDatabase(force: true)
+                }
+                                        
+                return connection
+            }
+        } else {
+            return try getWritableConnection()
+        }
     }
     
     private func getWritableConnection() throws-> Connection? {
-        if connection != nil {
+        if StaticScope.isBasedOnPlatformApp {
+            fatalError("getWritableConnection not supported")
+        } else {
+            if connection != nil {
+                return connection
+            }
+            
+            if isInitializing {
+                fatalError("getWritableConnection called recursively")
+            }
+            
+            do {
+                defer {
+                    isInitializing = false
+                }
+                
+                isInitializing = true
+                connection = try Connection(path)
+            } catch {
+                CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot connect to Database. Error is:")
+                connection = nil
+            }
+            
+            if let connection = connection {
+                let version = connection.userVersion
+                
+                if version == 0 {
+                    onCreate(db: connection)
+                } else {
+                    if version < newVersion {
+                        onUpgrade(db: connection, oldVersion: Int(version), newVersion: newVersion)
+                    }
+                }
+                
+                connection.userVersion = Int32(newVersion)
+            }
+            
             return connection
         }
-        
-        if isInitializing {
-            fatalError("getWritableConnection called recursively")
-        }
-        
-        do {
-            defer {
-                isInitializing = false
-            }
-            
-            isInitializing = true
-            connection = try Connection(path)
-        } catch {
-            CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot connect to Database. Error is:")
-            connection = nil
-        }
-        
-        if let connection = connection {
-            let version = connection.userVersion
-            
-            if version == 0 {
-                onCreate(db: connection)
-            } else {
-                if version < newVersion {
-                    onUpgrade(db: connection, oldVersion: Int(version), newVersion: newVersion)
-                }
-            }
-            
-            connection.userVersion = Int32(newVersion)
-        }
-        
-        return connection
     }
     
     private func onCreate(db: Connection) {
@@ -123,6 +159,59 @@ class ContentDatabase: ContentDatabaseProtocol {
     
     private func onUpgrade(db: Connection, oldVersion: Int?, newVersion: Int?) {
         
+    }
+    
+    // MARK: - Standalone database
+    
+    private func createOrOpenDatabase(force: Bool) -> Connection? {
+        // Сначала проверьте наличие файла db и не пытайтесь открыть его
+        var connection: Connection?
+        
+        if FileManager().fileExists(atPath: path) {
+            connection = returnConnection()
+        }
+        
+        if connection != nil {
+            // база данных уже существует
+            if force {
+                // Принудительное обновление базы данных!
+                connection = nil
+                copyDatabase()
+                connection = returnConnection()
+            }
+        } else {
+            // база данных не существует, скопируйте ее из активов и верните ее
+            copyDatabase()
+            connection = returnConnection()
+        }
+        
+        return connection
+    }
+    
+    private func returnConnection() -> Connection? {
+        do {
+            return try Connection(path, readonly: true)
+        } catch {
+            CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot connect to Database. Error is:")
+            return nil
+        }
+    }
+    
+    private func copyDatabase() {
+        let resDbPath = Bundle.main
+            .path(forResource: ContentMode.pro.dbFileName, ofType: "db")!
+        
+        do {
+            let fileManager = FileManager()
+            
+            if fileManager.fileExists(atPath: path) {
+                try fileManager.removeItem(atPath: path)
+            }
+            
+            try fileManager.copyItem(atPath: resDbPath, toPath: path)
+        } catch {
+            CrashlyticsUtils.record(root: error, isPrint: true, startMsg: "Cannot copy to Database. Error is:")
+        }
     }
     
     // MARK: - ThemeRepositoryProtocol
@@ -273,7 +362,7 @@ class ContentDatabase: ContentDatabaseProtocol {
                       row[QuestContract.answer6],
                       row[QuestContract.answer7],
                       row[QuestContract.answer8]].filter { answer in
-                        answer != nil
+                        answer != nil && !answer!.isEmpty
                     } as! [String])
                     .shuffled()
                     .prefix(3)
@@ -289,6 +378,17 @@ class ContentDatabase: ContentDatabaseProtocol {
                         decoder.decrypt(encryptedText: answer)
                     }
                     
+                    let typeValue = row[QuestContract.type]
+                    let type: QuestType
+                    switch typeValue {
+                    case "simple":
+                        type = QuestType.simple
+                    case "enter":
+                        type = QuestType.enter
+                    default:
+                        fatalError("Is not supported")
+                    }
+                    
                     return Quest(
                         id: Int(row[QuestContract.id]),
                         quest: questFormatter.format(data: decryptQuest),
@@ -296,7 +396,8 @@ class ContentDatabase: ContentDatabaseProtocol {
                         answers: decryptAnswers,
                         complexity: row[QuestContract.complexity],
                         category: row[QuestContract.category],
-                        section: row[QuestContract.section]
+                        section: row[QuestContract.section],
+                        type: type
                     )
                 }
             } catch {

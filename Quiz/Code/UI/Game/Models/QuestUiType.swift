@@ -16,11 +16,7 @@
 
 import Foundation
 
-enum GameAction {
-    case loadData
-    case onScrollToTopAnimationEnded
-    case onErrorVibrationEnded
-    case onNavigationHandled
-    case onAnswerSelected(userAnswer: String, isSelected: Bool)
-    case onAnswerTextChanged(userAnswer: String)
+enum QuestUiType {
+    case simple
+    case enter
 }

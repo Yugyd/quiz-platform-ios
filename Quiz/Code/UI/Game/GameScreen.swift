@@ -40,6 +40,7 @@ struct GameScreen: View {
                     let progressTint = ProgressColor.getColor(
                         level: progressLevel
                     )
+                    
                     ProgressView(
                         value: Float(viewModel.control.progress),
                         total: 100.0
@@ -54,19 +55,45 @@ struct GameScreen: View {
                     ScrollViewReader { proxy in
                         ScrollView {
                             VStack(spacing: 16) {
-                                SimpleQuestContent(
-                                    quest: viewModel.quest!.quest,
-                                    answers: viewModel.quest!.answers,
-                                    answersModel: viewModel.answers,
-                                    onAnswerClicked: { answer in
-                                        viewModel.onAction(
-                                            action: .onAnswerSelected(
-                                                userAnswer: answer,
-                                                isSelected: true
+                                switch viewModel.quest!.type {
+                                case QuestUiType.enter:
+                                    EnterQuestContent(
+                                        quest: viewModel.quest!.quest,
+                                        isNumberKeyboard: viewModel.quest!.isNumberKeyboard,
+                                        manualAnswer: viewModel.manualAnswer,
+                                        trueAnswer: viewModel.quest?.trueAnswer,
+                                        answers: viewModel.answers,
+                                        onAnswerHandler: {
+                                            viewModel.onAction(
+                                                action: .onAnswerSelected(
+                                                    userAnswer: viewModel.manualAnswer,
+                                                    isSelected: true
+                                                )
                                             )
-                                        )
-                                    }
-                                )
+                                        },
+                                        onAnswerTextChanged: { newAnswer in
+                                            viewModel.onAction(
+                                                action: .onAnswerTextChanged(
+                                                    userAnswer: newAnswer
+                                                )
+                                            )
+                                        }
+                                    )
+                                case QuestUiType.simple:
+                                    SimpleQuestContent(
+                                        quest: viewModel.quest!.quest,
+                                        answers: viewModel.quest!.answers,
+                                        answersModel: viewModel.answers,
+                                        onAnswerClicked: { answer in
+                                            viewModel.onAction(
+                                                action: .onAnswerSelected(
+                                                    userAnswer: answer,
+                                                    isSelected: true
+                                                )
+                                            )
+                                        }
+                                    )
+                                }
                             }
                             .padding(.vertical, 16)
                         }

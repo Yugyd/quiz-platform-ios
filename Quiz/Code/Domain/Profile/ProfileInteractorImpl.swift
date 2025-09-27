@@ -38,13 +38,15 @@ class ProfileInteractorImpl: ProfileInteractor {
             )
         )
         items.append(header)
-     
-        // Content
-        let content = ProfileItem(
-            id: .selectContent,
-            row: ValueProfileRow(title: String(localized: "profile_title_content", table: appLocalizable))
-        )
-        items.append(content)
+        
+        if !StaticScope.isBasedOnPlatformApp {
+            // Content
+            let content = ProfileItem(
+                id: .selectContent,
+                row: ValueProfileRow(title: String(localized: "profile_title_content", table: appLocalizable))
+            )
+            items.append(content)
+        }
         
         // AI
         let aiSwitch = ProfileItem(
@@ -170,11 +172,13 @@ class ProfileInteractorImpl: ProfileInteractor {
         items.append(privacyPollicy)
         
         // Open-Source header
-        let openSourceHeader = ProfileItem(
-            id: .openSource,
-            row: OpenSourceAppProfileRow(title: "")
-        )
-        items.append(openSourceHeader)
+        if StaticScope.isBasedOnPlatformApp {
+            let openSourceHeader = ProfileItem(
+                id: .openSource,
+                row: OpenSourceAppProfileRow(title: "")
+            )
+            items.append(openSourceHeader)
+        }
         
         return items
     }

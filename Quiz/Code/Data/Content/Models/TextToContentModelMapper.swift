@@ -78,7 +78,8 @@ class TextToContentModelMapperImpl: TextToContentModelMapper {
             ],
             complexity: Int(String(data[5])) ?? 0,
             category: Int(String(data[6])) ?? 0,
-            section: Int(String(data[7])) ?? 0
+            section: Int(String(data[7])) ?? 0,
+            type: QuestType.simple
         )
     }
     

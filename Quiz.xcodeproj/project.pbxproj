@@ -272,6 +272,9 @@
 		5BAA26C52E0EE7A700C8FA06 /* CorrectNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA26C42E0EE7A700C8FA06 /* CorrectNavigationState.swift */; };
 		5BAA26C72E0EE7F200C8FA06 /* CorrectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA26C62E0EE7F200C8FA06 /* CorrectAction.swift */; };
 		5BAA26C92E0EE87200C8FA06 /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA26C82E0EE87200C8FA06 /* CorrectViewController.swift */; };
+		5BB1002D2E89CA630098C209 /* AnswerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1002C2E89CA630098C209 /* AnswerState.swift */; };
+		5BB1002F2E89CBB80098C209 /* QuestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1002E2E89CBB80098C209 /* QuestType.swift */; };
+		5BB100312E89CBF50098C209 /* QuestUiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB100302E89CBF50098C209 /* QuestUiType.swift */; };
 		5BB378AC2BEF5804007FC5A4 /* ContentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378AB2BEF5804007FC5A4 /* ContentAction.swift */; };
 		5BB378AE2BEF5813007FC5A4 /* ErrorMessageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378AD2BEF5813007FC5A4 /* ErrorMessageState.swift */; };
 		5BB378B02BEF582F007FC5A4 /* ContentNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB378AF2BEF582F007FC5A4 /* ContentNavigationState.swift */; };
@@ -336,6 +339,8 @@
 		5BC2EB122E763A79002E8CC4 /* ErrorsInitialArgs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EB112E763A79002E8CC4 /* ErrorsInitialArgs.swift */; };
 		5BC2EB142E763B2E002E8CC4 /* AiConnectionProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EB132E763B2E002E8CC4 /* AiConnectionProfileRow.swift */; };
 		5BC2EB162E763B79002E8CC4 /* TransitionUiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EB152E763B79002E8CC4 /* TransitionUiModel.swift */; };
+		5BC50F3E2E88323B0073D545 /* content-encode-pro.db in Resources */ = {isa = PBXBuildFile; fileRef = 5BC50F3D2E88323B0073D545 /* content-encode-pro.db */; };
+		5BC50F442E88C0E90073D545 /* EnterQuestContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC50F432E88C0E90073D545 /* EnterQuestContent.swift */; };
 		5BCDBB5A2BE79B4A003B5A6C /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCDBB592BE79B4A003B5A6C /* ContentModel.swift */; };
 		5BCEBD112E2DCC630073EAEB /* Ai.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BCEBD102E2DCC630073EAEB /* Ai.storyboard */; };
 		5BD195392E1753C400F866FE /* ThemeSenderArgs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD195382E1753C400F866FE /* ThemeSenderArgs.swift */; };
@@ -736,6 +741,9 @@
 		5BAA26C42E0EE7A700C8FA06 /* CorrectNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectNavigationState.swift; sourceTree = "<group>"; };
 		5BAA26C62E0EE7F200C8FA06 /* CorrectAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectAction.swift; sourceTree = "<group>"; };
 		5BAA26C82E0EE87200C8FA06 /* CorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
+		5BB1002C2E89CA630098C209 /* AnswerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerState.swift; sourceTree = "<group>"; };
+		5BB1002E2E89CBB80098C209 /* QuestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestType.swift; sourceTree = "<group>"; };
+		5BB100302E89CBF50098C209 /* QuestUiType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUiType.swift; sourceTree = "<group>"; };
 		5BB378AB2BEF5804007FC5A4 /* ContentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentAction.swift; sourceTree = "<group>"; };
 		5BB378AD2BEF5813007FC5A4 /* ErrorMessageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageState.swift; sourceTree = "<group>"; };
 		5BB378AF2BEF582F007FC5A4 /* ContentNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNavigationState.swift; sourceTree = "<group>"; };
@@ -799,6 +807,8 @@
 		5BC2EB112E763A79002E8CC4 /* ErrorsInitialArgs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsInitialArgs.swift; sourceTree = "<group>"; };
 		5BC2EB132E763B2E002E8CC4 /* AiConnectionProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiConnectionProfileRow.swift; sourceTree = "<group>"; };
 		5BC2EB152E763B79002E8CC4 /* TransitionUiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionUiModel.swift; sourceTree = "<group>"; };
+		5BC50F3D2E88323B0073D545 /* content-encode-pro.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "content-encode-pro.db"; sourceTree = "<group>"; };
+		5BC50F432E88C0E90073D545 /* EnterQuestContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQuestContent.swift; sourceTree = "<group>"; };
 		5BCDBB592BE79B4A003B5A6C /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		5BCEBD102E2DCC630073EAEB /* Ai.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ai.storyboard; sourceTree = "<group>"; };
 		5BD195382E1753C400F866FE /* ThemeSenderArgs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSenderArgs.swift; sourceTree = "<group>"; };
@@ -1065,6 +1075,7 @@
 		033B79CE245BE9E100744891 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5BC50F3C2E8831CF0073D545 /* Database */,
 				0314A6CE246291950030B5E5 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -1167,6 +1178,7 @@
 				0381F06324C3DCED003A18F3 /* Subscribe.swift */,
 				033B7A0F245BF59600744891 /* Theme.swift */,
 				03A257F7254C9FE200F498D4 /* SubscribeDate.swift */,
+				5BB1002E2E89CBB80098C209 /* QuestType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1488,6 +1500,7 @@
 				5BD9D6012E1E3ECC00AE06F1 /* ViewModel */,
 				5BD9D6022E1E3ECC00AE06F1 /* GameViewController.swift */,
 				5BD9D6032E1E3ECC00AE06F1 /* GameScreen.swift */,
+				5BC50F432E88C0E90073D545 /* EnterQuestContent.swift */,
 				5BD9D60A2E1E859C00AE06F1 /* SimpleQuestContent.swift */,
 				5BD9D60C2E1E85AF00AE06F1 /* GameItems.swift */,
 				033B7B96245C119600744891 /* Support */,
@@ -2392,6 +2405,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5BC50F3C2E8831CF0073D545 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				5BC50F3D2E88323B0073D545 /* content-encode-pro.db */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		5BCDBB582BE79B36003B5A6C /* Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -2434,6 +2455,8 @@
 				5BD9D6142E1F9DB300AE06F1 /* GameInitialArgs.swift */,
 				5BD9D6162E1F9DC500AE06F1 /* AnswersModel.swift */,
 				5BD9D6182E1F9DD600AE06F1 /* ControlModel.swift */,
+				5BB1002C2E89CA630098C209 /* AnswerState.swift */,
+				5BB100302E89CBF50098C209 /* QuestUiType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2862,6 +2885,7 @@
 				0314A6CF246291950030B5E5 /* Assets.xcassets in Resources */,
 				5BE98E002BE19CD7002A08D4 /* AppLocalizable.xcstrings in Resources */,
 				033B79A8245BE96900744891 /* LaunchScreen.storyboard in Resources */,
+				5BC50F3E2E88323B0073D545 /* content-encode-pro.db in Resources */,
 				BE838CFB2B4D3D4300D68618 /* Profile.storyboard in Resources */,
 				5B0A5EB22E0D728D00161F1B /* GoogleService-Info.plist in Resources */,
 				03717F9B24C7AE6E00659391 /* Product.plist in Resources */,
@@ -3151,6 +3175,7 @@
 				5BE884C62E1BB49900359B35 /* ProfileListContent.swift in Sources */,
 				033B7A45245BF91000744891 /* ConnectionExtension.swift in Sources */,
 				5B1427AE2E228298004B045A /* AiConnectionDetailsSnackbarMessage.swift in Sources */,
+				5BB100312E89CBF50098C209 /* QuestUiType.swift in Sources */,
 				5B3A8A2D2E16156200303375 /* ThemeViewModel.swift in Sources */,
 				5BBB6D182E23049A0019BE2D /* CourseInMemoryDataSource.swift in Sources */,
 				5B2093642E102F3100719DD8 /* ErrorViewProtocol.swift in Sources */,
@@ -3205,6 +3230,7 @@
 				5BD9D6092E1E3ECC00AE06F1 /* GameViewController.swift in Sources */,
 				5B1427BB2E22CFA9004B045A /* HeaderRequestInterceptor.swift in Sources */,
 				033B7B66245C0ED500744891 /* ProgressPageSegueProtocol.swift in Sources */,
+				5BC50F442E88C0E90073D545 /* EnterQuestContent.swift in Sources */,
 				033B7AA1245BFEAA00744891 /* PreferenceData.swift in Sources */,
 				0381F06824C3DD5D003A18F3 /* SubscribeViewCell.swift in Sources */,
 				5BE884B72E1A5F6F00359B35 /* TransitionContent.swift in Sources */,
@@ -3315,6 +3341,7 @@
 				5B306AB22BE7C05500DBBB79 /* ContentScreen.swift in Sources */,
 				5BBB6D272E23D6C20019BE2D /* SubCoursesViewProtocol.swift in Sources */,
 				5BD9D66F2E21659100AE06F1 /* AiConnectionClient.swift in Sources */,
+				5BB1002D2E89CA630098C209 /* AnswerState.swift in Sources */,
 				0381F06424C3DCED003A18F3 /* Subscribe.swift in Sources */,
 				5B14279E2E225C97004B045A /* AiConnectionDetailsContent.swift in Sources */,
 				033B7A9C245BFE4400744891 /* TotalProgressCalculatorDelegate.swift in Sources */,
@@ -3334,6 +3361,7 @@
 				0381F06224C3DCAC003A18F3 /* PriceFormatter.swift in Sources */,
 				5BDCD9C72BEA2B9C002475F5 /* AppRemoteConfigImpl.swift in Sources */,
 				5B9BAC962E19FD3100C6FDD8 /* SectionSenderArgs.swift in Sources */,
+				5BB1002F2E89CBB80098C209 /* QuestType.swift in Sources */,
 				033B79F0245BF41C00744891 /* SpecSymbolFormatter.swift in Sources */,
 				5B2093502E0EF6EC00719DD8 /* ErrorScreen.swift in Sources */,
 				033B7A5D245BFA5D00744891 /* QuestRepositoryProtocol.swift in Sources */,

@@ -12,7 +12,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//  
+//
 
 import Foundation
 
@@ -73,6 +73,16 @@ class ContentDbMapper {
         
         let decryptedAnswers = shuffled.map { decoder.decrypt(encryptedText: $0) }
         
+        let type: QuestType
+        switch record.type {
+        case "simple":
+            type = QuestType.simple
+        case "enter":
+            type = QuestType.enter
+        default:
+            fatalError("Is not supported")
+        }
+        
         return Quest(
             id: Int(record._id ?? 0),
             quest: decryptedQuest,
@@ -80,7 +90,8 @@ class ContentDbMapper {
             answers: decryptedAnswers,
             complexity: record.complexity,
             category: record.category,
-            section: record.section
+            section: record.section,
+            type: type
         )
     }
     

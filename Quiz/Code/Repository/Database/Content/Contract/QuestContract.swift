@@ -22,9 +22,9 @@ class QuestContract {
     static let id = Expression<Int>("_id")
     static let quest = Expression<String>("quest")
     static let true_answer = Expression<String>("true_answer")
-    static let answer2 = Expression<String>("answer2")
-    static let answer3 = Expression<String>("answer3")
-    static let answer4 = Expression<String>("answer4")
+    static let answer2 = Expression<String?>("answer2")
+    static let answer3 = Expression<String?>("answer3")
+    static let answer4 = Expression<String?>("answer4")
     static let answer5 = Expression<String?>("answer5")
     static let answer6 = Expression<String?>("answer6")
     static let answer7 = Expression<String?>("answer7")
@@ -32,4 +32,5 @@ class QuestContract {
     static let complexity = Expression<Int>("complexity")
     static let category = Expression<Int>("category")
     static let section = Expression<Int>("section")
+    static let type = Expression<String>("type")
 }

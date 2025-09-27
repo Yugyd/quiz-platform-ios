@@ -1037,6 +1037,23 @@
         }
       }
     },
+    "enter_quest_correct_answer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correct answer"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правильный ответ"
+          }
+        }
+      }
+    },
     "errors_title_error_list" : {
       "extractionState" : "manual",
       "localizations" : {

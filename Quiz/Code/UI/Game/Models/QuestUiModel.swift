@@ -19,4 +19,9 @@ import Foundation
 struct QuestUiModel {
     let quest: String
     let answers: [String]
+    let type: QuestUiType
+    
+    // only enter
+    let isNumberKeyboard: Bool
+    let trueAnswer: String?
 }

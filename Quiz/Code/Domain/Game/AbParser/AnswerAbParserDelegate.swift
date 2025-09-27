@@ -57,7 +57,8 @@ class AnswerAbParserDelegate: AbQuestParser {
             answers: answers,
             complexity: tempQuest.complexity,
             category: tempQuest.category,
-            section: tempQuest.section
+            section: tempQuest.section,
+            type: tempQuest.type
         )
     }
     

@@ -30,15 +30,21 @@ struct Quest: Identifiable, Equatable, Hashable {
     let complexity: Int
     let category: Int
     let section: Int
+    let type: QuestType
 
     static var count = 0
 
     func isValid() -> Bool {
-        return quest.count > Quest.minQuestLength
-                && !(trueAnswer.isEmpty)
-                && answers.contains(trueAnswer)
-                && answers.count == Quest.answerCount
-                && !(answers.filter({ $0.isEmpty }).count >= 1)
-                && (complexity >= Quest.minComplexity && complexity <= Quest.maxComplexity)
+        switch type {
+        case .simple:
+            return quest.count >= Quest.minQuestLength
+                    && !(trueAnswer.isEmpty)
+                    && answers.contains(trueAnswer)
+                    && answers.count == Quest.answerCount
+                    && !(answers.filter({ $0.isEmpty }).count >= 1)
+        case .enter:
+            return quest.count >= Quest.minQuestLength
+                    && !(trueAnswer.isEmpty)
+        }
     }
 }

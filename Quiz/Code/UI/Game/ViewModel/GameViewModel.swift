@@ -21,6 +21,7 @@ import SwiftUI
 @MainActor class GameViewModel: ObservableObject {
     
     static let conditionValueMin = 0
+    private let FREE_FORM_ANSWER_LIMIT_COUNT = 400
     
     typealias QuestSectionRepositoryProtocol = QuestRepositoryProtocol & SectionRepositoryProtocol
     
@@ -29,6 +30,7 @@ import SwiftUI
     @Published var isWarning: Bool = false
     @Published var isLoading: Bool = false
     @Published var quest: QuestUiModel?
+    @Published var manualAnswer: String = ""
     @Published var control: ControlModel = ControlModel(
         point: 0,
         progress: 0,
@@ -99,6 +101,8 @@ import SwiftUI
             onNavigationHandled()
         case .onAnswerSelected(userAnswer: let userAnswer, isSelected: _):
             onAnswerSelected(userAnswer: userAnswer)
+        case .onAnswerTextChanged(userAnswer: let userAnswer):
+            onAnswerTextChanged(newAnswer: userAnswer)
         }
     }
     
@@ -107,10 +111,9 @@ import SwiftUI
             return
         }
         
-        let index = quest.answers.firstIndex(of: userAnswer)!
         showResult(
             quest: quest,
-            userAnswerIndex: index
+            selectedAnswer: userAnswer
         )
         
         let transition: Double
@@ -127,10 +130,18 @@ import SwiftUI
         }
     }
     
-    private func showResult(quest: Quest, userAnswerIndex index: Int) {
-        let userAnswer = quest.answers[index]
+    private func showResult(quest: Quest, selectedAnswer: String) {
         let trueAnswer = quest.trueAnswer
-        let isTrueAnswer = userAnswer.elementsEqual(trueAnswer)
+        
+        let isTrueAnswer: Bool
+        switch quest.type {
+        case .simple:
+            isTrueAnswer = trueAnswer.elementsEqual(selectedAnswer)
+        case .enter:
+            isTrueAnswer = trueAnswer.caseInsensitiveCompare(
+                selectedAnswer.trimmingCharacters(in: .whitespacesAndNewlines)
+            ) == .orderedSame
+        }
         
         if isTrueAnswer {
             gameProcess.addSectionQuest()
@@ -145,12 +156,24 @@ import SwiftUI
                 conditionValue: self.control.conditionValue,
                 type: self.control.type
             )
-            self.answers = AnswersModel(
-                trueAnswerIndex: nil,
-                selectedAnswerIndex: index,
-                isCorrect: true,
-                answerButtonIsEnabled: false
-            )
+            
+            switch quest.type {
+            case .simple:
+                let index = quest.answers.firstIndex(of: selectedAnswer)!
+                self.answers = AnswersModel(
+                    trueAnswerIndex: nil,
+                    selectedAnswerIndex: index,
+                    isCorrect: true,
+                    answerButtonIsEnabled: false
+                )
+            case .enter:
+                self.answers = AnswersModel(
+                    trueAnswerIndex: nil,
+                    selectedAnswerIndex: nil,
+                    isCorrect: true,
+                    answerButtonIsEnabled: false,
+                )
+            }
         } else {
             gameProcess.addErrorQuest()
             
@@ -173,12 +196,24 @@ import SwiftUI
             )
             
             let trueAnswerIndex = quest.answers.firstIndex(of: trueAnswer)!
-            self.answers = AnswersModel(
-                trueAnswerIndex: trueAnswerIndex,
-                selectedAnswerIndex: index,
-                isCorrect: false,
-                answerButtonIsEnabled: false
-            )
+            
+            switch quest.type {
+            case .simple:
+                let index = quest.answers.firstIndex(of: selectedAnswer)!
+                self.answers = AnswersModel(
+                    trueAnswerIndex: trueAnswerIndex,
+                    selectedAnswerIndex: index,
+                    isCorrect: false,
+                    answerButtonIsEnabled: false
+                )
+            case .enter:
+                self.answers = AnswersModel(
+                    trueAnswerIndex: 0,
+                    selectedAnswerIndex: 0,
+                    isCorrect: false,
+                    answerButtonIsEnabled: false
+                )
+            }
             
             if preferences.isVibration {
                 self.startErrorVibration = true
@@ -301,7 +336,7 @@ import SwiftUI
         
         Task { [weak self] in
             guard let self else { return }
-
+            
             let data = try await self.dataManager.loadQuest(
                 id: id,
                 theme: self.initialArgs.themeId
@@ -352,10 +387,25 @@ import SwiftUI
         let quest = gameProcess.currentQuest!
         
         // Update UI
+        let uiQuestType: QuestUiType
+        switch quest.type {
+        case .simple:
+            uiQuestType = QuestUiType.simple
+        case .enter:
+            uiQuestType = QuestUiType.enter
+        }
+        
+        let trueAnswer = quest.trueAnswer
+        let isNumeric = !trueAnswer.isEmpty && trueAnswer.allSatisfy { $0.isNumber }
+        
+        manualAnswer = ""
         self.scrollToTopAnimation = true
         self.quest = QuestUiModel(
             quest: quest.quest,
-            answers: quest.answers
+            answers: quest.answers,
+            type: uiQuestType,
+            isNumberKeyboard: isNumeric,
+            trueAnswer: trueAnswer,
         )
     }
     
@@ -484,5 +534,13 @@ import SwiftUI
     private func showData() {
         isLoading = false
         isWarning = false
+    }
+    
+    private func onAnswerTextChanged(newAnswer: String) {
+        guard newAnswer.count <= FREE_FORM_ANSWER_LIMIT_COUNT else {
+            return
+        }
+        
+        manualAnswer = newAnswer
     }
 }

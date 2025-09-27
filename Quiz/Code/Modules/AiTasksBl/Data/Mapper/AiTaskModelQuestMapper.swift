@@ -47,7 +47,8 @@ final class AiTaskModelQuestMapper {
             answers: answers,
             complexity: aiTask.complexity,
             category: aiTask.category,
-            section: aiTask.section
+            section: aiTask.section,
+            type: QuestType.simple
         )
     }
 }
