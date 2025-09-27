@@ -29,12 +29,16 @@ import UIKit
         
         Task {
             do {
-                let isContentSelected = try await contentInteractor.isSelected()
-                
-                if isContentSelected {
+                if StaticScope.isBasedOnPlatformApp {
                     showMainApp()
                 } else {
-                    showContent()
+                    let isContentSelected = try await contentInteractor.isSelected()
+                    
+                    if isContentSelected {
+                        showMainApp()
+                    } else {
+                        showContent()
+                    }
                 }
             } catch {
                 logger.recordError(error: error)
